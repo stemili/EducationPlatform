@@ -1,9 +1,13 @@
 import React from "react";
 import "../styles/CategoryCard.css";
+const categories = [
+  { id: "1", name: "Programming" },
+  { id: "2", name: "Bussiness" },
+  { id: "3", name: "Photography" },
+];
 
-const CategoryCard = (props) => {
-  console.log(props);
-  const cardsList = props.categories.map((item) => {
+const CategoryCard = () => {
+  const cardsList = categories.map((item) => {
     const srcImg = require(`../resources/${item.name.toLowerCase()}.png`);
     const srcIcon = require(`../resources/${item.name.toLowerCase()}-icon.png`);
     return (
