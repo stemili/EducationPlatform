@@ -9,9 +9,7 @@ function App() {
     <div className="App">
       <Navbar />
       <CategoryCard />
-      <div className="testimonial-section">
-        <TestimonialCard />
-      </div>
+      <TestimonialCard />
     </div>
   );
 }

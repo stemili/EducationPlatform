@@ -1,29 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/CategoryCard.css";
-const categories = [
-  { id: "1", name: "Programming" },
-  { id: "2", name: "Bussiness" },
-  { id: "3", name: "Photography" },
-];
 
 const CategoryCard = () => {
+  const [categories, setCategories] = useState([
+    { id: "1", name: "Programming", icon: "code" },
+    { id: "2", name: "Bussiness", icon: "chart-bar" },
+    { id: "3", name: "Photography", icon: "camera-retro" },
+    { id: "4", name: "Programming", icon: "fas fa-code" },
+  ]);
   const cardsList = categories.map((item) => {
-    const srcImg = require(`../resources/${item.name.toLowerCase()}.png`);
-    const srcIcon = require(`../resources/${item.name.toLowerCase()}-icon.png`);
     return (
       <div className="category-card" key={item.id}>
         <img
-          src={srcImg}
+          src={`../resources/${item.name}.png`}
           alt="Programming category"
           className="category-card-image"
         />
         <div className="category-card-content">
-          <img
-            src={srcIcon}
-            className="category-card-icon"
-            alt="Programming icon"
-          />
-          <h2>{item.name.toUpperCase()}</h2>
+          <i className={`fas fa-${item.icon} silver`}></i>
+          <h3>{item.name.toUpperCase()}</h3>
         </div>
       </div>
     );

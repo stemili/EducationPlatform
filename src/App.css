@@ -2,8 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+:root {
+  --orange: #ee6c4d;
 }
 
 .testimonial-section {
+  height: 15rem;
   background-color: #f4f4f4;
 }
