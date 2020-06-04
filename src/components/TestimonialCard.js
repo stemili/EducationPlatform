@@ -32,7 +32,6 @@ export default class TestimonialCards extends React.Component {
     ],
   };
   componentDidMount() {
-    console.log("mount");
     this.swiper = new Swiper(".swiper-container", {
       slidesPerView: 5,
       centeredSlides: true,
@@ -44,11 +43,11 @@ export default class TestimonialCards extends React.Component {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-      on: {
-        resize: function () {
-          this.swiper.changeDirection(this.getDirection());
-        },
-      },
+      //on: {
+      //  resize: function () {
+      //    this.swiper.changeDirection(this.getDirection());
+      //  },
+      //},
     });
   }
 
@@ -62,7 +61,7 @@ export default class TestimonialCards extends React.Component {
       return (
         <div className="swiper-slide" key={item.userID}>
           <div className="swiper-inner-circle">
-            <img src={avatar} />
+            <img src={avatar} alt="User" />
           </div>
         </div>
       );
@@ -70,14 +69,12 @@ export default class TestimonialCards extends React.Component {
     return items;
   }
   handleClick = (e) => {
-    console.log(e.target);
     e.target.classList.value.includes("swiper-button-next")
       ? this.setState({ current: this.state.current + 1 })
       : this.setState({ current: this.state.current - 1 });
   };
 
   render() {
-    console.log("render");
     return (
       <div className="testimonial-section">
         <h1>What do people say about us?</h1>

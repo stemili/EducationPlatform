@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/CategoryCard.css";
 
 const CategoryCard = () => {
-  const [categories, setCategories] = useState([
+  const [categories] = useState([
     { id: "1", name: "Programming", icon: "code" },
     { id: "2", name: "Bussiness", icon: "chart-bar" },
     { id: "3", name: "Photography", icon: "camera-retro" },
