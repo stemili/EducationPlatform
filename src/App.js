@@ -2,14 +2,15 @@ import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import CategoryCard from "./components/CategoryCard";
-import TestimonialCard from "./components/TestimonialCard";
-
+import TestimonialCards from "./components/TestimonialCard";
+import Footer from "./components/Footer";
 function App() {
   return (
     <div className="App">
       <Navbar />
       <CategoryCard />
-      <TestimonialCard />
+      <TestimonialCards />
+      <Footer />
     </div>
   );
 }

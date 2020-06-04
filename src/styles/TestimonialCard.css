@@ -1,3 +1,16 @@
+.testimonial-section {
+  height: auto;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.testimonial-section > h1 {
+  max-width: 1100px;
+  margin: auto;
+}
+
 .swiper-container {
   margin-top: 2rem;
   max-width: 800px;

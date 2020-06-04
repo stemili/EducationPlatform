@@ -7,6 +7,10 @@ const CategoryCard = () => {
     { id: "2", name: "Bussiness", icon: "chart-bar" },
     { id: "3", name: "Photography", icon: "camera-retro" },
     { id: "4", name: "Programming", icon: "fas fa-code" },
+    { id: "5", name: "Bussiness", icon: "chart-bar" },
+    { id: "6", name: "Photography", icon: "camera-retro" },
+    { id: "7", name: "Bussiness", icon: "chart-bar" },
+    { id: "8", name: "Photography", icon: "camera-retro" },
   ]);
   const cardsList = categories.map((item) => {
     return (
