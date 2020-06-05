@@ -10,11 +10,13 @@ export default class TestimonialCards extends React.Component {
     testimonials: [
       {
         userID: "rad1na",
-        testimonial: "Perfect site 0",
+        testimonial:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint dolore, dolores consequatur rem recusandae tenetur. Repellendus, mollitia! Nihil quidem architecto aut amet minus quisquam reprehenderit dolore. Consequuntur dolores qui laudantium.",
       },
       {
         userID: "rad1na1",
-        testimonial: "Perfect site 1",
+        testimonial:
+          "Sint dolore, dolores consequatur rem recusandae tenetur. Repellendus, mollitia!",
       },
       {
         userID: "rad1na2",
@@ -23,11 +25,12 @@ export default class TestimonialCards extends React.Component {
       },
       {
         userID: "rad1na3",
-        testimonial: "Perfect site 3",
+        testimonial:
+          " Saepe sapiente corrupti, illo modi deleniti in ipsam, quos aperiam aliquam incidunt eveniet ullam.",
       },
       {
         userID: "rad1na4",
-        testimonial: "Perfect site 4",
+        testimonial: "Architecto numquam qui nulla, sunt rem aperiam animi!",
       },
     ],
   };
@@ -69,9 +72,12 @@ export default class TestimonialCards extends React.Component {
     return items;
   }
   handleClick = (e) => {
-    e.target.classList.value.includes("swiper-button-next")
+    let value = e.target.classList.value;
+    return value.includes("swiper-button-next") && value !== 4
       ? this.setState({ current: this.state.current + 1 })
-      : this.setState({ current: this.state.current - 1 });
+      : value.includes("swiper-button-prev") && value !== 0
+      ? this.setState({ current: this.state.current - 1 })
+      : console.log(this.state.current);
   };
 
   render() {

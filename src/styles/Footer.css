@@ -28,6 +28,11 @@ footer {
 .footer-list li {
   padding-bottom: 1rem;
   cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.footer-list li:hover {
+  color: white;
 }
 
 .footer-bottom {
