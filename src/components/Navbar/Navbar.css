@@ -35,14 +35,14 @@
 }
 
 .main-nav-right-content li:last-child {
-  background-color: #ee6c4d;
+  background-color: var(--primary-clr);
   color: #fff;
   border-radius: 10px;
-  border: 1px solid #ee6c4d;
+  border: 1px solid var(--primary-clr);
 }
 
 .main-nav-right-content li:first-child {
-  border: 1px solid #ee6c4d;
+  border: 1px solid var(--primary-clr);
   color: #333;
   border-radius: 10px;
 }

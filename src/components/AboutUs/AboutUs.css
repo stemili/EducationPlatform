@@ -1,0 +1,39 @@
+.about-us {
+  min-height: 400px;
+  background-color: var(--secondary-clr);
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.about-us h3 {
+  font-size: 1.5rem;
+  color: #fff;
+}
+.about-content p {
+  padding: 0.7rem;
+  color: rgb(218, 218, 218);
+}
+
+.about-content .snd-title {
+  color: var(--primary-clr);
+  padding: 0.8rem;
+}
+
+.about-us-display {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.about-us-display img {
+  height: 100%;
+  width: 40%;
+  /* border-radius: 10px; */
+  padding: 0.8rem;
+  box-shadow: 50px 50px 0px var(--primary-clr);
+}
+
+.about-us .about-content {
+  padding: 3rem;
+}

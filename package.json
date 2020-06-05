@@ -9,7 +9,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "swiper": "^5.4.1"
+    "swiper": "^5.4.1",
+    "react-slick": "^0.26.1",
+    "react-star-ratings-component": "^1.0.1",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

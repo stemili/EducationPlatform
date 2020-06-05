@@ -12,7 +12,7 @@ const CategoryCard = () => {
     { id: "7", name: "Music", icon: "music" },
     { id: "8", name: "Health", icon: "heart" },
   ]);
-  const cardsList = categories.map((item) => {
+  const cardsList = categories.map(item => {
     return (
       <div className="category-card" key={item.id}>
         <img

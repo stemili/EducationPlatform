@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import logo from "../resources/logo.png";
-import "../styles/Navbar.css";
+import logo from "../../resources/logo.png";
+import "./Navbar.css";
 
 const Navbar = () => {
   const [searchState, setSearchState] = useState("");
