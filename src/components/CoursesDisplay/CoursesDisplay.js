@@ -15,7 +15,7 @@ const CoursesDisplay = props => {
     slidesToScroll: 2,
     initialSlide: 0,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 6000,
     responsive: [
       {
         breakpoint: 1024,
@@ -30,7 +30,7 @@ const CoursesDisplay = props => {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
         },
       },
@@ -58,6 +58,7 @@ const CoursesDisplay = props => {
 
   return (
     <div className="courses-display container">
+      <h3>May Specials</h3>
       <Slider {...settings}>
         {topCourses.courses
           ? topCourses.courses.map(course => <CourseCard course={course} />)

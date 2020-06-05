@@ -1,8 +1,63 @@
 .course-card {
-  cursor: pointer;
-  margin: 1rem;
+  margin: 0.4rem;
+  height: 350px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail-card {
+  position: relative;
 }
 
 .thumbnail-card img {
   width: 100%;
+  height: 150px;
+}
+
+.thumbnail-category {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.4rem 0.7rem 0.4rem;
+  margin: 0.5rem;
+  font-weight: light;
+  font-size: 0.8rem;
+  background-color: var(--secondary-clr);
+  color: #fff;
+  border-radius: 20px;
+}
+
+.info-card {
+  padding: 0.4rem;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info-card h3 {
+  font-weight: lighter;
+  border-bottom: 1px solid var(--primary-clr);
+  cursor: pointer;
+}
+
+.info-card > .card-top-info > p {
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #4d5b74;
+}
+
+.card-bottom-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.info-card-price {
+  color: #fff;
+  background-color: var(--primary-clr);
+  padding: 0.3rem 0.9rem 0.3rem;
+  border-radius: 0.3rem;
 }
