@@ -1,0 +1,73 @@
+.main-nav {
+  height: 60px;
+  box-shadow: 5px 0 5px #c8c8c8;
+}
+.container-nav {
+  display: flex;
+  height: 100%;
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-nav .main-nav-left img {
+  height: 45px;
+  max-width: 70px;
+}
+
+.main-nav-right-content {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.main-nav-right-content li {
+  padding: 0.7rem 1.3rem 0.7rem;
+  margin-left: 0.5rem;
+  line-height: 1rem;
+}
+
+.main-nav-right-content li:hover {
+  cursor: pointer;
+}
+
+.main-nav-right-content li:last-child {
+  background-color: var(--primary-clr);
+  color: #fff;
+  border-radius: 10px;
+  border: 1px solid var(--primary-clr);
+}
+
+.main-nav-right-content li:first-child {
+  border: 1px solid var(--primary-clr);
+  color: #333;
+  border-radius: 10px;
+}
+
+.main-nav-mid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.main-nav-mid form {
+  height: 65%;
+  width: 100%;
+}
+
+.main-nav-mid input {
+  color: #333;
+  font-size: 1.2rem;
+  height: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  width: 20rem;
+  padding: 0 1rem 0;
+}
+.main-nav-mid input::placeholder {
+  color: #ccc;
+}

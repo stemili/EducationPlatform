@@ -1,0 +1,62 @@
+.intro-main {
+  width: 100%;
+  position: relative;
+}
+
+.intro-image-layer {
+  background: url(../../resources/library.jpeg) no-repeat center center/cover;
+  filter: brightness(80%) grayscale(10%) contrast(75%);
+  width: 100%;
+  height: 400px;
+}
+
+.intro-content-layer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.intro-main p {
+  padding-top: 4rem;
+  padding-bottom: 1.2rem;
+  font-size: 2.5rem;
+  color: #fff;
+  font-weight: 300;
+  text-shadow: 0px 0px 5px rgb(80, 80, 80);
+}
+
+.btn {
+  cursor: pointer;
+  border: 1px solid var(--primary-clr);
+  border-radius: 20px;
+  font-size: 1.3rem;
+  background-color: rgba(196, 196, 196, 0.6);
+  padding: 0.4rem 2rem 0.4rem;
+  color: var(--secondary-clr);
+  transition: background-color 0.2s;
+  outline: none;
+}
+
+.btn:hover {
+  background-color: rgba(196, 196, 196, 1);
+}
+
+.intro-min-info {
+  background: linear-gradient(
+    90deg,
+    rgba(238, 108, 77, 1) 0%,
+    rgba(227, 128, 104, 1) 100%
+  );
+
+  height: 60px;
+}
+.intro-info-flex {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 1.1rem;
+}

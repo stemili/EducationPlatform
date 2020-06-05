@@ -1,0 +1,8 @@
+.course-card {
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.thumbnail-card img {
+  width: 100%;
+}
