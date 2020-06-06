@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import CategoryCard from "./components/CategoryCard";
-import TestimonialCards from "./components/TestimonialCard";
-import Footer from "./components/Footer";
+import CategoryCard from "./components/CategoryCard/CategoryCard";
+import TestimonialCards from "./components/TestimonialCard/TestimonialCard";
+import Footer from "./components/Footer/Footer";
 import Intro from "./components/Intro/Intro";
 import CoursesDisplay from "./components/CoursesDisplay/CoursesDisplay";
 import AboutUs from "./components/AboutUs/AboutUs";

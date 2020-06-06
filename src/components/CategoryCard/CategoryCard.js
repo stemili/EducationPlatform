@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/CategoryCard.css";
+import "./CategoryCard.css";
 
 const CategoryCard = () => {
   const [categories] = useState([

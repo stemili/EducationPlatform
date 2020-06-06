@@ -1,8 +1,8 @@
 import React from "react";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
-import "../styles/TestimonialCard.css";
-import avatar from "../resources/avatar1.jpg";
+import "./TestimonialCard.css";
+import avatar from "../../resources/avatar1.jpg";
 
 export default class TestimonialCards extends React.Component {
   state = {
@@ -60,7 +60,7 @@ export default class TestimonialCards extends React.Component {
   }
 
   renderTestimonials() {
-    const items = this.state.testimonials.map((item) => {
+    const items = this.state.testimonials.map(item => {
       return (
         <div className="swiper-slide" key={item.userID}>
           <div className="swiper-inner-circle">
@@ -71,7 +71,7 @@ export default class TestimonialCards extends React.Component {
     });
     return items;
   }
-  handleClick = (e) => {
+  handleClick = e => {
     let value = e.target.classList.value;
     return value.includes("swiper-button-next") && value !== 4
       ? this.setState({ current: this.state.current + 1 })
@@ -88,11 +88,11 @@ export default class TestimonialCards extends React.Component {
           <div className="swiper-wrapper">{this.renderTestimonials()}</div>
           <div
             className="swiper-button-next"
-            onClick={(e) => this.handleClick(e)}
+            onClick={e => this.handleClick(e)}
           ></div>
           <div
             className="swiper-button-prev"
-            onClick={(e) => this.handleClick(e)}
+            onClick={e => this.handleClick(e)}
           ></div>
         </div>
         <div className="testimonial-text-box">

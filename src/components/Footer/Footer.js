@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/Footer.css";
-import FooterList from "./FooterList";
-import logo from "../resources/logo.png";
+import "./Footer.css";
+import FooterList from "../FooterList/FooterList";
+import logo from "../../resources/logo.png";
 
 export default class Footer extends React.Component {
   render() {
