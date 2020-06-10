@@ -58,7 +58,10 @@
 .modal-right-content {
   position: relative;
   width: 60%;
-  background-color: var(--blue);
+  background-color: var(--secondary-clr);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-close-btn {
@@ -67,10 +70,29 @@
   right: 0;
   margin: 0.5rem;
   padding: 0.5rem;
-  font-size: 1.7rem;
+  font-size: 2rem;
   cursor: pointer;
+  color: #fff;
+  transition: color 0.3s;
+}
+.modal-close-btn:hover {
+  color: var(--primary-clr);
 }
 
+.ReactModal__Overlay {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 400ms ease-in-out;
+}
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: translateX(100px);
+}
 @keyframes pulse {
   0% {
     transform: scale(1);

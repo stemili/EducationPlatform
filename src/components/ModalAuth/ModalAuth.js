@@ -3,25 +3,18 @@ import Modal from "react-modal";
 import Signup from "../Signup/Signup";
 import "./ModalAuth.css";
 import logo from "../../resources/logo.png";
+import Login from "../Login/Login";
 
 Modal.setAppElement("#root");
 
 const ModalAuth = ({ modalOpen, type, setModalWin }) => {
-  const modalContent =
-    type === "login" ? (
-      <div>
-        <h3>Log In</h3>
-        <input type="text" />
-        <input type="submit" />
-      </div>
-    ) : (
-      <Signup />
-    );
+  let modalContent = type === "login" ? <Login /> : <Signup />;
   return (
     <Modal
       isOpen={modalOpen}
       ariaHideApp={false}
-      onRequestClose={() => setModalWin([false, null])}
+      onRequestClose={() => setModalWin([false, type])}
+      closeTimeoutMS={400}
       style={{
         overlay: {
           backgroundColor: "#293241cc",
@@ -33,7 +26,8 @@ const ModalAuth = ({ modalOpen, type, setModalWin }) => {
           padding: 0,
           border: "none",
           overflow: "hidden",
-          borderRadius: "1.5rem",
+          borderRadius: "1rem",
+          backgroundColor: "transparent",
         },
       }}
     >
@@ -50,9 +44,9 @@ const ModalAuth = ({ modalOpen, type, setModalWin }) => {
         <div className="modal-right-content">
           <p
             className="modal-close-btn"
-            onClick={() => setModalWin([false, null])}
+            onClick={() => setModalWin([false, type])}
           >
-            X
+            <i className="fas fa-times"></i>
           </p>
           {modalContent}
         </div>

@@ -1,0 +1,94 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.login-top-regular h3 {
+  font-size: 2.5rem;
+  font-weight: lighter;
+  margin-bottom: 0.4rem;
+}
+.login-top-regular h3 span {
+  color: var(--primary-clr);
+}
+.login-top-regular > p {
+  color: #ccc;
+}
+
+.login-form form {
+  display: flex;
+  flex-direction: column;
+}
+.login-form form > p {
+  font-size: 0.9rem;
+  padding-left: 0.7rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.login-form form > p:hover {
+  color: var(--primary-clr);
+}
+
+.login-form input {
+  width: 260px;
+  height: 3rem;
+  border: none;
+  padding: 1rem;
+  margin: 0.7rem;
+}
+
+.login-form .login-submit {
+  cursor: pointer;
+  width: 260px;
+  height: 3rem;
+  border: none;
+  padding: 1rem;
+  margin: 0.7rem;
+  background-color: var(--primary-clr);
+  color: #fff;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+.login-form .login-submit:hover {
+  background-color: #c5583c;
+}
+
+.login-form .login-username,
+.login-form .login-password {
+  color: var(--secondary-clr);
+}
+.login-bottom-external {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.login-bottom-external > button {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  width: 260px;
+  height: 3rem;
+  border: none;
+  padding: 1rem;
+  margin: 0.7rem;
+  color: #fff;
+}
+
+.login-bottom-external > button:first-child {
+  background-color: #ea4335;
+}
+.login-bottom-external > button:last-child {
+  background-color: #4267b2;
+}
+
+.login-bottom-external > button:first-child:hover {
+  color: var(--secondary-clr);
+  background-color: #fff;
+}
+.login-bottom-external > button:last-child:hover {
+  color: var(--secondary-clr);
+  background-color: #fff;
+}
