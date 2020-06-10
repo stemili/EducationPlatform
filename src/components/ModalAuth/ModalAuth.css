@@ -1,0 +1,86 @@
+.modal-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.modal-left {
+  width: 40%;
+  height: 100%;
+  position: relative;
+}
+
+.modal-left-pic {
+  width: 100%;
+  height: 100%;
+  background: url("https://images.pexels.com/photos/3987020/pexels-photo-3987020.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260")
+    no-repeat center center/cover;
+  filter: brightness(60%) contrast(0.7);
+}
+
+.modal-left-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+}
+
+.modal-left-title img {
+  width: 40%;
+}
+
+.modal-left-title img:hover {
+  animation: pulse 0.8s ease-in infinite alternate;
+}
+
+.modal-left-title h3 {
+  padding-top: 1rem;
+  font-size: 2.8rem;
+  font-weight: lighter;
+}
+
+.modal-left-title p {
+  padding-top: 1rem;
+  background-color: rgba(255, 255, 255, 0.692);
+  padding: 0.5rem 0.4rem 0.5rem;
+  border-radius: 10px;
+  color: #293241;
+  margin: 1rem 3rem 1rem 3rem;
+  text-align: center;
+}
+
+.modal-right-content {
+  position: relative;
+  width: 60%;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

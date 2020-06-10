@@ -51,19 +51,20 @@ const CoursesDisplay = props => {
     )
       .then(res => res.json())
       .then(data => {
-        setTopCourses(data);
-        console.log(data);
+        setTopCourses(data.courses);
       });
   }, []);
+
+  const renderCourses = () => {
+    return topCourses.map(course => {
+      return <CourseCard course={course} key={course.id} />;
+    });
+  };
 
   return (
     <div className="courses-display container">
       <h3>May Specials</h3>
-      <Slider {...settings}>
-        {topCourses.courses
-          ? topCourses.courses.map(course => <CourseCard course={course} />)
-          : ""}
-      </Slider>
+      <Slider {...settings}>{renderCourses()}</Slider>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../../resources/logo.png";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ toggleModal }) => {
   const [searchState, setSearchState] = useState("");
 
   const handleInputChange = e => {
@@ -30,8 +30,8 @@ const Navbar = () => {
         </div>
         <nav className="main-nav-right">
           <nav className="main-nav-right-content">
-            <li>Log in</li>
-            <li>Sign up</li>
+            <li onClick={() => toggleModal(true, "login")}>Log in</li>
+            <li onClick={() => toggleModal(true, "signup")}>Sign up</li>
           </nav>
         </nav>
       </div>
