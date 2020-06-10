@@ -1,0 +1,11 @@
+/* za sign-up formu*/
+
+.content-wrapper {
+  height: 100%;
+  width: 100%;
+  padding: 2.5rem;
+  grid-gap: 1rem;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+}

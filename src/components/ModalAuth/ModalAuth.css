@@ -58,6 +58,7 @@
 .modal-right-content {
   position: relative;
   width: 60%;
+  background-color: var(--blue);
 }
 
 .modal-close-btn {

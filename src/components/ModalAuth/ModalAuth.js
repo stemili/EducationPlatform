@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import Signup from "../Signup/Signup";
 import "./ModalAuth.css";
 import logo from "../../resources/logo.png";
 
@@ -14,11 +15,7 @@ const ModalAuth = ({ modalOpen, type, setModalWin }) => {
         <input type="submit" />
       </div>
     ) : (
-      <div>
-        <h3>Sign Up</h3>
-        <input type="text" />
-        <input type="submit" />
-      </div>
+      <Signup />
     );
   return (
     <Modal
