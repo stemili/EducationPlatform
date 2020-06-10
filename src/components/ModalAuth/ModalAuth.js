@@ -28,7 +28,7 @@ const ModalAuth = ({ modalOpen, type, setModalWin }) => {
         },
         content: {
           width: "60%",
-          height: "70%",
+          height: "80%",
           margin: "auto",
           padding: 0,
           border: "none",

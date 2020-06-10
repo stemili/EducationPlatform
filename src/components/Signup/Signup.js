@@ -2,7 +2,16 @@ import React from "react";
 import "./Signup.css";
 
 class Signup extends React.Component {
-  state = { firstName: "", lastName: "", eMail: "", password: "" };
+  state = {
+    firstName: "",
+    lastName: "",
+    eMail: "",
+    password: "",
+    passwordCopy: "",
+    role: "",
+    terms: false,
+    errors: false,
+  };
   handleInputChange = (e) => {
     return e.target.name === "firstName"
       ? this.setState({ firstName: e.target.value })
@@ -12,11 +21,39 @@ class Signup extends React.Component {
       ? this.setState({ eMail: e.target.value })
       : e.target.name === "password"
       ? this.setState({ password: e.target.value })
+      : e.target.name === "passwordCopy"
+      ? this.setState({ passwordCopy: e.target.value })
+      : e.target.name === "role"
+      ? this.setState({ role: e.target.value })
+      : e.target.type === "checkbox"
+      ? this.setState({ terms: e.target.checked })
       : "";
   };
   handleSignupClick = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    const checkTerms = this.doValidation(this.state);
+    if (checkTerms === false) {
+      this.setState({ errors: true });
+    } else {
+      this.setState({ errors: false });
+    }
+  };
+
+  doValidation = (s) => {
+    if (s.terms === false) {
+      return false;
+    }
+  };
+
+  checkErrors = () => {
+    if (this.state.errors === true) {
+      return (
+        <div className="ui error message">
+          <div className="header">Terms and Conditions</div>
+          <p>Please accept Terms and Conditions!</p>
+        </div>
+      );
+    }
   };
   render() {
     console.log("render");
@@ -32,7 +69,7 @@ class Signup extends React.Component {
             Connect with Google
           </button>
         </div>
-        <form className="ui small form inverted">
+        <form className="ui form inverted">
           <div className="required field">
             <label>First Name</label>
             <input
@@ -68,14 +105,49 @@ class Signup extends React.Component {
             <input
               type="password"
               name="password"
-              placeholder="Must contain 1 Uppercase and 1 Number"
+              placeholder="include at least 1 number"
               value={this.state.password}
               onChange={this.handleInputChange}
             />
           </div>
+          <div className="required field">
+            <label htmlFor="password">Re-type password</label>
+            <input
+              type="password"
+              name="passwordCopy"
+              placeholder="Re-type your password"
+              value={this.state.passwordCopy}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="password">Select your role</label>
+            <div className="ui radio checkbox">
+              <input
+                type="radio"
+                name="role"
+                value="student"
+                onChange={this.handleInputChange}
+              />
+              <label>Student</label>
+            </div>
+            <div className="ui radio checkbox">
+              <input
+                type="radio"
+                name="role"
+                value="teacher"
+                onChange={this.handleInputChange}
+              />
+              <label>Teacher</label>
+            </div>
+          </div>
           <div className="field">
             <div className="ui checkbox">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                name="terms"
+                onChange={this.handleInputChange}
+              />
               <label>I agree to the Terms and Conditions</label>
             </div>
           </div>
@@ -88,6 +160,7 @@ class Signup extends React.Component {
             Submit
           </button>
         </form>
+        {this.checkErrors()}
       </div>
     );
   }

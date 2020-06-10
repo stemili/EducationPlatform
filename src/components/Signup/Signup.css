@@ -4,8 +4,23 @@
   height: 100%;
   width: 100%;
   padding: 2.5rem;
+  display: grid;
   grid-gap: 1rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.external-signup {
+  width: auto;
+}
+.content-wrapper form {
   display: grid;
   justify-content: center;
-  justify-items: center;
+}
+
+.ui.radio.checkbox {
+  margin-right: 0.5rem;
+}
+
+.ui.error.message {
 }
