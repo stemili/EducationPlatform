@@ -8,7 +8,7 @@ class Signup extends React.Component {
     eMail: "",
     password: "",
     passwordCopy: "",
-    role: "",
+    role: "student",
     terms: false,
     errors: false,
   };
@@ -48,7 +48,7 @@ class Signup extends React.Component {
   checkErrors = () => {
     if (this.state.errors === true) {
       return (
-        <div className="ui error message">
+        <div className="error-message">
           <div className="header">Terms and Conditions</div>
           <p>Please accept Terms and Conditions!</p>
         </div>
@@ -56,42 +56,42 @@ class Signup extends React.Component {
     }
   };
   render() {
-    console.log("render");
     return (
       <div className="content-wrapper">
+        <h1>Sign up</h1>
         <div className="external-signup">
-          <button className="ui facebook button">
-            <i className="facebook icon"></i>
+          <button className="signup-button fb">
+            <i className="fab fa-facebook"></i>
             Connect with Facebook
           </button>
-          <button className="ui google plus button">
-            <i className="google plus icon"></i>
+          <button className="signup-button google">
+            <i className="fab fa-google"></i>
             Connect with Google
           </button>
         </div>
-        <form className="ui form inverted">
-          <div className="required field">
-            <label>First Name</label>
+        <form className="signup-form">
+          <div className="signup-field">
+            <span>First Name</span>
             <input
               type="text"
               name="firstName"
-              placeholder="First Name"
+              placeholder="John"
               value={this.state.firstName}
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="required field">
-            <label>Last Name</label>
+          <div className="signup-field">
+            <span>Last Name</span>
             <input
               type="text"
               name="lastName"
-              placeholder="Last Name"
+              placeholder="Wick"
               value={this.state.lastName}
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="required field">
-            <label>E-Mail address</label>
+          <div className="signup-field">
+            <span>E-Mail address</span>
             <input
               type="email"
               name="eMail"
@@ -100,59 +100,65 @@ class Signup extends React.Component {
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="required field">
-            <label htmlFor="password">Password</label>
+          <div className="signup-field">
+            <span htmlFor="password">Password</span>
             <input
               type="password"
               name="password"
-              placeholder="include at least 1 number"
+              placeholder="password123"
               value={this.state.password}
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="required field">
-            <label htmlFor="password">Re-type password</label>
+          <div className="signup-field">
+            <span htmlFor="password">Re-type password</span>
             <input
               type="password"
               name="passwordCopy"
-              placeholder="Re-type your password"
+              placeholder="password123"
               value={this.state.passwordCopy}
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="field">
-            <label htmlFor="password">Select your role</label>
-            <div className="ui radio checkbox">
-              <input
-                type="radio"
-                name="role"
-                value="student"
-                onChange={this.handleInputChange}
-              />
-              <label>Student</label>
-            </div>
-            <div className="ui radio checkbox">
-              <input
-                type="radio"
-                name="role"
-                value="teacher"
-                onChange={this.handleInputChange}
-              />
-              <label>Teacher</label>
-            </div>
+          <div className="signup-field radio">
+            <span>Select your role</span>
+            <input
+              type="radio"
+              name="role"
+              value="student"
+              onChange={this.handleInputChange}
+              id="student"
+            />
+            <label
+              htmlFor="student"
+              className={this.state.role === "student" ? "active-orange" : ""}
+            >
+              Student
+            </label>
+            <input
+              type="radio"
+              name="role"
+              value="teacher"
+              onChange={this.handleInputChange}
+              id="teacher"
+            />
+            <label
+              htmlFor="teacher"
+              className={this.state.role === "teacher" ? "active-orange" : ""}
+            >
+              Teacher
+            </label>
           </div>
-          <div className="field">
-            <div className="ui checkbox">
-              <input
-                type="checkbox"
-                name="terms"
-                onChange={this.handleInputChange}
-              />
-              <label>I agree to the Terms and Conditions</label>
-            </div>
+          <div className="signup-field">
+            <input
+              type="checkbox"
+              name="terms"
+              onChange={this.handleInputChange}
+            />
+            <label> I agree to the Terms and Conditions</label>
           </div>
           <button
-            className="ui button orange"
+            className="signup-button"
             type="submit"
             id="submit-button"
             onClick={this.handleSignupClick}

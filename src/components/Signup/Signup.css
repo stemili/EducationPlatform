@@ -10,6 +10,11 @@
   align-content: center;
 }
 
+.content-wrapper h1 {
+  color: var(--orange);
+  text-align: center;
+}
+
 .external-signup {
   width: auto;
 }
@@ -22,5 +27,138 @@
   margin-right: 0.5rem;
 }
 
-.ui.error.message {
+.signup-button {
+  height: 3rem;
+  padding: 0.5rem;
+  font-size: 1.05rem;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#submit-button {
+  background-color: var(--orange);
+}
+
+.signup-button:first-child {
+  margin-right: 1rem;
+}
+
+.signup-button.fb:hover {
+  background-color: #205fb1;
+}
+.signup-button.google:hover {
+  background-color: #a02e24;
+}
+
+.signup-button .fa-facebook,
+.signup-button .fa-google {
+  margin-right: 0.3rem;
+}
+
+.signup-button.fb {
+  background-color: #2d88ff;
+}
+
+.signup-button.google {
+  background-color: #ea4335;
+}
+
+.signup-form {
+  display: grid;
+  width: 100%;
+  grid-gap: 0.5rem;
+  color: white;
+}
+
+.signup-field span {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="password"] {
+  height: 2.4rem;
+  width: 100%;
+  background-color: #1a2231;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding-left: 0.3rem;
+  border-bottom: 1px solid var(--orange);
+  /*box-shadow: 3px 4px 10px -2px rgba(0, 0, 0, 0.4);*/
+}
+
+.signup-form input:focus {
+  outline: none;
+}
+
+.signup-form input::placeholder {
+  padding-left: 0.3rem;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.signup-field input[type="radio"] {
+  display: none;
+}
+
+.signup-field.radio {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+}
+
+.signup-field.radio > span {
+  grid-column: 1/3;
+  text-align: center;
+}
+
+.signup-field.radio label {
+  margin-top: 0.5rem;
+  border: 2px solid var(--orange);
+  height: 3rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.signup-field.radio label:first-of-type {
+  border-right: 0px;
+}
+
+.signup-field.radio label:last-of-type {
+  border-left: 0px;
+}
+
+.active-orange {
+  background-color: var(--orange);
+}
+
+.error-message {
+  background-color: #fff0f4;
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  animation: pop 0.5s linear alternate;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+    opacity: 0%;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 100%;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 100%;
+  }
 }
