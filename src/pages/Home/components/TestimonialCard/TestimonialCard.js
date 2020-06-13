@@ -2,7 +2,7 @@ import React from "react";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import "./TestimonialCard.css";
-import avatar from "../../resources/avatar1.jpg";
+import avatar from "../../../../resources/avatar1.jpg";
 
 export default class TestimonialCards extends React.Component {
   state = {

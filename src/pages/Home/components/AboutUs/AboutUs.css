@@ -16,7 +16,7 @@
 
 .about-content .snd-title {
   color: var(--primary-clr);
-  padding: 0.8rem;
+  font-size: 1.8rem;
 }
 
 .about-us-display {
@@ -35,5 +35,5 @@
 }
 
 .about-us .about-content {
-  padding: 3rem;
+  padding: 3rem 5rem 3rem;
 }

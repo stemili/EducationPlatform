@@ -1,7 +1,7 @@
 import React from "react";
 import "./Intro.css";
 
-const Intro = () => {
+const Intro = ({ toggleModal }) => {
   return (
     <div className="intro-main">
       <div className="intro-image-layer"></div>
@@ -11,7 +11,9 @@ const Intro = () => {
             ‘Every student can learn,
             <br /> just not on the same day, <br /> or the same way.’
           </p>
-          <button className="btn">Explore</button>
+          <button onClick={toggleModal} className="btn intro-btn">
+            Join Us
+          </button>
         </div>
       </div>
       <div className="intro-min-info">

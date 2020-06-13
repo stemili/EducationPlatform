@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import logo from "../../resources/logo.png";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ toggleModal }) => {
   const [searchState, setSearchState] = useState("");
@@ -17,7 +17,12 @@ const Navbar = ({ toggleModal }) => {
     <div className="main-nav">
       <div className="container-nav">
         <div className="main-nav-left">
-          <img src={logo} alt="" />
+          <Link to="/">
+            <img
+              src={process.env.PUBLIC_URL + "/resources/text_logo.png"}
+              alt=""
+            />
+          </Link>
         </div>
         <div className="main-nav-mid">
           <form onSubmit={handleSearch}>

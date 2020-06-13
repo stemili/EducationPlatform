@@ -2,7 +2,6 @@ import React from "react";
 import Modal from "react-modal";
 import Signup from "../Signup/Signup";
 import "./ModalAuth.css";
-import logo from "../../resources/logo.png";
 import Login from "../Login/Login";
 
 Modal.setAppElement("#root");
@@ -35,7 +34,7 @@ const ModalAuth = ({ modalOpen, type, setModalWin }) => {
         <div className="modal-left">
           <div className="modal-left-pic"></div>
           <div className="modal-left-title">
-            <img src={logo} alt="" />
+            <img src={process.env.PUBLIC_URL + "/resources/logo.png"} alt="" />
             <h3>Discite</h3>
             <p>“An investment in knowledge pays the best interest.”</p>
           </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
+import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CourseCard from "../CourseCard/CourseCard";
@@ -46,13 +47,11 @@ const CoursesDisplay = props => {
 
   const [topCourses, setTopCourses] = useState([]);
   useEffect(() => {
-    fetch(
-      "https://jsonblob.com/api/jsonBlob/c6531116-a6b7-11ea-a03a-47b0abf3623a"
-    )
-      .then(res => res.json())
-      .then(data => {
-        setTopCourses(data.courses);
-      });
+    axios
+      .get(
+        "https://jsonblob.com/api/jsonBlob/c6531116-a6b7-11ea-a03a-47b0abf3623a"
+      )
+      .then(res => setTopCourses(res.data.courses));
   }, []);
 
   const renderCourses = () => {

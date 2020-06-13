@@ -1,6 +1,7 @@
 import React from "react";
 import ReactStarRating from "react-star-ratings-component";
 import "./CourseCard.css";
+import { Link } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
   return (
@@ -12,7 +13,9 @@ const CourseCard = ({ course }) => {
 
       <div className="info-card">
         <div className="card-top-info">
-          <h3>{course.title}</h3>
+          <Link to={`/course/${course.id}`}>
+            <h3>{course.title}</h3>
+          </Link>
           <p>{course.description}</p>
         </div>
 
@@ -24,10 +27,7 @@ const CourseCard = ({ course }) => {
             colorEmptyStar="#ccc"
             starSize="20px"
             spaceBetweenStar="2px"
-            disableOnSelect={false}
-            onSelectStar={val => {
-              console.log(val);
-            }}
+            disableOnSelect={true}
           />
           <p className="info-card-price">1999$</p>
         </div>

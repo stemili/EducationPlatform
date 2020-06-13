@@ -1,14 +1,13 @@
 import React, { useState } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Navbar from "./global-components/Navbar/Navbar";
+import Footer from "./global-components/Footer/Footer";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
-import CategoryCard from "./components/CategoryCard/CategoryCard";
-import TestimonialCards from "./components/TestimonialCard/TestimonialCard";
-import Footer from "./components/Footer/Footer";
-import Intro from "./components/Intro/Intro";
-import CoursesDisplay from "./components/CoursesDisplay/CoursesDisplay";
-import AboutUs from "./components/AboutUs/AboutUs";
 
-import ModalAuth from "./components/ModalAuth/ModalAuth";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import CoursePage from "./pages/CoursePage";
+import ModalAuth from "./global-components/ModalAuth/ModalAuth";
 
 function App() {
   const [modalWin, setModalWin] = useState([false, null]);
@@ -17,19 +16,34 @@ function App() {
   };
   return (
     <div className="App">
-      <Navbar toggleModal={toggleModal} />
+      <BrowserRouter>
+        <Navbar toggleModal={toggleModal} />
 
-      <Intro />
-      <CoursesDisplay title="hello World" />
-      <AboutUs />
-      <CategoryCard />
-      <TestimonialCards />
-      <ModalAuth
-        modalOpen={modalWin[0]}
-        type={modalWin[1]}
-        setModalWin={setModalWin}
-      />
-      <Footer />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => <Home {...props} toggleModal={toggleModal} />}
+          ></Route>
+          <Route
+            exact
+            path="/dashboard"
+            render={props => <Dashboard {...props} />}
+          ></Route>
+          <Route
+            exact
+            path="/course/:id"
+            render={props => <CoursePage {...props} />}
+          ></Route>
+        </Switch>
+
+        <ModalAuth
+          modalOpen={modalWin[0]}
+          type={modalWin[1]}
+          setModalWin={setModalWin}
+        />
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
