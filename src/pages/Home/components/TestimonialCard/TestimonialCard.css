@@ -9,7 +9,7 @@
 .testimonial-section > h1 {
   max-width: 800px;
   margin: auto;
-  color: var(--blue);
+  color: var(--secondary-clr);
 }
 
 .swiper-container {
@@ -107,14 +107,14 @@
   font-style: italic;
   padding: 2rem;
   position: relative;
-  color: var(--blue);
+  color: var(--secondary-clr);
 }
 
 .fa-quote-left,
 .fa-quote-right {
   position: absolute;
   font-size: 30px;
-  color: var(--orange);
+  color: var(--primary-clr);
 }
 
 .fa-quote-left {
@@ -137,5 +137,5 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--orange);
+  color: var(--primary-clr);
 }

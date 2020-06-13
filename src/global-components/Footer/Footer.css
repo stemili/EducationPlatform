@@ -1,5 +1,5 @@
 footer {
-  background-color: var(--blue);
+  background-color: var(--secondary-clr);
   width: 100%;
   height: auto;
   padding: 4rem 2rem 2rem 2rem;
@@ -18,7 +18,7 @@ footer {
   grid-template-columns: auto auto auto;
   justify-content: space-between;
   list-style-type: none;
-  color: var(--orange);
+  color: var(--primary-clr);
 }
 
 .footer-list {

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Signup.css";
+import axios from "axios";
 
 class Signup extends React.Component {
   state = {
@@ -12,7 +13,7 @@ class Signup extends React.Component {
     terms: false,
     errors: false,
   };
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     return e.target.name === "firstName"
       ? this.setState({ firstName: e.target.value })
       : e.target.name === "lastName"
@@ -29,7 +30,7 @@ class Signup extends React.Component {
       ? this.setState({ terms: e.target.checked })
       : "";
   };
-  handleSignupClick = (e) => {
+  handleSignupClick = e => {
     e.preventDefault();
     const checkTerms = this.doValidation(this.state);
     if (checkTerms === false) {
@@ -37,9 +38,23 @@ class Signup extends React.Component {
     } else {
       this.setState({ errors: false });
     }
+    const data = {
+      username: "random",
+      password: this.state.password,
+      email: this.state.eMail,
+      roleID: this.state.role,
+      name: this.state.firstName,
+      surname: this.state.lastName,
+    };
+    axios.post("https://courses4me.herokuapp.com/users", data, {
+      headers: {
+        "content-Type": "application/json",
+        "cache-control": "no-cache",
+      },
+    });
   };
 
-  doValidation = (s) => {
+  doValidation = s => {
     if (s.terms === false) {
       return false;
     }

@@ -10,7 +10,7 @@
 .categories-section > h1 {
   grid-column: 1/5;
   padding: 0.2rem;
-  border-bottom: 2px solid var(--orange);
+  border-bottom: 2px solid var(--primary-clr);
 }
 
 .category-card {
@@ -61,5 +61,5 @@
 
 .category-card:hover > .category-card-content > h3,
 .category-card:hover > .category-card-content > .silver {
-  color: var(--orange);
+  color: var(--primary-clr);
 }

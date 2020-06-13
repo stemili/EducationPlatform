@@ -1,6 +1,7 @@
 import React from "react";
 import "./Login.css";
 import { useState } from "react";
+import axios from "axios";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -8,6 +9,16 @@ const Login = () => {
   const handleLogIn = e => {
     e.preventDefault();
     console.log(username, password);
+    const loginDetails = {
+      username,
+      password,
+    };
+    axios.post("https://courses4me.herokuapp.com/login", loginDetails, {
+      headers: {
+        "content-Type": "application/json",
+        "cache-control": "no-cache",
+      },
+    });
   };
 
   const handleInputChange = e => {

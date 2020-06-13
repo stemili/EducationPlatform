@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navbar from "./global-components/Navbar/Navbar";
 import Footer from "./global-components/Footer/Footer";
-import "./App.css";
 
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
