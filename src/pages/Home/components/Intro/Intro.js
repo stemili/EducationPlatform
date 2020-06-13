@@ -11,7 +11,10 @@ const Intro = ({ toggleModal }) => {
             ‘Every student can learn,
             <br /> just not on the same day, <br /> or the same way.’
           </p>
-          <button onClick={toggleModal} className="btn intro-btn">
+          <button
+            onClick={() => toggleModal(true, "signup")}
+            className="btn intro-btn"
+          >
             Join Us
           </button>
         </div>
