@@ -1,7 +1,6 @@
 import React from "react";
 import "./Footer.css";
 import FooterList from "../FooterList/FooterList";
-import logo from "../../resources/logo.png";
 
 export default class Footer extends React.Component {
   render() {
@@ -25,9 +24,12 @@ export default class Footer extends React.Component {
           </div>
           <hr />
           <div className="footer-bottom">
-            <img src={logo} alt="Logo" />
+            <img
+              src={process.env.PUBLIC_URL + "/resources/logo.png"}
+              alt="Logo"
+            />
             <span>
-              Learning <sup>&copy;</sup> All rights reserved.
+              Discite <sup>&copy;</sup> All rights reserved.
             </span>
           </div>
         </div>

@@ -1,5 +1,5 @@
 .testimonial-section {
-  height: auto;
+  height: 450px;
   margin-top: 2rem;
   padding: 3rem;
   background-color: #f4f4f4;
@@ -79,6 +79,9 @@
   height: 5rem;
   transition: all 0.3s ease;
   filter: blur(1px);
+}
+.swiper-container {
+  z-index: 0;
 }
 
 .swiper-slide-prev > .swiper-inner-circle,

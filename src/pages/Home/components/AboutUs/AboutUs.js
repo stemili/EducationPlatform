@@ -11,20 +11,26 @@ const AboutUs = props => {
             alt=""
           />
           <div className="about-content">
-            <h3>Why Discite?</h3>
             <p className="snd-title">About Our Platform</p>
             <p>
               FOR GETTING SUCCESS THERE IS ONLY ONE PRINCIPLE KEEP YOUR FOCUS ON
               GOAL AND GO FOR IT WITH PASSION.
             </p>
             <p>
-              Discite, founded in May 2020, is an Montenegrin online learning
+              Discite, founded in May 2020, is a Montenegrin online learning
               platform aimed at professional adults and students. As of Jun
               2020, the platform has less than 50 million students and 57,000
               instructors teaching courses in over 65 languages. There have been
               less than 295 million course enrollments.
             </p>
-            <button className="btn">Donate</button>
+            <a
+              className="btn donate-btn"
+              href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N6LPW2WSEHGF4&source=url"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Donate
+            </a>
           </div>
         </div>
       </div>
