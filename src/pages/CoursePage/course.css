@@ -1,0 +1,33 @@
+.course-wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.heading-section {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  grid-column-gap: 2rem;
+  background-color: var(--secondary-clr);
+  height: 15rem;
+  padding: 1rem;
+}
+
+.course-image {
+  height: 100%;
+}
+
+.course-image img {
+  height: 8rem;
+}
+
+.course-description {
+  color: white;
+}
+
+.course-description h1 {
+  color: var(--primary-clr);
+}

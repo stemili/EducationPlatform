@@ -1,25 +1,55 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import axios from "axios";
-const CoursePage = props => {
-  const [courseInfo, setCourseInfo] = useState({});
-  useEffect(() => {
-    // axios.get(`/course/${props.match.params.id}`)
-    axios
-      .get(
-        "https://jsonblob.com/api/jsonBlob/73cc3782-ad55-11ea-95e6-a32bc2b10f8f"
-      )
-      .then(res => {
-        setCourseInfo(res.data);
-      });
-  }, []);
+import { Spin } from "antd";
+import "./course.css";
+import "antd/dist/antd.css";
 
-  return (
-    <div>
-      <h2>{courseInfo.title}</h2>
-      <h3>Course ID: {props.match.params.id}</h3>
-    </div>
-  );
-};
+export class CoursePage extends React.Component {
+  state = { course: {}, isLoading: true };
+  componentDidMount() {
+    axios
+      .get("https://jsonblob.com/api/fe1b8b48-ae61-11ea-992a-9d6b7d790896")
+      .then((res) => {
+        const course = res.data;
+        this.setState({ course, isLoading: false });
+      });
+  }
+  checkRequest() {
+    if (this.state.isLoading)
+      return (
+        <div className="course-spinner">
+          <Spin size="large" />
+        </div>
+      );
+    else
+      return (
+        <React.Fragment>
+          <div className="heading-section">
+            <div className="course-image">
+              <img src={this.state.course.img} alt="nesto" />
+            </div>
+            <div className="course-description">
+              <h1>{this.state.course.title}</h1>
+              <p>{this.state.course.shortDescription}</p>
+              <span>{this.state.course.dateCreated}</span>
+              <span>{this.state.course.teacher}</span>
+            </div>
+          </div>
+          <div className="content-section">
+            <div className="content-description"></div>
+          </div>
+        </React.Fragment>
+      );
+  }
+
+  render() {
+    return (
+      <div className="course-wrapper">
+        {this.checkRequest()}
+        <Spin size="large" />
+      </div>
+    );
+  }
+}
 
 export default CoursePage;
