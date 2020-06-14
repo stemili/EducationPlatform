@@ -2,9 +2,8 @@ import React from "react";
 import axios from "axios";
 import { Spin } from "antd";
 import "./course.css";
-import "antd/dist/antd.css";
 
-export class CoursePage extends React.Component {
+class CoursePage extends React.Component {
   state = { course: {}, isLoading: true };
   componentDidMount() {
     axios
@@ -24,31 +23,62 @@ export class CoursePage extends React.Component {
     else
       return (
         <React.Fragment>
-          <div className="heading-section">
-            <div className="course-image">
+          <div className="heading-wrapper">
+            <div className="heading-section">
               <img src={this.state.course.img} alt="nesto" />
-            </div>
-            <div className="course-description">
-              <h1>{this.state.course.title}</h1>
-              <p>{this.state.course.shortDescription}</p>
-              <span>{this.state.course.dateCreated}</span>
-              <span>{this.state.course.teacher}</span>
+              <div className="course-description">
+                <h1>{this.state.course.title}</h1>
+                <p>{this.state.course.shortDescription}</p>
+                <span>Date created: {this.state.course.dateCreated}</span>
+                <span>by {this.state.course.teacher}</span>
+              </div>
             </div>
           </div>
           <div className="content-section">
-            <div className="content-description"></div>
+            <h2>COURSE INFORMATION</h2>
+            <div className="left-content">
+              <div className="left-field">
+                <span>Duration</span>
+                <i className="fas fa-clock"></i>
+                {this.state.course.length}
+              </div>
+              <div className="left-field">
+                <span>Category</span>
+                <i className="fas fa-code"></i>
+                Programming
+              </div>
+              <div className="left-field">
+                <span>Review</span>
+                <i className="fas fa-star"></i>
+                {this.state.course.review}
+              </div>
+            </div>
+            <div className="right-content">
+              <div className="right-heading">
+                <span>Lessons </span>
+                <i className="fas fa-book-open"></i>
+              </div>
+              <div className="lessons-list">
+                <ol>
+                  <li>First Lesson</li>
+                  <li>Second Lesson</li>
+                  <li>Third Lesson</li>
+                  <li>Fourth Lesson</li>
+                </ol>
+              </div>
+            </div>
+            <h2>DESCRIPTION</h2>
+            <div className="bottom-content">
+              <p>{this.state.course.description}</p>
+              <button>Buy for {this.state.course.price}$</button>
+            </div>
           </div>
         </React.Fragment>
       );
   }
 
   render() {
-    return (
-      <div className="course-wrapper">
-        {this.checkRequest()}
-        <Spin size="large" />
-      </div>
-    );
+    return <div className="course-wrapper">{this.checkRequest()}</div>;
   }
 }
 
