@@ -7,15 +7,24 @@ import CourseCard from "../CourseCard/CourseCard";
 import "./CoursesDisplay.css";
 
 const CoursesDisplay = props => {
+  const [topCourses, setTopCourses] = useState([]);
+  useEffect(() => {
+    axios
+      .get(
+        "https://jsonblob.com/api/jsonBlob/c6531116-a6b7-11ea-a03a-47b0abf3623a"
+      )
+      .then(res => setTopCourses(res.data.courses));
+  }, []);
   //settings for react-slick slider
   var settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 1000,
     slidesToShow: 4,
     slidesToScroll: 2,
     initialSlide: 0,
     autoplay: true,
+    arrows: false,
     autoplaySpeed: 6000,
     responsive: [
       {
@@ -32,7 +41,6 @@ const CoursesDisplay = props => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 2,
         },
       },
       {
@@ -44,15 +52,6 @@ const CoursesDisplay = props => {
       },
     ],
   };
-
-  const [topCourses, setTopCourses] = useState([]);
-  useEffect(() => {
-    axios
-      .get(
-        "https://jsonblob.com/api/jsonBlob/c6531116-a6b7-11ea-a03a-47b0abf3623a"
-      )
-      .then(res => setTopCourses(res.data.courses));
-  }, []);
 
   const renderCourses = () => {
     return topCourses.map(course => {

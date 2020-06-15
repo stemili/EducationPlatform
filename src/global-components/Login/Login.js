@@ -2,22 +2,20 @@ import React from "react";
 import "./Login.css";
 import { useState } from "react";
 import axios from "axios";
-const Login = () => {
+
+import AuthService from "../../auth/AuthService";
+const Login = ({ setCurrentUser, setModalWin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogIn = e => {
     e.preventDefault();
-    console.log(username, password);
-    const loginDetails = {
-      username,
-      password,
-    };
-    axios.post("https://courses4me.herokuapp.com/login", loginDetails, {
-      headers: {
-        "content-Type": "application/json",
-        "cache-control": "no-cache",
-      },
+    AuthService.login(username, password).then(([username, API_URL]) => {
+      axios.get(`${API_URL}/users/${username}`).then(res => {
+        localStorage.setItem("user-info", JSON.stringify(res.data[0]));
+        setCurrentUser(AuthService.getCurrentUser());
+        setModalWin([false, "login"]);
+      });
     });
   };
 

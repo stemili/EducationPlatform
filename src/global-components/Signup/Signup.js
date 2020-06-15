@@ -1,6 +1,6 @@
 import React from "react";
 import "./Signup.css";
-import axios from "axios";
+import AuthService from "../../auth/AuthService";
 
 class Signup extends React.Component {
   state = {
@@ -39,19 +39,15 @@ class Signup extends React.Component {
       this.setState({ errors: false });
     }
     const data = {
-      username: "random",
+      username: "proba1",
       password: this.state.password,
       email: this.state.eMail,
       roleID: this.state.role,
       name: this.state.firstName,
       surname: this.state.lastName,
     };
-    axios.post("https://courses4me.herokuapp.com/users", data, {
-      headers: {
-        "content-Type": "application/json",
-        "cache-control": "no-cache",
-      },
-    });
+
+    AuthService.register(data);
   };
 
   doValidation = s => {

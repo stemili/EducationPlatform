@@ -1,0 +1,98 @@
+.user-page {
+  min-height: 94vh;
+}
+
+.profile-courses-display {
+  margin-bottom: 4rem;
+}
+
+.profile-user-back {
+  background-color: #eff6fd;
+}
+
+.profile-user-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-user-info img {
+  width: 230px;
+  height: 230px;
+  border-radius: 115px;
+  object-fit: cover;
+  box-shadow: 2px 2px 5px #777, 0px 0px 0px 20px #fff;
+  margin: 3rem 0 3rem;
+}
+
+.profile-about-user {
+  padding-left: 3rem;
+}
+
+.profile-about-user h3 {
+  color: var(--secondary-clr);
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding-right: 2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--primary-clr);
+}
+
+.profile-about-user h3 > span {
+  font-size: 1.3rem;
+  color: #bbb;
+}
+.profile-about-occupation {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding-bottom: 1rem;
+}
+
+.profile-dob {
+  font-size: 0.9rem;
+  color: #bbb;
+}
+.profile-location {
+  font-size: 0.9rem;
+  padding: 0.5rem 0 0.5rem;
+  color: #bbb;
+}
+
+.edit-profile-btn {
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-radius: 30px;
+}
+
+.dashboard-profile-btn {
+  cursor: pointer;
+  border: none;
+  padding: 0.7rem 2.3rem 0.7rem;
+  color: #fff;
+  transition: all 0.2s;
+  outline: none;
+  font-size: 1rem;
+  border-radius: 30px;
+  background-color: var(--secondary-clr);
+  margin-left: 1rem;
+}
+
+.dashboard-profile-btn:hover {
+  opacity: 0.8;
+}
+
+.profile-courses-nav ul {
+  display: flex;
+  list-style: none;
+  padding: 1rem;
+}
+
+.profile-nav-item {
+  cursor: pointer;
+  padding: 0.5rem 1rem 0.5rem;
+  height: 40px;
+}
+
+.profile-nav-item:hover {
+  color: var(--primary-clr);
+  border-bottom: var(--primary-clr) 1px solid;
+}

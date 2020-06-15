@@ -6,8 +6,13 @@ import Login from "../Login/Login";
 
 Modal.setAppElement("#root");
 
-const ModalAuth = ({ modalOpen, type, setModalWin }) => {
-  let modalContent = type === "login" ? <Login /> : <Signup />;
+const ModalAuth = ({ modalOpen, type, setModalWin, setCurrentUser }) => {
+  let modalContent =
+    type === "login" ? (
+      <Login setCurrentUser={setCurrentUser} setModalWin={setModalWin} />
+    ) : (
+      <Signup />
+    );
   return (
     <Modal
       isOpen={modalOpen}
