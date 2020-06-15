@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { Spin } from "antd";
+import ReactPlayer from "react-player";
+
 import "antd/dist/antd.css";
 import "./course.css";
 
@@ -8,9 +10,12 @@ class CoursePage extends React.Component {
   state = { course: {}, isLoading: true, boughtCourse: false };
   componentDidMount() {
     axios
-      .get("https://jsonblob.com/api/fe1b8b48-ae61-11ea-992a-9d6b7d790896")
+      .get(
+        `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`
+      )
       .then((res) => {
-        const course = res.data;
+        const course = res.data[0];
+        console.log(course);
         this.setState({ course, isLoading: false });
       });
   }
@@ -18,9 +23,39 @@ class CoursePage extends React.Component {
     alert("You bought course");
     this.setState({ boughtCourse: true });
   }
+
+  getDuration(minutes) {
+    let hours = Math.floor(minutes / 60);
+    let minute = minutes % 60;
+    return `${hours}:${minute}:00`;
+  }
+
+  convertDate(date) {
+    const d = new Date(date);
+    return `${d.getDay()}/${d.getMonth()}/${d.getFullYear()}`;
+  }
   checkIfBought() {
     if (this.state.boughtCourse === true) {
-      return <div>Kurs</div>;
+      return (
+        <div className="view-course-section">
+          <div className="video-box">
+            <div className="video-heading">
+              <ReactPlayer
+                url="https://www.youtube.com/watch?v=ug50zmP9I7s"
+                controls={true}
+                width="100%"
+              />
+              <h1>Lesson Heading</h1>
+            </div>
+            <p>Description</p>
+          </div>
+          <div className="side-menu">
+            <li className="active">Lesson1</li>
+            <li>Lesson1</li>
+            <li>Lesson1</li>
+          </div>
+        </div>
+      );
     } else {
       return (
         <div className="content-section">
@@ -29,17 +64,17 @@ class CoursePage extends React.Component {
             <div className="left-field">
               <span>Duration</span>
               <i className="fas fa-clock"></i>
-              {this.state.course.length}
+              {this.getDuration(this.state.course.duration)}
             </div>
             <div className="left-field">
               <span>Category</span>
               <i className="fas fa-code"></i>
-              Programming
+              {this.state.course.category}
             </div>
             <div className="left-field">
               <span>Review</span>
               <i className="fas fa-star"></i>
-              {this.state.course.review}
+              {this.state.course.rating}
             </div>
           </div>
           <div className="right-content">
@@ -58,7 +93,7 @@ class CoursePage extends React.Component {
           </div>
           <h2>DESCRIPTION</h2>
           <div className="bottom-content">
-            <p>{this.state.course.description}</p>
+            <p>{this.state.course.longDesc}</p>
             <button className="buy-button" onClick={() => this.handleBuy()}>
               Buy for {this.state.course.price}$
             </button>
@@ -78,11 +113,13 @@ class CoursePage extends React.Component {
       return (
         <div className="heading-wrapper">
           <div className="heading-section">
-            <img src={this.state.course.img} alt="nesto" />
+            <img src={this.state.course.coverPhoto} alt="nesto" />
             <div className="course-description">
               <h1>{this.state.course.title}</h1>
-              <p>{this.state.course.shortDescription}</p>
-              <span>Date created: {this.state.course.dateCreated}</span>
+              <p>{this.state.course.shortDesc}</p>
+              <span>
+                Date created: {this.convertDate(this.state.course.created)}
+              </span>
               <span>by {this.state.course.teacher}</span>
             </div>
           </div>
