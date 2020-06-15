@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 import "./course.css";
 
 class CoursePage extends React.Component {
-  state = { course: {}, isLoading: true, boughtCourse: false };
+  state = { course: {}, lessons: [], isLoading: true, boughtCourse: false };
   componentDidMount() {
     axios
       .get(
@@ -15,9 +15,13 @@ class CoursePage extends React.Component {
       )
       .then((res) => {
         const course = res.data[0];
-        console.log(course);
         this.setState({ course, isLoading: false });
       });
+    axios
+      .get(
+        `https://courses4me.herokuapp.com/lessons?courseId=${this.props.match.params.id}`
+      )
+      .then((res) => this.setState({ lessons: res.data }));
   }
   handleBuy() {
     alert("You bought course");
@@ -27,7 +31,15 @@ class CoursePage extends React.Component {
   getDuration(minutes) {
     let hours = Math.floor(minutes / 60);
     let minute = minutes % 60;
-    return `${hours}:${minute}:00`;
+    return `${hours < 10 ? "0" + hours : hours}:${
+      minute < 10 ? "0" + minute : minute
+    }:00`;
+  }
+
+  renderLessons() {
+    this.state.lessons.map((lesson) => {
+      return <li key={lesson.number}>{lesson.title}</li>;
+    });
   }
 
   convertDate(date) {
@@ -49,11 +61,7 @@ class CoursePage extends React.Component {
             </div>
             <p>Description</p>
           </div>
-          <div className="side-menu">
-            <li className="active">Lesson1</li>
-            <li>Lesson1</li>
-            <li>Lesson1</li>
-          </div>
+          <div className="side-menu">{this.renderLessons()}</div>
         </div>
       );
     } else {
