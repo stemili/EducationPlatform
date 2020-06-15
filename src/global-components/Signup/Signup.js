@@ -42,11 +42,7 @@ class Signup extends React.Component {
       this.setState({ errors: false });
     }
     const data = {
-<<<<<<< HEAD
-      username: "proba1",
-=======
       username: this.state.username,
->>>>>>> petar
       password: this.state.password,
       email: this.state.eMail,
       roleID: this.state.role,
