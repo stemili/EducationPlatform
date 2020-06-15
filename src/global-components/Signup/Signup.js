@@ -6,6 +6,7 @@ class Signup extends React.Component {
   state = {
     firstName: "",
     lastName: "",
+    username: "",
     eMail: "",
     password: "",
     passwordCopy: "",
@@ -13,7 +14,7 @@ class Signup extends React.Component {
     terms: false,
     errors: false,
   };
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     return e.target.name === "firstName"
       ? this.setState({ firstName: e.target.value })
       : e.target.name === "lastName"
@@ -28,9 +29,11 @@ class Signup extends React.Component {
       ? this.setState({ role: e.target.value })
       : e.target.type === "checkbox"
       ? this.setState({ terms: e.target.checked })
+      : e.target.type === "username"
+      ? this.setState({ username: e.target.value })
       : "";
   };
-  handleSignupClick = e => {
+  handleSignupClick = (e) => {
     e.preventDefault();
     const checkTerms = this.doValidation(this.state);
     if (checkTerms === false) {
@@ -39,7 +42,11 @@ class Signup extends React.Component {
       this.setState({ errors: false });
     }
     const data = {
+<<<<<<< HEAD
       username: "proba1",
+=======
+      username: this.state.username,
+>>>>>>> petar
       password: this.state.password,
       email: this.state.eMail,
       roleID: this.state.role,
@@ -50,7 +57,7 @@ class Signup extends React.Component {
     AuthService.register(data);
   };
 
-  doValidation = s => {
+  doValidation = (s) => {
     if (s.terms === false) {
       return false;
     }
@@ -81,6 +88,16 @@ class Signup extends React.Component {
           </button>
         </div>
         <form className="signup-form">
+          <div className="signup-field">
+            <span>Username</span>
+            <input
+              type="text"
+              name="username"
+              placeholder="john123"
+              value={this.state.username}
+              onChange={this.handleInputChange}
+            />
+          </div>
           <div className="signup-field">
             <span>First Name</span>
             <input
