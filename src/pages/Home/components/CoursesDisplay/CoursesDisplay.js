@@ -28,7 +28,7 @@ const CoursesDisplay = props => {
     autoplaySpeed: 6000,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1102,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -37,17 +37,18 @@ const CoursesDisplay = props => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 831,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 570,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: false,
         },
       },
     ],
