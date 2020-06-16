@@ -15,23 +15,11 @@ class Signup extends React.Component {
     errors: false,
   };
   handleInputChange = (e) => {
-    return e.target.name === "firstName"
-      ? this.setState({ firstName: e.target.value })
-      : e.target.name === "lastName"
-      ? this.setState({ lastName: e.target.value })
-      : e.target.name === "eMail"
-      ? this.setState({ eMail: e.target.value })
-      : e.target.name === "password"
-      ? this.setState({ password: e.target.value })
-      : e.target.name === "passwordCopy"
-      ? this.setState({ passwordCopy: e.target.value })
-      : e.target.name === "role"
-      ? this.setState({ role: e.target.value })
-      : e.target.type === "checkbox"
-      ? this.setState({ terms: e.target.checked })
-      : e.target.type === "username"
-      ? this.setState({ username: e.target.value })
-      : "";
+    if (e.target.type === "checkbox") {
+      this.setState({ terms: e.target.checked });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
   };
   handleSignupClick = (e) => {
     e.preventDefault();
@@ -49,7 +37,6 @@ class Signup extends React.Component {
       name: this.state.firstName,
       surname: this.state.lastName,
     };
-
     AuthService.register(data);
   };
 

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./CategoryCard.css";
-import { Link } from "react-router-dom";
 
 const CategoryCard = () => {
   const [categories] = useState([
@@ -31,7 +30,6 @@ const CategoryCard = () => {
   return (
     <div className="categories-section">
       <h1>Categories</h1>
-      <Link to="/course/8">COURSE</Link>
       {cardsList}
     </div>
   );

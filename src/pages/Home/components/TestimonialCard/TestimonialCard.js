@@ -42,6 +42,7 @@ export default class TestimonialCards extends React.Component {
       //loop: true,
       initialSlide: 2,
       speed: 800,
+      simulateTouch: false,
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
@@ -60,7 +61,7 @@ export default class TestimonialCards extends React.Component {
   }
 
   renderTestimonials() {
-    const items = this.state.testimonials.map(item => {
+    const items = this.state.testimonials.map((item) => {
       return (
         <div className="swiper-slide" key={item.userID}>
           <div className="swiper-inner-circle">
@@ -71,7 +72,7 @@ export default class TestimonialCards extends React.Component {
     });
     return items;
   }
-  handleClick = e => {
+  handleClick = (e) => {
     let value = e.target.classList.value;
     return value.includes("swiper-button-next") && value !== 4
       ? this.setState({ current: this.state.current + 1 })
@@ -88,11 +89,11 @@ export default class TestimonialCards extends React.Component {
           <div className="swiper-wrapper">{this.renderTestimonials()}</div>
           <div
             className="swiper-button-next"
-            onClick={e => this.handleClick(e)}
+            onClick={(e) => this.handleClick(e)}
           ></div>
           <div
             className="swiper-button-prev"
-            onClick={e => this.handleClick(e)}
+            onClick={(e) => this.handleClick(e)}
           ></div>
         </div>
         <div className="testimonial-text-box">
