@@ -9,8 +9,10 @@ const ProtectedRoute = ({ component: Component, name, ...rest }) => {
       render={props => {
         if (AuthService.getCurrentUser()) {
           if (
-            AuthService.getCurrentUser().role_id !== "administrator" &&
-            name === "dashboard"
+            (AuthService.getCurrentUser().role_id !== "administrator" &&
+              name === "dashboard") ||
+            (AuthService.getCurrentUser().role_id !== "teacher" &&
+              name === "createcourse")
           ) {
             return (
               <Redirect

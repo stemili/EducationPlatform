@@ -10,10 +10,8 @@ const CoursesDisplay = props => {
   const [topCourses, setTopCourses] = useState([]);
   useEffect(() => {
     axios
-      .get(
-        "https://jsonblob.com/api/jsonBlob/c6531116-a6b7-11ea-a03a-47b0abf3623a"
-      )
-      .then(res => setTopCourses(res.data.courses));
+      .get("https://courses4me.herokuapp.com/courses")
+      .then(res => setTopCourses(res.data));
   }, []);
   //settings for react-slick slider
   var settings = {
