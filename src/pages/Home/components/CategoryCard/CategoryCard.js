@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CategoryCard.css";
+import { Link } from "react-router-dom";
 
 const CategoryCard = () => {
   const [categories] = useState([
@@ -12,7 +13,7 @@ const CategoryCard = () => {
     { id: "7", name: "Music", icon: "music" },
     { id: "8", name: "Health", icon: "heart" },
   ]);
-  const cardsList = categories.map(item => {
+  const cardsList = categories.map((item) => {
     return (
       <div className="category-card" key={item.id}>
         <img
@@ -30,6 +31,7 @@ const CategoryCard = () => {
   return (
     <div className="categories-section">
       <h1>Categories</h1>
+      <Link to="/course/8">COURSE</Link>
       {cardsList}
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Spin } from "antd";
-import ReactPlayer from "react-player";
+import Lesson from "./Lesson";
 
 import "antd/dist/antd.css";
 import "./course.css";
@@ -36,34 +36,13 @@ class CoursePage extends React.Component {
     }:00`;
   }
 
-  renderLessons() {
-    this.state.lessons.map((lesson) => {
-      return <li key={lesson.number}>{lesson.title}</li>;
-    });
-  }
-
   convertDate(date) {
     const d = new Date(date);
     return `${d.getDay()}/${d.getMonth()}/${d.getFullYear()}`;
   }
   checkIfBought() {
     if (this.state.boughtCourse === true) {
-      return (
-        <div className="view-course-section">
-          <div className="video-box">
-            <div className="video-heading">
-              <ReactPlayer
-                url="https://www.youtube.com/watch?v=ug50zmP9I7s"
-                controls={true}
-                width="100%"
-              />
-              <h1>Lesson Heading</h1>
-            </div>
-            <p>Description</p>
-          </div>
-          <div className="side-menu">{this.renderLessons()}</div>
-        </div>
-      );
+      return <Lesson lessons={this.state.lessons} />;
     } else {
       return (
         <div className="content-section">
