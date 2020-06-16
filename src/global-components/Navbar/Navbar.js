@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { Menu, Dropdown } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 
 const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
   const [searchState, setSearchState] = useState("");
@@ -14,38 +16,18 @@ const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
     console.log(searchState);
   };
 
-  // const antdMenu = (
-  //   <Menu>
-  //     <Menu.Item>
-  //       <a
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //         href="http://www.alipay.com/"
-  //       >
-  //         1st menu item
-  //       </a>
-  //     </Menu.Item>
-  //     <Menu.Item>
-  //       <a
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //         href="http://www.taobao.com/"
-  //       >
-  //         2nd menu item
-  //       </a>
-  //     </Menu.Item>
-  //     <Menu.Item>
-  //       <a
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //         href="http://www.tmall.com/"
-  //       >
-  //         3rd menu item
-  //       </a>
-  //     </Menu.Item>
-  //     <Menu.Item danger>a danger item</Menu.Item>
-  //   </Menu>
-  // );
+  const antdMenu = (
+    <Menu>
+      <Menu.Item>
+        <Link to="/userprofile">
+          <p className="nav-drop-item-l">My Profile</p>
+        </Link>
+      </Menu.Item>
+      <Menu.Item onClick={handleLogout}>
+        <p className="nav-drop-item-l">Log Out</p>
+      </Menu.Item>
+    </Menu>
+  );
   return (
     <div className="main-nav">
       <div className="container-nav">
@@ -71,18 +53,19 @@ const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
             {currentUser ? (
               <React.Fragment>
                 <div className="nav-user-info">
-                  <button className="logout" onClick={handleLogout}>
-                    Log Out
-                  </button>
-                  <Link to="/userprofile">My Profile</Link>
-                  {/* <Dropdown overlay={antdMenu}>
-                    <a
-                      className="ant-dropdown-link"
-                      onClick={e => e.preventDefault()}
-                    >
-                      Hover me <DownOutlined />
-                    </a>
-                  </Dropdown> */}
+                  <Link to="/userprofile">
+                    <img
+                      className="nav-avatar"
+                      src="https://www.nj.com/resizer/h8MrN0-Nw5dB5FOmMVGMmfVKFJo=/450x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg"
+                      alt="useravatar"
+                    />
+                  </Link>
+
+                  <Dropdown overlay={antdMenu} placement="bottomRight">
+                    <span className="ant-dropdown-link drop">
+                      {currentUser.username} <DownOutlined />
+                    </span>
+                  </Dropdown>
                 </div>
               </React.Fragment>
             ) : (

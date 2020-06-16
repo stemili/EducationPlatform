@@ -10,6 +10,7 @@ import CoursePage from "./pages/CoursePage";
 import ModalAuth from "./global-components/ModalAuth/ModalAuth";
 import UserPage from "./pages/UserPage";
 import AuthService from "./auth/AuthService";
+import CreateCourse from "./global-components/CreateCourse/CreateCourse";
 
 function App() {
   const [modalWin, setModalWin] = useState([false, null]);
@@ -60,6 +61,12 @@ function App() {
             exact
             path="/userprofile"
             component={UserPage}
+          />
+          <ProtectedRoute
+            name="createcourse"
+            exact
+            path="/createcourse"
+            component={CreateCourse}
           />
         </Switch>
         <Route
