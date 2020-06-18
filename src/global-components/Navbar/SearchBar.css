@@ -1,0 +1,22 @@
+.option-wrapper {
+  height: 100%;
+  width: 100%;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+}
+
+.option-wrapper img {
+  height: 2.5rem;
+  width: 2.5rem;
+  object-fit: cover;
+  margin-right: 0.5rem;
+}
+
+.option-wrapper span:first-of-type {
+  font-weight: 900;
+}
+
+.option-wrapper span:last-of-type {
+  font-weight: 900;
+  float: right;
+}

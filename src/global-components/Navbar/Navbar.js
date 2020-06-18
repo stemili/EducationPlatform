@@ -1,51 +1,13 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import DropdownList from "./DropdownList";
+import SearchBar from "./SearchBar";
 
 const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
   const [searchState, setSearchState] = useState("");
+  const [dropDownValue, setDropDownValue] = useState("");
 
-  const handleInputChange = e => {
-    setSearchState(e.target.value);
-  };
-
-  const handleSearch = e => {
-    e.preventDefault();
-    console.log(searchState);
-  };
-
-  // const antdMenu = (
-  //   <Menu>
-  //     <Menu.Item>
-  //       <a
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //         href="http://www.alipay.com/"
-  //       >
-  //         1st menu item
-  //       </a>
-  //     </Menu.Item>
-  //     <Menu.Item>
-  //       <a
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //         href="http://www.taobao.com/"
-  //       >
-  //         2nd menu item
-  //       </a>
-  //     </Menu.Item>
-  //     <Menu.Item>
-  //       <a
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //         href="http://www.tmall.com/"
-  //       >
-  //         3rd menu item
-  //       </a>
-  //     </Menu.Item>
-  //     <Menu.Item danger>a danger item</Menu.Item>
-  //   </Menu>
-  // );
   return (
     <div className="main-nav">
       <div className="container-nav">
@@ -58,13 +20,8 @@ const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
           </Link>
         </div>
         <div className="main-nav-mid">
-          <form onSubmit={handleSearch}>
-            <input
-              type="text"
-              placeholder="What do you want to learn?"
-              onChange={handleInputChange}
-            />
-          </form>
+          <DropdownList setDropDownValue={setDropDownValue} />
+          <SearchBar setSearchState={setSearchState} />
         </div>
         <nav className="main-nav-right">
           <nav className="main-nav-right-content">

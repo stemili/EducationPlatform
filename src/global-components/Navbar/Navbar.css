@@ -1,6 +1,6 @@
 /* @import "~antd/dist/antd.css"; */
 .main-nav {
-  height: 60px;
+  height: 72px;
   box-shadow: 5px 0 5px #c8c8c8;
 }
 .container-nav {
@@ -65,7 +65,7 @@
   border: none;
   border-bottom: 1px solid #ccc;
   outline: none;
-  width: 20rem;
+  width: 100%;
   padding: 0 1rem 0;
 }
 .main-nav-mid input::placeholder {
