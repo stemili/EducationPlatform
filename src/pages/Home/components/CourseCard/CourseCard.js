@@ -7,16 +7,16 @@ const CourseCard = ({ course }) => {
   return (
     <div className="course-card">
       <div className="thumbnail-card">
-        <img src={course.thumbnail} alt="Thumbnail" />
+        <img src={course.coverPhoto} alt="coverPhoto" />
         <p className="thumbnail-category">{course.category.toUpperCase()}</p>
       </div>
 
       <div className="info-card">
         <div className="card-top-info">
-          <Link to={`/course/${course.id}`}>
+          <Link to={`/course/${course.ID}`}>
             <h3>{course.title}</h3>
           </Link>
-          <p>{course.description}</p>
+          <p>{course.shortDesc}</p>
         </div>
 
         <div className="card-bottom-info">
@@ -29,7 +29,7 @@ const CourseCard = ({ course }) => {
             spaceBetweenStar="2px"
             disableOnSelect={true}
           />
-          <p className="info-card-price">1999$</p>
+          <p className="info-card-price">{course.price} EUR</p>
         </div>
       </div>
     </div>

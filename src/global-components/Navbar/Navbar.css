@@ -71,3 +71,33 @@
 .main-nav-mid input::placeholder {
   color: #ccc;
 }
+
+.nav-user-info .drop {
+  cursor: pointer;
+  padding-left: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.nav-avatar {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+.nav-drop-item-l {
+  color: var(--secondary-clr);
+  text-align: center;
+  width: 170px;
+}
+
+.ant-dropdown-menu-item {
+  border-bottom: 1px solid #ccc;
+}
+
+.ant-dropdown-placement-bottomRight > .ant-dropdown-menu-vertical {
+  margin-top: 1rem;
+  padding: 0;
+}

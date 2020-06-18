@@ -1,8 +1,7 @@
 .about-us {
-  min-height: 400px;
+  min-height: 350px;
   background-color: var(--secondary-clr);
   text-align: center;
-  padding-bottom: 2rem;
 }
 
 .about-us h3 {
@@ -17,6 +16,7 @@
 .about-content .snd-title {
   color: var(--primary-clr);
   font-size: 1.8rem;
+  margin-bottom: 0;
 }
 
 .about-us-display {
@@ -32,8 +32,9 @@
   /* border-radius: 10px; */
   padding: 0.8rem;
   box-shadow: 50px 50px 0px var(--primary-clr);
+  margin-bottom: 4rem;
 }
 
 .about-us .about-content {
-  padding: 3rem 5rem 3rem;
+  padding: 1rem 5rem 1.5rem;
 }

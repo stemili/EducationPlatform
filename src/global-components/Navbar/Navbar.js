@@ -28,18 +28,19 @@ const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
             {currentUser ? (
               <React.Fragment>
                 <div className="nav-user-info">
-                  <button className="logout" onClick={handleLogout}>
-                    Log Out
-                  </button>
-                  <Link to="/userprofile">My Profile</Link>
-                  {/* <Dropdown overlay={antdMenu}>
-                    <a
-                      className="ant-dropdown-link"
-                      onClick={e => e.preventDefault()}
-                    >
-                      Hover me <DownOutlined />
-                    </a>
-                  </Dropdown> */}
+                  <Link to="/userprofile">
+                    <img
+                      className="nav-avatar"
+                      src="https://www.nj.com/resizer/h8MrN0-Nw5dB5FOmMVGMmfVKFJo=/450x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg"
+                      alt="useravatar"
+                    />
+                  </Link>
+
+                  <Dropdown overlay={antdMenu} placement="bottomRight">
+                    <span className="ant-dropdown-link drop">
+                      {currentUser.username} <DownOutlined />
+                    </span>
+                  </Dropdown>
                 </div>
               </React.Fragment>
             ) : (

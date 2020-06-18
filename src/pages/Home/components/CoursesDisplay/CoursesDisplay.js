@@ -10,10 +10,8 @@ const CoursesDisplay = props => {
   const [topCourses, setTopCourses] = useState([]);
   useEffect(() => {
     axios
-      .get(
-        "https://jsonblob.com/api/jsonBlob/c6531116-a6b7-11ea-a03a-47b0abf3623a"
-      )
-      .then(res => setTopCourses(res.data.courses));
+      .get("https://courses4me.herokuapp.com/courses")
+      .then(res => setTopCourses(res.data));
   }, []);
   //settings for react-slick slider
   var settings = {
@@ -28,7 +26,7 @@ const CoursesDisplay = props => {
     autoplaySpeed: 6000,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1102,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -37,17 +35,18 @@ const CoursesDisplay = props => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 831,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 570,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: false,
         },
       },
     ],
@@ -55,7 +54,7 @@ const CoursesDisplay = props => {
 
   const renderCourses = () => {
     return topCourses.map(course => {
-      return <CourseCard course={course} key={course.id} />;
+      return <CourseCard course={course} key={course.ID} />;
     });
   };
 

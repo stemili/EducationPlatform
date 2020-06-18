@@ -1,0 +1,70 @@
+.ant-input,
+.ant-input-number,
+.ant-form-item-control-input-content
+  .ant-select-allow-clear
+  .ant-select-selector {
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(248, 248, 248);
+}
+
+.container-course-form {
+  min-height: 94vh;
+}
+
+.create-course-card {
+  background-color: rgb(255, 255, 255);
+  padding: 3rem;
+  border-radius: 20px;
+  margin: 2rem 0 2rem;
+  box-shadow: 4px 4px 20px rgb(231, 231, 231);
+}
+
+.container-course-form {
+  width: 40%;
+  margin: auto;
+}
+
+.courses-title {
+  font-size: 2rem;
+  color: var(--secondary-clr);
+}
+.courses-title .fa-book-open {
+  color: var(--primary-clr);
+}
+
+.create-c-btn,
+.reset-c-btn {
+  font-size: 1rem;
+  border-radius: 30px;
+  margin-right: 1rem;
+  border: 1px solid var(--primary-clr);
+}
+
+.reset-c-btn {
+  color: var(--primary-clr);
+  background: #fff;
+}
+
+.reset-c-btn:hover {
+  color: #fff;
+  background: var(--primary-clr);
+}
+.ant-form-item-label > label.ant-form-item-required::before {
+  display: none;
+}
+.ant-form-vertical .ant-form-item-label,
+.ant-col-24.ant-form-item-label,
+.ant-col-xl-24.ant-form-item-label {
+  padding: 0;
+}
+
+.lessons-title {
+  padding-top: 2rem;
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--secondary-clr);
+}
+.lessons-title .fa-graduation-cap {
+  color: var(--primary-clr);
+}
