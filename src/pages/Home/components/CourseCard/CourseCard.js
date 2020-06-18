@@ -13,7 +13,7 @@ const CourseCard = ({ course }) => {
 
       <div className="info-card">
         <div className="card-top-info">
-          <Link to={`/course/${course.ID}`}>
+          <Link to={`/course/${course.id}`}>
             <h3>{course.title}</h3>
           </Link>
           <p>{course.short_desc}</p>

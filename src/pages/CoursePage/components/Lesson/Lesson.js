@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
-import "./lesson.css";
+import "./Lesson.css";
 
 const Lesson = (props) => {
   const [currentLesson, setCurrentLesson] = useState(props.lessons[0]);
@@ -10,7 +10,7 @@ const Lesson = (props) => {
       return (
         <li
           className={currentLesson === lesson ? "active" : ""}
-          key={lesson.number}
+          key={lesson.id}
           onClick={(e) => changeActive(e)}
         >
           {lesson.title}
@@ -25,8 +25,8 @@ const Lesson = (props) => {
       const filtered = props.lessons.filter(
         (les) => les.title === e.target.textContent
       );
+      console.log(filtered);
       setCurrentLesson(filtered[0]);
-      console.log(currentLesson);
     }
   };
 

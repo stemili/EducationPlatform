@@ -16,10 +16,10 @@ const SearchBar = (props) => {
 
   const renderCourses = () => {
     return courses.map((course) => (
-      <Option key={course.ID} value={course.title}>
-        <Link to={`/course/${course.ID}`}>
+      <Option key={course.id} value={course.title}>
+        <Link to={`/course/${course.id}`}>
           <div className="option-wrapper">
-            <img src={course.cover_photo} />
+            <img src={course.cover_photo} alt={course.title} />
             <span>{course.title}</span>
             <span>{course.rating}</span>
           </div>

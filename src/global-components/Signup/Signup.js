@@ -29,11 +29,12 @@ class Signup extends React.Component {
     } else {
       this.setState({ errors: false });
     }
+
     const data = {
       username: this.state.username,
       password: this.state.password,
       email: this.state.eMail,
-      roleID: this.state.role,
+      role_id: this.state.role,
       name: this.state.firstName,
       surname: this.state.lastName,
     };
