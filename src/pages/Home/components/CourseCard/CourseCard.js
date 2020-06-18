@@ -7,7 +7,7 @@ const CourseCard = ({ course }) => {
   return (
     <div className="course-card">
       <div className="thumbnail-card">
-        <img src={course.coverPhoto} alt="coverPhoto" />
+        <img src={course.cover_photo} alt="coverPhoto" />
         <p className="thumbnail-category">{course.category.toUpperCase()}</p>
       </div>
 
@@ -16,7 +16,7 @@ const CourseCard = ({ course }) => {
           <Link to={`/course/${course.ID}`}>
             <h3>{course.title}</h3>
           </Link>
-          <p>{course.shortDesc}</p>
+          <p>{course.short_desc}</p>
         </div>
 
         <div className="card-bottom-info">

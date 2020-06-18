@@ -3,10 +3,26 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import DropdownList from "./DropdownList";
 import SearchBar from "./SearchBar";
+import { Dropdown, Menu } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 
 const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
   const [searchState, setSearchState] = useState("");
   const [dropDownValue, setDropDownValue] = useState("");
+  console.log(searchState + dropDownValue);
+
+  const antdMenu = (
+    <Menu>
+      <Menu.Item>
+        <Link to="/userprofile">
+          <p className="nav-drop-item-l">My Profile</p>
+        </Link>
+      </Menu.Item>
+      <Menu.Item onClick={handleLogout}>
+        <p className="nav-drop-item-l">Log Out</p>
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <div className="main-nav">

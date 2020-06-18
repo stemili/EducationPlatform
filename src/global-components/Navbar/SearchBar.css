@@ -3,6 +3,7 @@
   width: 100%;
   grid-template-columns: auto auto auto;
   align-items: center;
+  display: grid; /* srediti */
 }
 
 .option-wrapper img {
@@ -18,5 +19,5 @@
 
 .option-wrapper span:last-of-type {
   font-weight: 900;
-  float: right;
+  justify-self: right;
 }

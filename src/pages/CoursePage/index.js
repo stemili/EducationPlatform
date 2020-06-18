@@ -16,9 +16,9 @@ class CoursePage extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `https://courses4me.herokuapp.com/courses?courseId=${this.props.match.params.id}`
+        `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`
       )
-      .then((res) => this.setState({ lessons: res.data }));
+      .then((res) => this.setState({ course: res.data[0], isLoading: false }));
     axios
       .get(
         `https://courses4me.herokuapp.com/lessons?courseId=${this.props.match.params.id}`
@@ -28,9 +28,20 @@ class CoursePage extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log("update");
-    console.log(this.state);
+    if (parseInt(this.props.match.params.id) !== this.state.course.ID) {
+      axios
+        .get(
+          `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`
+        )
+        .then((res) =>
+          this.setState({ course: res.data[0], isLoading: false })
+        );
+    }
+    console.log(
+      "update" + this.props.match.params.id + " " + this.state.course.ID
+    );
   }
+
   handleBuy() {
     alert("You bought course");
     this.setState({ boughtCourse: true });
@@ -64,10 +75,10 @@ class CoursePage extends React.Component {
         <React.Fragment>
           <div className="heading-wrapper">
             <div className="heading-section">
-              <img src={this.state.course.coverPhoto} alt="nesto" />
+              <img src={this.state.course.cover_photo} alt="nesto" />
               <div className="course-description">
                 <h1>{this.state.course.title}</h1>
-                <p>{this.state.course.shortDesc}</p>
+                <p>{this.state.course.short_desc}</p>
                 <span>
                   Date created: {this.convertDate(this.state.course.created)}
                 </span>
@@ -101,16 +112,15 @@ class CoursePage extends React.Component {
               </div>
               <div className="lessons-list">
                 <ol>
-                  <li>First Lesson</li>
-                  <li>Second Lesson</li>
-                  <li>Third Lesson</li>
-                  <li>Fourth Lesson</li>
+                  {this.state.lessons.map((les) => {
+                    return <li key={les.id}>{les.title}</li>;
+                  })}
                 </ol>
               </div>
             </div>
             <h2>DESCRIPTION</h2>
             <div className="bottom-content">
-              <p>{this.state.course.longDesc}</p>
+              <p>{this.state.course.long_desc}</p>
               <button className="buy-button" onClick={() => this.handleBuy()}>
                 Buy for {this.state.course.price}$
               </button>
@@ -126,6 +136,7 @@ class CoursePage extends React.Component {
       <div className="course-wrapper">
         {this.checkRequest()}
         {this.checkIfBought()}
+        {console.log("render")}
       </div>
     );
   }
