@@ -9,6 +9,7 @@ import { DownOutlined } from "@ant-design/icons";
 const Navbar = ({ toggleModal, currentUser, handleLogout, dashboard }) => {
   const [searchState, setSearchState] = useState("");
   const [dropDownValue, setDropDownValue] = useState("");
+  // dummy call
   console.log(searchState + dropDownValue);
 
   const antdMenu = (

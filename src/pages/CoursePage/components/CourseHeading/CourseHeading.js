@@ -4,6 +4,10 @@ import "./CourseHeading.css";
 export const CourseHeading = (props) => {
   const [currentCourse, setCourse] = useState(props.course);
 
+  useEffect(() => {
+    setCourse(props.course);
+  }, [props.course]);
+
   function convertDate(date) {
     const d = new Date(date);
     return `${d.getDay()}/${d.getMonth()}/${d.getFullYear()}`;

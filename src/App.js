@@ -40,7 +40,7 @@ function App() {
           <Route
             exact
             path="/"
-            render={props => <Home {...props} toggleModal={toggleModal} />}
+            render={(props) => <Home {...props} toggleModal={toggleModal} />}
           ></Route>
           {/* <Route
             exact
@@ -56,8 +56,8 @@ function App() {
           />
           <Route
             exact
-            path="/course/:id"
-            render={props => <CoursePage {...props} />}
+            path="/courses/:id"
+            render={(props) => <CoursePage {...props} />}
           ></Route>
           <ProtectedRoute
             name="userpage"

@@ -5,6 +5,13 @@ export const CourseInformation = (props) => {
   const [currentCourse, setCourse] = useState(props.course);
   const [currentLessons, setLessons] = useState(props.lessons);
 
+  useEffect(() => {
+    setCourse(props.course);
+  }, [props.course]);
+  useEffect(() => {
+    setLessons(props.lessons);
+  }, [props.lessons]);
+
   function getDuration(minutes) {
     let hours = Math.floor(minutes / 60);
     let minute = minutes % 60;

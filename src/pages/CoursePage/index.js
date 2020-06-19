@@ -38,10 +38,12 @@ class CoursePage extends React.Component {
         .then((res) =>
           this.setState({ course: res.data[0], isLoading: false })
         );
+      axios
+        .get(
+          `https://courses4me.herokuapp.com/lessons?courseId=${this.props.match.params.id}`
+        )
+        .then((res) => this.setState({ lessons: res.data }));
     }
-    console.log(
-      "update" + this.props.match.params.id + " " + this.state.course.id
-    );
   }
 
   handleBuy = () => {
@@ -79,7 +81,6 @@ class CoursePage extends React.Component {
       <div className="course-wrapper">
         {this.checkRequest()}
         {this.checkIfBought()}
-        {console.log("render")}
       </div>
     );
   }

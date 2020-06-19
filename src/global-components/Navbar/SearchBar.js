@@ -9,7 +9,7 @@ const SearchBar = (props) => {
   const { Option } = AutoComplete;
 
   useEffect(() => {
-    Axios.get("https://courses4me.herokuapp.com/courses").then((res) =>
+    Axios.get("https://courses4me.herokuapp.com/courses/").then((res) =>
       setCourses(res.data)
     );
   }, []);
