@@ -21,12 +21,12 @@ class CoursePage extends React.Component {
         `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`
       )
       .then((res) => this.setState({ course: res.data[0], isLoading: false }));
+
     axios
       .get(
         `https://courses4me.herokuapp.com/lessons?courseId=${this.props.match.params.id}`
       )
       .then((res) => this.setState({ lessons: res.data }));
-    console.log("mount");
   }
 
   componentDidUpdate() {
