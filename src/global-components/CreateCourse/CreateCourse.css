@@ -68,3 +68,31 @@
 .lessons-title .fa-graduation-cap {
   color: var(--primary-clr);
 }
+
+.closing-down {
+  opacity: 0;
+  transition: 500ms;
+}
+
+.create-course-card {
+  min-height: 745px;
+  animation: fadeIn 500ms;
+}
+
+.lessons-title > p {
+  display: inline-block;
+}
+
+.lessons-title > p > span {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

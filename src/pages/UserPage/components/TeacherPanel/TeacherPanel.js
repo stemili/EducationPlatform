@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ProfileCourseCard from "../ProfileCourseCard/ProfileCourseCard";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "./TeacherPanel.css";
+import TeacherCourseCard from "../TeacherCourseCard/TeacherCourseCard";
 
 const TeacherPanel = () => {
   const [myCourses, setMyCourses] = useState([]);
@@ -13,20 +13,18 @@ const TeacherPanel = () => {
 
   //calling useEffect with different params every time curent course selection changes
   useEffect(() => {
-    axios
-      .get(
-        "https://jsonblob.com/api/jsonBlob/c6531116-a6b7-11ea-a03a-47b0abf3623a"
-      )
-      .then(res => setMyCourses(res.data.courses));
-  }, [selectedNavItem]);
+    axios.get("https://courses4me.herokuapp.com/courses").then(res => {
+      setMyCourses(res.data);
+    });
+  }, []);
 
   const handleNavItemChanged = e => {
     setSelectedNavItem(e.target.id);
   };
 
   const renderProfileCourses = () => {
-    return myCourses.map(course => {
-      return <ProfileCourseCard course={course} key={course.id} />;
+    return myCourses.map((course, index) => {
+      return <TeacherCourseCard course={course} key={index} />;
     });
   };
 

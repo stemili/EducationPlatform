@@ -20,7 +20,14 @@ const CourseCard = ({ course }) => {
                 : course.title}
             </h3>
           </Link>
-          <p>{course.short_desc}</p>
+          <p className="info-card-teacher">
+            by <span>{course.teacher}</span>
+          </p>
+          <p>
+            {course.short_desc.length > 83
+              ? course.short_desc.slice(0, 80) + "..."
+              : course.short_desc}
+          </p>
         </div>
 
         <div className="card-bottom-info">

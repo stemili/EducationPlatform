@@ -10,18 +10,19 @@ class Signup extends React.Component {
     eMail: "",
     password: "",
     passwordCopy: "",
-    role: "student",
+    role: "teacher",
     terms: false,
     errors: false,
   };
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     if (e.target.type === "checkbox") {
       this.setState({ terms: e.target.checked });
     } else {
       this.setState({ [e.target.name]: e.target.value });
     }
   };
-  handleSignupClick = (e) => {
+  handleSignupClick = e => {
+    console.log(this.state);
     e.preventDefault();
     const checkTerms = this.doValidation(this.state);
     if (checkTerms === false) {
@@ -41,7 +42,7 @@ class Signup extends React.Component {
     AuthService.register(data);
   };
 
-  doValidation = (s) => {
+  doValidation = s => {
     if (s.terms === false) {
       return false;
     }

@@ -53,8 +53,8 @@ const CoursesDisplay = props => {
   };
 
   const renderCourses = () => {
-    return topCourses.map(course => {
-      return <CourseCard course={course} key={course.ID} />;
+    return topCourses.map((course, index) => {
+      return <CourseCard course={course} key={index} />;
     });
   };
 
