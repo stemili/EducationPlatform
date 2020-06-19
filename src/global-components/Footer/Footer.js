@@ -5,7 +5,7 @@ import FooterList from "../FooterList/FooterList";
 export default class Footer extends React.Component {
   render() {
     return (
-      <footer>
+      <footer style={this.props.dashboard ? { display: "none" } : {}}>
         <div className="footer-wrapper">
           <div className="footer-upper">
             <div className="footer-menu">

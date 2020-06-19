@@ -34,7 +34,7 @@ class AuthService {
     const jwToken = JSON.parse(localStorage.getItem("user-jwt"));
     const userInfo = JSON.parse(localStorage.getItem("user-info"));
     if (jwToken && userInfo) {
-      return { authorization: `token ${jwToken}` };
+      return `token ${jwToken}`;
     } else {
       return {};
     }

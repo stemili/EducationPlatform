@@ -1,0 +1,16 @@
+.ant-layout-has-sider .dark-blue {
+  background: var(--secondary-clr);
+}
+.ant-layout-sider-children
+  .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal)
+  .ant-menu-item-selected {
+  background: var(--primary-clr);
+}
+
+.ant-layout-sider-dark .ant-layout-sider-children .ant-menu-dark {
+  background: var(--secondary-clr);
+}
+
+.dark-blue .ant-layout-sider-trigger {
+  background-color: #4ea39a;
+}

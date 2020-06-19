@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 import { Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
-const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
+const Navbar = ({ toggleModal, currentUser, handleLogout, dashboard }) => {
   const [searchState, setSearchState] = useState("");
   const [dropDownValue, setDropDownValue] = useState("");
   console.log(searchState + dropDownValue);
@@ -25,8 +25,8 @@ const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
   );
 
   return (
-    <div className="main-nav">
-      <div className="container-nav">
+    <div className={dashboard ? "main-nav main-nav-dash" : "main-nav"}>
+      <div className={dashboard ? "container-nav-dash" : "container-nav"}>
         <div className="main-nav-left">
           <Link to="/">
             <img
@@ -35,15 +35,26 @@ const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
             />
           </Link>
         </div>
-        <div className="main-nav-mid">
-          <DropdownList setDropDownValue={setDropDownValue} />
-          <SearchBar setSearchState={setSearchState} />
-        </div>
+        {dashboard ? (
+          ""
+        ) : (
+          <div className="main-nav-mid">
+            <DropdownList setDropDownValue={setDropDownValue} />
+            <SearchBar setSearchState={setSearchState} />
+          </div>
+        )}
+
         <nav className="main-nav-right">
           <nav className="main-nav-right-content">
             {currentUser ? (
               <React.Fragment>
-                <div className="nav-user-info">
+                <div
+                  className={
+                    dashboard
+                      ? "nav-user-info nav-user-dashboard"
+                      : "nav-user-info"
+                  }
+                >
                   <Link to="/userprofile">
                     <img
                       className="nav-avatar"
