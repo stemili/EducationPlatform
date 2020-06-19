@@ -27,7 +27,7 @@
 }
 
 .main-nav .main-nav-left img {
-  height: 45px;
+  height: 50px;
 }
 
 .main-nav-right-content {
@@ -48,16 +48,25 @@
 }
 
 .main-nav-right-content li:last-child {
-  background-color: var(--primary-clr);
+  background: linear-gradient(
+    90deg,
+    rgba(238, 108, 77, 1) 0%,
+    rgb(224, 142, 121) 100%
+  );
   color: #fff;
-  border-radius: 10px;
+  border-radius: 15px;
   border: 1px solid var(--primary-clr);
 }
 
 .main-nav-right-content li:first-child {
-  border: 1px solid var(--primary-clr);
-  color: #333;
-  border-radius: 10px;
+  border: 1px solid var(--secondary-clr);
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgba(41, 50, 65, 1) 0%,
+    rgba(83, 90, 102, 1) 100%
+  );
+  border-radius: 15px;
 }
 
 .main-nav-mid {

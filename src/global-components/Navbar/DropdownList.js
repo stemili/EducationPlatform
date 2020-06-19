@@ -28,20 +28,19 @@ const DropdownList = props => {
   };
   return (
     <Select
-      defaultValue="Select category:"
+      defaultValue="Category"
       style={{
-        width: 200,
-        background: `linear-gradient(
-        90deg,
-        rgba(238, 108, 77, 1) 0%,
-        rgba(244, 155, 133, 1) 100%
-      )`,
-        color: "white",
-        borderRadius: 3,
-        marginRight: 10,
+        width: 125,
+        //   background: `linear-gradient(
+        //   90deg,
+        //   rgba(238, 108, 77, 1) 0%,
+        //   rgba(244, 155, 133, 1) 100%
+        // )`,
+        backgroundColor: "#fff",
+        color: "#999",
       }}
       bordered={false}
-      size="large"
+      size="medium"
       onChange={value => props.setDropDownValue(value)}
     >
       {renderOptions()}

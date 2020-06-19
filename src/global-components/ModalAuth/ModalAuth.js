@@ -41,7 +41,6 @@ const ModalAuth = ({ modalOpen, type, setModalWin, setCurrentUser }) => {
           <div className="modal-left-title">
             <img src={process.env.PUBLIC_URL + "/resources/logo.png"} alt="" />
             <h3>Discite</h3>
-            <p>“An investment in knowledge pays the best interest.”</p>
           </div>
         </div>
 

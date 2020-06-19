@@ -1,5 +1,7 @@
 import React from "react";
 import "./Intro.css";
+import AuthService from "../../../../auth/AuthService";
+import { Link } from "react-router-dom";
 
 const Intro = ({ toggleModal }) => {
   return (
@@ -11,12 +13,18 @@ const Intro = ({ toggleModal }) => {
             ‘Every student can learn,
             <br /> just not on the same day, <br /> or the same way.’
           </p>
-          <button
-            onClick={() => toggleModal(true, "signup")}
-            className="btn intro-btn"
-          >
-            Join Us
-          </button>
+          {AuthService.getCurrentUser() ? (
+            <Link to="userprofile">
+              <button className="btn intro-btn">My Profile</button>
+            </Link>
+          ) : (
+            <button
+              onClick={() => toggleModal(true, "signup")}
+              className="btn intro-btn"
+            >
+              Join Us
+            </button>
+          )}
         </div>
       </div>
       <div className="intro-min-info">
