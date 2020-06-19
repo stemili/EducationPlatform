@@ -2,7 +2,12 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import AuthService from "../../auth/AuthService";
 
-const ProtectedRoute = ({ component: Component, name, ...rest }) => {
+const ProtectedRoute = ({
+  component: Component,
+  name,
+  setDashboard,
+  ...rest
+}) => {
   return (
     <Route
       {...rest}
@@ -21,6 +26,11 @@ const ProtectedRoute = ({ component: Component, name, ...rest }) => {
                 }}
               />
             );
+          } else if (
+            AuthService.getCurrentUser().role_id === "administrator" &&
+            name === "dashboard"
+          ) {
+            return <Component {...props} setDashboard={setDashboard} />;
           }
           return <Component {...props} />;
         } else {

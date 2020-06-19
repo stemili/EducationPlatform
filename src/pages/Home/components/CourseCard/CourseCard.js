@@ -7,16 +7,27 @@ const CourseCard = ({ course }) => {
   return (
     <div className="course-card">
       <div className="thumbnail-card">
-        <img src={course.coverPhoto} alt="coverPhoto" />
+        <img src={course.cover_photo} alt="coverPhoto" />
         <p className="thumbnail-category">{course.category.toUpperCase()}</p>
       </div>
 
       <div className="info-card">
         <div className="card-top-info">
           <Link to={`/course/${course.ID}`}>
-            <h3>{course.title}</h3>
+            <h3>
+              {course.title.length > 18
+                ? course.title.slice(0, 21) + "..."
+                : course.title}
+            </h3>
           </Link>
-          <p>{course.shortDesc}</p>
+          <p className="info-card-teacher">
+            by <span>{course.teacher}</span>
+          </p>
+          <p>
+            {course.short_desc.length > 83
+              ? course.short_desc.slice(0, 80) + "..."
+              : course.short_desc}
+          </p>
         </div>
 
         <div className="card-bottom-info">

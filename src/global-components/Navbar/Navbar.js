@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
-const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
+const Navbar = ({ toggleModal, currentUser, handleLogout, dashboard }) => {
   const [searchState, setSearchState] = useState("");
 
   const handleInputChange = e => {
@@ -29,8 +29,8 @@ const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
     </Menu>
   );
   return (
-    <div className="main-nav">
-      <div className="container-nav">
+    <div className={dashboard ? "main-nav main-nav-dash" : "main-nav"}>
+      <div className={dashboard ? "container-nav-dash" : "container-nav"}>
         <div className="main-nav-left">
           <Link to="/">
             <img
@@ -39,20 +39,31 @@ const Navbar = ({ toggleModal, currentUser, handleLogout }) => {
             />
           </Link>
         </div>
-        <div className="main-nav-mid">
-          <form onSubmit={handleSearch}>
-            <input
-              type="text"
-              placeholder="What do you want to learn?"
-              onChange={handleInputChange}
-            />
-          </form>
-        </div>
+        {dashboard ? (
+          ""
+        ) : (
+          <div className="main-nav-mid">
+            <form onSubmit={handleSearch}>
+              <input
+                type="text"
+                placeholder="What do you want to learn?"
+                onChange={handleInputChange}
+              />
+            </form>
+          </div>
+        )}
+
         <nav className="main-nav-right">
           <nav className="main-nav-right-content">
             {currentUser ? (
               <React.Fragment>
-                <div className="nav-user-info">
+                <div
+                  className={
+                    dashboard
+                      ? "nav-user-info nav-user-dashboard"
+                      : "nav-user-info"
+                  }
+                >
                   <Link to="/userprofile">
                     <img
                       className="nav-avatar"

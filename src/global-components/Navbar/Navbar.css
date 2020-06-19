@@ -3,11 +3,24 @@
   height: 60px;
   box-shadow: 5px 0 5px #c8c8c8;
 }
+
+.main-nav-dash {
+  background-color: var(--secondary-clr);
+}
 .container-nav {
   display: flex;
   height: 100%;
   width: 90%;
   max-width: 1100px;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-nav-dash {
+  display: flex;
+  height: 100%;
+  width: 95%;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
@@ -77,6 +90,12 @@
   padding-left: 1rem;
   font-weight: bold;
   font-size: 1.1rem;
+}
+.nav-user-dashboard {
+  background-color: #ffffffbd;
+  padding: 0rem 1rem 0rem 0rem;
+  border-radius: 50px;
+  color: teal;
 }
 
 .nav-avatar {

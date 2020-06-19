@@ -15,6 +15,7 @@ import CreateCourse from "./global-components/CreateCourse/CreateCourse";
 function App() {
   const [modalWin, setModalWin] = useState([false, null]);
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
+  const [dashboard, setDashboard] = useState(false);
 
   const toggleModal = (modalOpen, type) => {
     setModalWin([modalOpen, type]);
@@ -32,6 +33,7 @@ function App() {
           toggleModal={toggleModal}
           currentUser={currentUser}
           handleLogout={handleLogout}
+          dashboard={dashboard}
         />
 
         <Switch>
@@ -50,6 +52,7 @@ function App() {
             exact
             path="/dashboard"
             component={Dashboard}
+            setDashboard={setDashboard}
           />
           <Route
             exact
@@ -86,7 +89,7 @@ function App() {
           setModalWin={setModalWin}
           setCurrentUser={setCurrentUser}
         />
-        <Footer />
+        <Footer dashboard={dashboard} />
       </BrowserRouter>
     </div>
   );
