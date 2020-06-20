@@ -40,9 +40,7 @@ class CreateCourse extends React.Component {
   };
   formRef = React.createRef();
   formRefSecond = React.createRef();
-  componentDidMount() {
-    console.log(this.props);
-  }
+  componentDidMount() {}
   onFinish = async values => {
     console.log(values);
     // const coverPhoto = await toBase64(values.upload[0].originFileObj);
@@ -57,12 +55,10 @@ class CreateCourse extends React.Component {
       coverPhoto: values.imgUrl,
     };
     // console.log(values.upload[0].originFileObj);
-    console.log(AuthService.getAuthHeader());
     message.loading({ content: "Uploading Course...", key: messageKey });
     axios
       .post("https://courses4me.herokuapp.com/courses", postCourse)
       .then(res => {
-        console.log(res);
         this.setState({ currentCourse: res.data.courseContent });
         message.success({
           content: "Course Uploaded",
@@ -76,7 +72,6 @@ class CreateCourse extends React.Component {
         }, 500);
       })
       .catch(err => {
-        console.log(err);
         message.error({
           content: "Unable to upload Course",
           key: messageKey,
@@ -129,8 +124,6 @@ class CreateCourse extends React.Component {
   }
 
   normFile = e => {
-    console.log("Upload event:", e);
-
     if (Array.isArray(e)) {
       return e;
     }

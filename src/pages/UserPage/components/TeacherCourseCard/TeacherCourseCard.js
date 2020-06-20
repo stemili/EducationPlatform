@@ -7,18 +7,26 @@ const TeacherCourseCard = ({ course }) => {
     <div>
       <div className="teacher-course-card">
         <div className="teacher-thumbnail-card">
-          <Link to={`/course/${course.ID}`}>
+          <Link to={`/courses/${course.id}`}>
             <img src={course.cover_photo} alt="Thumbnail" />
             <p className="teacher-thumbnail-category">
               {course.category.toUpperCase()}
             </p>
-            <h3>{course.title}</h3>
+            <h3>
+              {course.title.length > 28
+                ? course.title.slice(0, 25) + "..."
+                : course.title}
+            </h3>
           </Link>
         </div>
 
         <div className="teacher-info-card">
           <div className="teacher-card-top-info">
-            <p>{course.description}</p>
+            <p>
+              {course.short_desc.length > 83
+                ? course.short_desc.slice(0, 80) + "..."
+                : course.short_desc}
+            </p>
             <div className="btn-group-teacher">
               <button className="btn teacher-card-btn-edit disabled">
                 Edit Course

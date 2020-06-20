@@ -44,10 +44,12 @@
 }
 
 .teacher-thumbnail-card h3 {
+  white-space: nowrap;
+  padding: 0 0.5rem 0;
   position: absolute;
   bottom: 0;
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: normal;
   color: #fff;
   background-color: var(--secondary-clr);

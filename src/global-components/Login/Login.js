@@ -52,18 +52,23 @@ const Login = ({ setCurrentUser, setModalWin }) => {
             value={password}
             onChange={handleInputChange}
           />
-          <input className="login-submit" type="submit" value="Log In" />
-          <p>Forgot Password?</p>
+          <button className="login-submit btn" type="submit">
+            Log In
+          </button>
         </form>
       </div>
       <div className="login-bottom-external">
-        <button>
-          <i className="fab fa-google"></i>Continue with Google
+        <button className="disabled">
+          <i className="fab fa-google"></i>
         </button>
-        <button>
-          <i className="fab fa-facebook-f"></i>Continue with Facebook
+        <button className="disabled">
+          <i className="fab fa-facebook-f"></i>
         </button>
       </div>
+      <p className="bottom-down-login">
+        Not a member?{" "}
+        <span onClick={() => setModalWin([true, "signup"])}>Sign up now!</span>
+      </p>
     </div>
   );
 };

@@ -8,6 +8,21 @@ import "./CoursesDisplay.css";
 
 const CoursesDisplay = props => {
   const [topCourses, setTopCourses] = useState([]);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const currentDate = new Date();
   useEffect(() => {
     axios
       .get("https://courses4me.herokuapp.com/courses")
@@ -60,7 +75,7 @@ const CoursesDisplay = props => {
 
   return (
     <div className="courses-display container">
-      <h3>May Specials</h3>
+      <h3>{months[currentDate.getMonth()]} Specials</h3>
       <Slider {...settings}>{renderCourses()}</Slider>
     </div>
   );
