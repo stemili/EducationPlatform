@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Spin } from "antd";
-import Lesson from "./components/Lesson/Lesson";
+import Auth from "../../auth/AuthService";
 import { CourseHeading } from "./components/CourseHeading/CourseHeading";
 import { CourseInformation } from "./components/CourseInformation/CourseInformation";
 import "antd/dist/antd.css";
@@ -11,8 +11,10 @@ class CoursePage extends React.Component {
   state = {
     course: {},
     lessons: [],
+    courseUsers: [],
+    currentUser: Auth.getCurrentUser(),
     isLoading: true,
-    boughtCourse: false,
+    isEnrolled: false,
   };
 
   componentDidMount() {
@@ -20,13 +22,19 @@ class CoursePage extends React.Component {
       .get(
         `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`
       )
-      .then((res) => this.setState({ course: res.data[0], isLoading: false }));
+      .then((res) => this.setState({ course: res.data[0] }));
 
     axios
       .get(
         `https://courses4me.herokuapp.com/lessons?courseId=${this.props.match.params.id}`
       )
-      .then((res) => this.setState({ lessons: res.data }));
+      .then((res) => this.setState({ lessons: res.data, isLoading: false }));
+    axios
+      .get(
+        `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}/users`
+      )
+      .then((res) => this.setState({ courseUsers: res.data }));
+    this.checkifEnrolled();
   }
 
   componentDidUpdate() {
@@ -43,26 +51,46 @@ class CoursePage extends React.Component {
           `https://courses4me.herokuapp.com/lessons?courseId=${this.props.match.params.id}`
         )
         .then((res) => this.setState({ lessons: res.data }));
+      axios
+        .get(
+          `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}/users`
+        )
+        .then((res) =>
+          this.setState({ courseUsers: res.data, isEnrolled: false })
+        );
     }
+    this.checkifEnrolled();
+  }
+
+  componentWillUnmount() {
+    this.setState({ course: {}, lessons: [], courseUsers: [] });
   }
 
   handleBuy = () => {
-    alert("You bought course");
-    this.setState({ boughtCourse: true });
+    if (this.state.currentUser) {
+      axios
+        .post(
+          `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`,
+          {
+            username: `${this.state.currentUser.username}`,
+          }
+        )
+        .then((res) => alert(res.data.success))
+        .then(() => this.setState({ isEnrolled: true }))
+        .catch((err) => console.log(err));
+    } else {
+      alert("You have to log-in first");
+    }
   };
 
-  checkIfBought() {
-    if (this.state.boughtCourse === true)
-      return <Lesson lessons={this.state.lessons} />;
-  }
-  checkRequest() {
+  checkIfLoading() {
     if (this.state.isLoading) {
       return (
         <div className="course-spinner">
           <Spin />
         </div>
       );
-    } else if (this.state.boughtCourse !== true) {
+    } else {
       return (
         <React.Fragment>
           <CourseHeading course={this.state.course} />
@@ -70,19 +98,28 @@ class CoursePage extends React.Component {
             course={this.state.course}
             lessons={this.state.lessons}
             handleBuy={this.handleBuy}
+            isEnrolled={this.state.isEnrolled}
           />
         </React.Fragment>
       );
     }
   }
 
+  checkifEnrolled() {
+    if (this.state.isEnrolled === false) {
+      if (this.state.currentUser) {
+        const checkForUser = this.state.courseUsers.filter(
+          (user) => user.username === this.state.currentUser.username
+        );
+        if (checkForUser.length === 1) {
+          this.setState({ isEnrolled: true });
+        }
+      }
+    }
+  }
+
   render() {
-    return (
-      <div className="course-wrapper">
-        {this.checkRequest()}
-        {this.checkIfBought()}
-      </div>
-    );
+    return <div className="course-wrapper">{this.checkIfLoading()}</div>;
   }
 }
 
