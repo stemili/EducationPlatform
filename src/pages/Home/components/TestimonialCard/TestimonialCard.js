@@ -2,57 +2,39 @@ import React from "react";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import "./TestimonialCard.css";
+import axios from "axios";
 import avatar from "../../../../resources/avatar1.jpg";
 
 export default class TestimonialCards extends React.Component {
   state = {
     current: 2,
-    testimonials: [
-      {
-        userID: "rad1na",
-        testimonial:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint dolore, dolores consequatur rem recusandae tenetur. Repellendus, mollitia! Nihil quidem architecto aut amet minus quisquam reprehenderit dolore. Consequuntur dolores qui laudantium.",
-      },
-      {
-        userID: "rad1na1",
-        testimonial:
-          "Sint dolore, dolores consequatur rem recusandae tenetur. Repellendus, mollitia!",
-      },
-      {
-        userID: "rad1na2",
-        testimonial:
-          "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe sapiente corrupti, illo modi deleniti in ipsam, quos aperiam aliquam incidunt eveniet ullam. Architecto numquam qui nulla, sunt rem aperiam animi!",
-      },
-      {
-        userID: "rad1na3",
-        testimonial:
-          " Saepe sapiente corrupti, illo modi deleniti in ipsam, quos aperiam aliquam incidunt eveniet ullam.",
-      },
-      {
-        userID: "rad1na4",
-        testimonial: "Architecto numquam qui nulla, sunt rem aperiam animi!",
-      },
-    ],
+    testimonials: [],
   };
   componentDidMount() {
-    this.swiper = new Swiper(".swiper-container", {
-      slidesPerView: 5,
-      centeredSlides: true,
-      direction: this.getDirection(),
-      //loop: true,
-      initialSlide: 2,
-      speed: 800,
-      simulateTouch: false,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      //on: {
-      //  resize: function () {
-      //    this.swiper.changeDirection(this.getDirection());
-      //  },
-      //},
-    });
+    axios
+      .get(`https://courses4me.herokuapp.com/testimonials/randomfive`)
+      .then((res) => this.setState({ testimonials: res.data }))
+      .then(
+        () =>
+          (this.swiper = new Swiper(".swiper-container", {
+            slidesPerView: 5,
+            centeredSlides: true,
+            direction: this.getDirection(),
+            //loop: true,
+            initialSlide: 2,
+            speed: 800,
+            simulateTouch: false,
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            //on: {
+            //  resize: function () {
+            //    this.swiper.changeDirection(this.getDirection());
+            //  },
+            //},
+          }))
+      );
   }
 
   getDirection() {
@@ -63,9 +45,16 @@ export default class TestimonialCards extends React.Component {
   renderTestimonials() {
     const items = this.state.testimonials.map((item) => {
       return (
-        <div className="swiper-slide" key={item.userID}>
+        <div className="swiper-slide" key={item.username}>
           <div className="swiper-inner-circle">
-            <img src={avatar} alt="User" />
+            <img
+              src={
+                this.state.testimonials[this.state.current].picture
+                  ? this.state.testimonials[this.state.current].picture
+                  : avatar
+              }
+              alt="User"
+            />
           </div>
         </div>
       );
@@ -78,7 +67,7 @@ export default class TestimonialCards extends React.Component {
       ? this.setState({ current: this.state.current + 1 })
       : value.includes("swiper-button-prev") && value !== 0
       ? this.setState({ current: this.state.current - 1 })
-      : console.log(this.state.current);
+      : "";
   };
 
   render() {
@@ -96,10 +85,21 @@ export default class TestimonialCards extends React.Component {
             onClick={(e) => this.handleClick(e)}
           ></div>
         </div>
-        <div className="testimonial-text-box">
+        <div className="testimonial-text-box fadeIn">
+          <h2>
+            {this.state.testimonials.length !== 0
+              ? this.state.testimonials[this.state.current].name +
+                " " +
+                this.state.testimonials[this.state.current].surname
+              : ""}
+          </h2>
           <i className="fas fa-quote-left"></i>
           <i className="fas fa-caret-down"></i>
-          <span>{this.state.testimonials[this.state.current].testimonial}</span>
+          <span>
+            {this.state.testimonials.length !== 0
+              ? this.state.testimonials[this.state.current].text
+              : ""}
+          </span>
           <i className="fas fa-quote-right"></i>
         </div>
       </div>

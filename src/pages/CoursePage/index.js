@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Spin } from "antd";
 import Auth from "../../auth/AuthService";
-import { CourseHeading } from "./components/CourseHeading/CourseHeading";
+import CourseHeading from "./components/CourseHeading/CourseHeading";
 import { CourseInformation } from "./components/CourseInformation/CourseInformation";
 import "antd/dist/antd.css";
 import "./course.css";

@@ -6,16 +6,23 @@ import "./SearchBar.css";
 
 const SearchBar = (props) => {
   const [courses, setCourses] = useState([]);
+  const [searchState, setSearchState] = useState("");
   const { Option } = AutoComplete;
 
   useEffect(() => {
-    Axios.get("https://courses4me.herokuapp.com/courses/").then((res) =>
-      setCourses(res.data)
-    );
-  }, []);
+    Axios.get(
+      `https://courses4me.herokuapp.com/courses/search?title=${searchState}`
+    ).then((res) => setCourses(res.data));
+  }, [searchState]);
 
   const renderCourses = () => {
-    return courses.map((course) => (
+    let filteredCourses = courses;
+    if (props.dropdownValue !== "all") {
+      filteredCourses = courses.filter(
+        (course) => course.category === props.dropdownValue
+      );
+    }
+    return filteredCourses.map((course) => (
       <Option key={course.id} value={course.title}>
         <Link to={`/courses/${course.id}`}>
           <div className="option-wrapper">
@@ -36,7 +43,9 @@ const SearchBar = (props) => {
         option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
       }
       size="large"
-      onSelect={(value) => props.setSearchState(value)}
+      value={searchState}
+      onSelect={(value) => setSearchState(value)}
+      onChange={(value) => setSearchState(value)}
     >
       {courses !== [] ? renderCourses() : ""}
     </AutoComplete>

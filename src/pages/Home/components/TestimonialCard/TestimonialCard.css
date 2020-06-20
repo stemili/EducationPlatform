@@ -110,6 +110,11 @@
   color: var(--secondary-clr);
 }
 
+.testimonial-text-box h2 {
+  font-style: normal;
+  color: var(--primary-clr);
+}
+
 .fa-quote-left,
 .fa-quote-right {
   position: absolute;
@@ -138,4 +143,22 @@
 .swiper-button-next,
 .swiper-button-prev {
   color: var(--primary-clr);
+}
+
+.swiper-button-next:focus,
+.swiper-button-prev:focus {
+  outline: none;
+}
+
+.fadeIn {
+  animation: fade 1s linear forwards;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
 }

@@ -7,10 +7,7 @@ import { Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 const Navbar = ({ toggleModal, currentUser, handleLogout, dashboard }) => {
-  const [searchState, setSearchState] = useState("");
-  const [dropDownValue, setDropDownValue] = useState("");
-  // dummy call
-  console.log(searchState + dropDownValue);
+  const [dropDownValue, setDropDownValue] = useState("all");
 
   const antdMenu = (
     <Menu>
@@ -41,7 +38,7 @@ const Navbar = ({ toggleModal, currentUser, handleLogout, dashboard }) => {
         ) : (
           <div className="main-nav-mid">
             <DropdownList setDropDownValue={setDropDownValue} />
-            <SearchBar setSearchState={setSearchState} />
+            <SearchBar dropdownValue={dropDownValue} />
           </div>
         )}
 

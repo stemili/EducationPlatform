@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Dropdown.css";
 import { Select } from "antd";
 
-const DropdownList = props => {
+const DropdownList = (props) => {
   const { Option } = Select;
   const [categories] = useState([
     { id: "1", name: "Development", icon: "code" },
@@ -16,7 +16,7 @@ const DropdownList = props => {
   ]);
 
   const renderOptions = () => {
-    return categories.map(ctr => (
+    return categories.map((ctr) => (
       <Option
         value={ctr.name.toLowerCase()}
         key={ctr.id}
@@ -28,9 +28,9 @@ const DropdownList = props => {
   };
   return (
     <Select
-      defaultValue="Category"
+      defaultValue="all"
       style={{
-        width: 125,
+        width: 150,
         //   background: `linear-gradient(
         //   90deg,
         //   rgba(238, 108, 77, 1) 0%,
@@ -41,8 +41,11 @@ const DropdownList = props => {
       }}
       bordered={false}
       size="medium"
-      onChange={value => props.setDropDownValue(value)}
+      onChange={(value) => props.setDropDownValue(value)}
     >
+      <Option value="all" key="0" className="dropdown-item">
+        All
+      </Option>
       {renderOptions()}
     </Select>
   );
