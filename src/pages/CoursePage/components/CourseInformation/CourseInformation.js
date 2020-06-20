@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./CourseInformation.css";
+import { Link } from "react-router-dom";
 
 export const CourseInformation = (props) => {
   const [currentCourse, setCourse] = useState(props.course);
@@ -30,7 +31,7 @@ export const CourseInformation = (props) => {
         </div>
         <div className="left-field">
           <span>Category</span>
-          <i className="fas fa-code"></i>
+          <i className="fas fa-book"></i>
           {currentCourse.category}
         </div>
         <div className="left-field">
@@ -55,9 +56,20 @@ export const CourseInformation = (props) => {
       <h2>DESCRIPTION</h2>
       <div className="bottom-content">
         <p>{currentCourse.long_desc}</p>
-        <button className="buy-button" onClick={() => props.handleBuy()}>
-          Buy for {currentCourse.price}$
-        </button>
+        {props.isEnrolled === true ? (
+          <button className="bottom-button go-to">
+            <Link to={`/courses/${currentCourse.id}/lessons`}>
+              Go to Lessons
+            </Link>
+          </button>
+        ) : (
+          <button
+            className="bottom-button buy"
+            onClick={() => props.handleBuy()}
+          >
+            Buy for {currentCourse.price}$
+          </button>
+        )}
       </div>
     </div>
   );

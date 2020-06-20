@@ -11,7 +11,9 @@
 
 .content-section h2 {
   text-align: center;
+  font-size: 2rem;
   grid-column: 1/3;
+  color: #385a7c;
 }
 
 .left-content {
@@ -57,23 +59,48 @@
   padding: 0 2rem 0 2rem;
   width: 70%;
   margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
 }
 .bottom-content button {
   margin-top: 2rem;
 }
 
-.buy-button {
+.bottom-content p {
+  grid-column: 1/3;
+}
+
+.bottom-button {
   height: 3rem;
+  width: 10rem;
   padding: 1rem;
   font-size: 1.05rem;
   color: white;
-  background-color: var(--primary-clr);
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  line-height: 0;
+  border-radius: 15px;
 }
 
-.buy-button:hover {
-  background-color: #b95238;
+.bottom-button.buy:hover {
+  background-color: red;
+}
+.bottom-button.go-to:hover {
+  background-color: #1e2531;
+}
+
+.bottom-button.go-to {
+  color: white;
+  background-color: var(--secondary-clr);
+}
+
+.bottom-button.buy {
+  background-color: var(--primary-clr);
+}
+
+.bottom-button:focus {
+  outline: none;
 }
