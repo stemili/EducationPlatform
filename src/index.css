@@ -4,6 +4,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 /* Default Colors */
 :root {
   --primary-clr: #ee6c4d;

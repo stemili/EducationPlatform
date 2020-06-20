@@ -5,13 +5,16 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import CategoryCard from "./components/CategoryCard/CategoryCard";
 import TestimonialCards from "./components/TestimonialCard/TestimonialCard";
 
-const Home = ({ toggleModal }) => {
+const Home = ({ toggleModal, setSelectedCategory, setFocusSearch }) => {
   return (
     <div>
       <Intro toggleModal={toggleModal} />
       <CoursesDisplay title="hello World" />
       <AboutUs />
-      <CategoryCard />
+      <CategoryCard
+        setSelectedCategory={setSelectedCategory}
+        setFocusSearch={setFocusSearch}
+      />
       <TestimonialCards />
     </div>
   );

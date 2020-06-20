@@ -19,6 +19,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
   const [dashboard, setDashboard] = useState(false);
 
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [focusSearch, setFocusSearch] = useState(false);
+
   const toggleModal = (modalOpen, type) => {
     setModalWin([modalOpen, type]);
   };
@@ -36,13 +39,23 @@ function App() {
           currentUser={currentUser}
           handleLogout={handleLogout}
           dashboard={dashboard}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          focusSearch={focusSearch}
         />
 
         <Switch>
           <Route
             exact
             path="/"
-            render={props => <Home {...props} toggleModal={toggleModal} />}
+            render={props => (
+              <Home
+                {...props}
+                toggleModal={toggleModal}
+                setSelectedCategory={setSelectedCategory}
+                setFocusSearch={setFocusSearch}
+              />
+            )}
           ></Route>
           {/* <Route
             exact

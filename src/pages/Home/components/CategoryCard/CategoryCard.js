@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./CategoryCard.css";
 
-const CategoryCard = () => {
+const CategoryCard = ({ setSelectedCategory, setFocusSearch }) => {
   const [categories] = useState([
     { id: "1", name: "Development", icon: "code" },
     { id: "2", name: "Business", icon: "chart-bar" },
@@ -12,9 +12,17 @@ const CategoryCard = () => {
     { id: "7", name: "Music", icon: "music" },
     { id: "8", name: "Health", icon: "heart" },
   ]);
-  const cardsList = categories.map((item) => {
+  const cardsList = categories.map(item => {
     return (
-      <div className="category-card" key={item.id}>
+      <div
+        className="category-card"
+        key={item.id}
+        onClick={() => {
+          setFocusSearch(true);
+          setSelectedCategory(item.name.toLowerCase());
+          window.scrollTo(0, 0);
+        }}
+      >
         <img
           src={`../resources/${item.name}.png`}
           alt={`${item.name} category`}

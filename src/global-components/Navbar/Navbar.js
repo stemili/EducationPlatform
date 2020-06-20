@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import DropdownList from "./DropdownList";
@@ -6,9 +6,15 @@ import SearchBar from "./SearchBar";
 import { Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
-const Navbar = ({ toggleModal, currentUser, handleLogout, dashboard }) => {
-  const [dropDownValue, setDropDownValue] = useState("all");
-
+const Navbar = ({
+  toggleModal,
+  currentUser,
+  handleLogout,
+  dashboard,
+  selectedCategory,
+  setSelectedCategory,
+  focusSearch,
+}) => {
   const antdMenu = (
     <Menu>
       <Menu.Item>
@@ -37,8 +43,14 @@ const Navbar = ({ toggleModal, currentUser, handleLogout, dashboard }) => {
           ""
         ) : (
           <div className="main-nav-mid">
-            <DropdownList setDropDownValue={setDropDownValue} />
-            <SearchBar dropdownValue={dropDownValue} />
+            <DropdownList
+              setDropDownValue={setSelectedCategory}
+              selectedCategory={selectedCategory}
+            />
+            <SearchBar
+              dropdownValue={selectedCategory}
+              focusSearch={focusSearch}
+            />
           </div>
         )}
 
