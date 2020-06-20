@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./CourseHeading.css";
 
-export const CourseHeading = (props) => {
+const CourseHeading = (props) => {
   const [currentCourse, setCourse] = useState(props.course);
 
   useEffect(() => {
@@ -27,3 +27,5 @@ export const CourseHeading = (props) => {
     </div>
   );
 };
+
+export default CourseHeading;
