@@ -6,6 +6,7 @@ import ProfileCourseCard from "../ProfileCourseCard/ProfileCourseCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import AuthService from "../../../../auth/AuthService";
 
 const StudentPanel = () => {
   const [myCourses, setMyCourses] = useState([]);
@@ -15,9 +16,17 @@ const StudentPanel = () => {
   useEffect(() => {
     axios
       .get(
-        "https://jsonblob.com/api/jsonBlob/c6531116-a6b7-11ea-a03a-47b0abf3623a"
+        `https://courses4me.herokuapp.com/users/${
+          AuthService.getCurrentUser().username
+        }/courses`,
+        {
+          headers: { authorization: AuthService.getAuthHeader() },
+        }
       )
-      .then(res => setMyCourses(res.data.courses));
+      .then(res => {
+        setMyCourses(res.data);
+        console.log(res.data);
+      });
   }, [selectedNavItem]);
 
   const handleNavItemChanged = e => {

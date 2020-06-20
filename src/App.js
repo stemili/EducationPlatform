@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 import Navbar from "./global-components/Navbar/Navbar";
 import Footer from "./global-components/Footer/Footer";
@@ -41,7 +42,7 @@ function App() {
           <Route
             exact
             path="/"
-            render={(props) => <Home {...props} toggleModal={toggleModal} />}
+            render={props => <Home {...props} toggleModal={toggleModal} />}
           ></Route>
           {/* <Route
             exact
@@ -58,7 +59,7 @@ function App() {
           <Route
             exact
             path="/courses/:id"
-            render={(props) => <CoursePage {...props} />}
+            render={props => <CoursePage {...props} />}
           ></Route>
           <ProtectedRoute
             name="lessons"
@@ -79,7 +80,7 @@ function App() {
             component={CreateCourse}
           />
         </Switch>
-        <Route
+        {/* <Route
           exact
           path="*"
           render={() => (
@@ -89,7 +90,7 @@ function App() {
               }}
             />
           )}
-        ></Route>
+        ></Route> */}
         <ModalAuth
           modalOpen={modalWin[0]}
           type={modalWin[1]}
