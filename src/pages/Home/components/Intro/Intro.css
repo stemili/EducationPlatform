@@ -37,7 +37,7 @@
     rgb(228, 152, 133) 100%
   ); */
   background: linear-gradient(90deg, rgb(54, 63, 80) 0%, rgb(91, 97, 109) 100%);
-  height: 60px;
+  height: 52px;
 }
 .intro-info-flex {
   height: 100%;

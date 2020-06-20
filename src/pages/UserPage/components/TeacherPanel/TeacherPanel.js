@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "./TeacherPanel.css";
 import TeacherCourseCard from "../TeacherCourseCard/TeacherCourseCard";
+import AuthService from "../../../../auth/AuthService";
 
 const TeacherPanel = () => {
   const [myCourses, setMyCourses] = useState([]);
@@ -13,9 +14,19 @@ const TeacherPanel = () => {
 
   //calling useEffect with different params every time curent course selection changes
   useEffect(() => {
-    axios.get("https://courses4me.herokuapp.com/courses").then(res => {
-      setMyCourses(res.data);
-    });
+    axios
+      .get(
+        `https://courses4me.herokuapp.com/users/${
+          AuthService.getCurrentUser().username
+        }/my-courses`,
+        {
+          headers: { authorization: AuthService.getAuthHeader() },
+        }
+      )
+      .then(res => {
+        console.log(res);
+        setMyCourses(res.data);
+      });
   }, []);
 
   const handleNavItemChanged = e => {
@@ -33,7 +44,7 @@ const TeacherPanel = () => {
     dots: true,
     speed: 1000,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     initialSlide: 0,
     arrows: false,
     responsive: [
