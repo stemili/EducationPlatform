@@ -24,7 +24,7 @@ const CategoryCard = ({ setSelectedCategory, setFocusSearch }) => {
         }}
       >
         <img
-          src={`../resources/${item.name}.png`}
+          src={process.env.PUBLIC_URL + `/resources/${item.name}.png`}
           alt={`${item.name} category`}
           className="category-card-image"
         />

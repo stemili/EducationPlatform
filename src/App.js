@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-// import { Redirect } from "react-router-dom";
 
 import Navbar from "./global-components/Navbar/Navbar";
 import Footer from "./global-components/Footer/Footer";
@@ -13,6 +12,7 @@ import UserPage from "./pages/UserPage";
 import AuthService from "./auth/AuthService";
 import CreateCourse from "./global-components/CreateCourse/CreateCourse";
 import Lesson from "./pages/CoursePage/components/Lesson/Lesson";
+import NotFound from "./global-components/NotFound/NotFound";
 
 function App() {
   const [modalWin, setModalWin] = useState([false, null]);
@@ -94,18 +94,9 @@ function App() {
             path="/createcourse"
             component={CreateCourse}
           />
+          <Route path="*" component={NotFound}></Route>
         </Switch>
-        {/* <Route
-          exact
-          path="*"
-          render={() => (
-            <Redirect
-              to={{
-                pathname: "/",
-              }}
-            />
-          )}
-        ></Route> */}
+
         <ModalAuth
           modalOpen={modalWin[0]}
           type={modalWin[1]}
