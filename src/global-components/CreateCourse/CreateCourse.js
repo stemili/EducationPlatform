@@ -101,12 +101,12 @@ class CreateCourse extends React.Component {
           key: messageKey,
           duration: 2,
         });
+        this.setState({ lessonCreated: 1 });
+        this.onResetSecond();
       })
       .catch(err => {
         message.error("Unable to upload Lesson");
       });
-    this.setState({ lessonCreated: 1 });
-    this.onResetSecond();
   };
 
   onReset = () => {

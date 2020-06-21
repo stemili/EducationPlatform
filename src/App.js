@@ -72,7 +72,9 @@ function App() {
           <Route
             exact
             path="/courses/:id"
-            render={props => <CoursePage {...props} />}
+            render={props => (
+              <CoursePage {...props} toggleModal={toggleModal} />
+            )}
           ></Route>
           <ProtectedRoute
             name="lessons"

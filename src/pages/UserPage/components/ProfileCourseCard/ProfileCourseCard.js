@@ -7,7 +7,7 @@ const ProfileCourseCard = ({ course }) => {
     <div>
       <div className="profile-course-card">
         <div className="profile-thumbnail-card">
-          <img src={course.thumbnail} alt="Thumbnail" />
+          <img src={course.cover_photo} alt="Thumbnail" />
           <p className="profile-thumbnail-category">
             {course.category.toUpperCase()}
           </p>
@@ -15,10 +15,14 @@ const ProfileCourseCard = ({ course }) => {
 
         <div className="profile-info-card">
           <div className="profile-card-top-info">
-            <Link to={`/course/${course.id}`}>
+            <Link to={`/courses/${course.id}`}>
               <h3>{course.title}</h3>
             </Link>
-            <p>{course.description}</p>
+            <p>
+              {course.short_desc.length > 60
+                ? course.short_desc.slice(0, 57) + "..."
+                : course.short_desc}
+            </p>
           </div>
         </div>
       </div>

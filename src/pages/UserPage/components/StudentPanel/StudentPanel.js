@@ -25,7 +25,6 @@ const StudentPanel = () => {
       )
       .then(res => {
         setMyCourses(res.data);
-        console.log(res.data);
       });
   }, [selectedNavItem]);
 
@@ -47,6 +46,7 @@ const StudentPanel = () => {
     slidesToScroll: 4,
     initialSlide: 0,
     arrows: false,
+    infinite: myCourses.length > 3,
     responsive: [
       {
         breakpoint: 1024,

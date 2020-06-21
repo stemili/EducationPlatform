@@ -24,7 +24,6 @@ const TeacherPanel = () => {
         }
       )
       .then(res => {
-        console.log(res);
         setMyCourses(res.data);
       });
   }, []);
@@ -44,9 +43,10 @@ const TeacherPanel = () => {
     dots: true,
     speed: 1000,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 4,
     initialSlide: 0,
     arrows: false,
+    infinite: myCourses.length > 3,
     responsive: [
       {
         breakpoint: 1024,
