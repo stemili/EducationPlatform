@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/EducationPlatform/static/css/main.67dc8efc.chunk.css",
+    "main.js": "/EducationPlatform/static/js/main.d26dbb7c.chunk.js",
+    "main.js.map": "/EducationPlatform/static/js/main.d26dbb7c.chunk.js.map",
+    "runtime-main.js": "/EducationPlatform/static/js/runtime-main.5988cf17.js",
+    "runtime-main.js.map": "/EducationPlatform/static/js/runtime-main.5988cf17.js.map",
+    "static/css/2.73dfdab8.chunk.css": "/EducationPlatform/static/css/2.73dfdab8.chunk.css",
+    "static/js/2.d6eca547.chunk.js": "/EducationPlatform/static/js/2.d6eca547.chunk.js",
+    "static/js/2.d6eca547.chunk.js.map": "/EducationPlatform/static/js/2.d6eca547.chunk.js.map",
+    "index.html": "/EducationPlatform/index.html",
+    "precache-manifest.edfbd4121c2ded897e3cc914f20b2465.js": "/EducationPlatform/precache-manifest.edfbd4121c2ded897e3cc914f20b2465.js",
+    "service-worker.js": "/EducationPlatform/service-worker.js",
+    "static/css/2.73dfdab8.chunk.css.map": "/EducationPlatform/static/css/2.73dfdab8.chunk.css.map",
+    "static/css/main.67dc8efc.chunk.css.map": "/EducationPlatform/static/css/main.67dc8efc.chunk.css.map",
+    "static/js/2.d6eca547.chunk.js.LICENSE.txt": "/EducationPlatform/static/js/2.d6eca547.chunk.js.LICENSE.txt",
+    "static/media/avatar1.jpg": "/EducationPlatform/static/media/avatar1.8620fb56.jpg",
+    "static/media/slick-theme.css": "/EducationPlatform/static/media/slick.f97e3bbf.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5988cf17.js",
+    "static/css/2.73dfdab8.chunk.css",
+    "static/js/2.d6eca547.chunk.js",
+    "static/css/main.67dc8efc.chunk.css",
+    "static/js/main.d26dbb7c.chunk.js"
+  ]
+}
