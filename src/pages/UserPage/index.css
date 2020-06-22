@@ -74,7 +74,7 @@
 
 .profile-about-user h3 > span {
   font-size: 1.3rem;
-  color: #bbb;
+  color: #999;
 }
 .profile-about-occupation {
   font-weight: bold;
@@ -84,12 +84,12 @@
 
 .profile-dob {
   font-size: 0.9rem;
-  color: #bbb;
+  color: #999;
 }
 .profile-location {
   font-size: 0.9rem;
   padding: 0.5rem 0 0.5rem;
-  color: #bbb;
+  color: #999;
 }
 
 .edit-profile-btn {

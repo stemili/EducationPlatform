@@ -4,9 +4,12 @@ import { useState } from "react";
 import axios from "axios";
 
 import AuthService from "../../auth/AuthService";
+import { useHistory } from "react-router-dom";
 const Login = ({ setCurrentUser, setModalWin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const history = useHistory();
 
   const handleLogIn = e => {
     e.preventDefault();
@@ -15,6 +18,7 @@ const Login = ({ setCurrentUser, setModalWin }) => {
         localStorage.setItem("user-info", JSON.stringify(res.data[0]));
         setCurrentUser(AuthService.getCurrentUser());
         setModalWin([false, "login"]);
+        history.push("/userprofile");
       });
     });
   };

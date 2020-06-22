@@ -29,6 +29,7 @@ function App() {
   const handleLogout = () => {
     setCurrentUser(null);
     AuthService.logout();
+    window.location.reload();
   };
 
   return (

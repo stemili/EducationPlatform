@@ -23,7 +23,7 @@ class AuthService {
   }
 
   register(data) {
-    return axios.post(`${API_URL}/users`, data);
+    return axios.post(`${API_URL}/register`, data);
   }
 
   getCurrentUser() {

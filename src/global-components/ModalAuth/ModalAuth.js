@@ -11,7 +11,7 @@ const ModalAuth = ({ modalOpen, type, setModalWin, setCurrentUser }) => {
     type === "login" ? (
       <Login setCurrentUser={setCurrentUser} setModalWin={setModalWin} />
     ) : (
-      <Signup />
+      <Signup setModalWin={setModalWin} />
     );
   return (
     <Modal

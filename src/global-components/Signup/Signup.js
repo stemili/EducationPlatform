@@ -1,188 +1,253 @@
 import React from "react";
+import { Input, Form, message } from "antd";
+import { useState } from "react";
 import "./Signup.css";
 import AuthService from "../../auth/AuthService";
+import axios from "axios";
 
-class Signup extends React.Component {
-  state = {
-    firstName: "",
-    lastName: "",
-    username: "",
-    eMail: "",
-    password: "",
-    passwordCopy: "",
-    role: "teacher",
-    terms: false,
-    errors: false,
+const Signup = ({ setModalWin }) => {
+  const formRef = React.createRef();
+  const formRefSecond = React.createRef();
+  const [userRole, setUserRole] = useState("student");
+  const [createLvl, setCreateLvl] = useState(0);
+  const [userData, setUserData] = useState({});
+  const handleInputChange = e => {
+    setUserRole(e.target.id);
   };
-  handleInputChange = e => {
-    if (e.target.type === "checkbox") {
-      this.setState({ terms: e.target.checked });
-    } else {
-      this.setState({ [e.target.name]: e.target.value });
-    }
-  };
-  handleSignupClick = e => {
-    console.log(this.state);
-    e.preventDefault();
-    const checkTerms = this.doValidation(this.state);
-    if (checkTerms === false) {
-      this.setState({ errors: true });
-    } else {
-      this.setState({ errors: false });
-    }
 
-    const data = {
-      username: this.state.username,
-      password: this.state.password,
-      email: this.state.eMail,
-      role_id: this.state.role,
-      name: this.state.firstName,
-      surname: this.state.lastName,
+  const onFinish = values => {
+    // console.log(values);
+    // const coverPhoto = await toBase64(values.upload[0].originFileObj);
+    const createUser = {
+      username: values.username,
+      password: values.password,
+      email: values.email,
+      role_id: userRole,
+      name: values.name,
+      surname: values.surname,
     };
-    AuthService.register(data);
+
+    AuthService.register(createUser)
+      .then(res => {
+        if (res.status === 200) {
+          setUserData(createUser);
+          setCreateLvl(1);
+        }
+      })
+      .catch(err => message.error(err.response.data.error));
   };
 
-  doValidation = s => {
-    if (s.terms === false) {
-      return false;
-    }
+  const onFinishSecond = values => {
+    const confirmProfile = {
+      register_token: values.confirmationCode,
+    };
+    axios
+      .post("https://courses4me.herokuapp.com/verify", confirmProfile)
+      .then(res => setCreateLvl(2));
+    console.log(confirmProfile);
   };
 
-  checkErrors = () => {
-    if (this.state.errors === true) {
-      return (
-        <div className="error-message">
-          <div className="header">Terms and Conditions</div>
-          <p>Please accept Terms and Conditions!</p>
-        </div>
-      );
-    }
-  };
-  render() {
-    return (
-      <div className="content-wrapper">
-        <h1>Sign up</h1>
-        <div className="external-signup">
-          <button className="signup-button fb">
-            <i className="fab fa-facebook"></i>
-            Connect with Facebook
-          </button>
-          <button className="signup-button google">
-            <i className="fab fa-google"></i>
-            Connect with Google
-          </button>
-        </div>
-        <form className="signup-form">
-          <div className="signup-field">
-            <span>Username</span>
-            <input
-              type="text"
-              name="username"
-              placeholder="john123"
-              value={this.state.username}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div className="signup-field">
-            <span>First Name</span>
-            <input
-              type="text"
-              name="firstName"
-              placeholder="John"
-              value={this.state.firstName}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div className="signup-field">
-            <span>Last Name</span>
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Wick"
-              value={this.state.lastName}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div className="signup-field">
-            <span>E-Mail address</span>
-            <input
-              type="email"
-              name="eMail"
-              placeholder="user@random.com"
-              value={this.state.eMail}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div className="signup-field">
-            <span htmlFor="password">Password</span>
-            <input
-              type="password"
-              name="password"
-              placeholder="password123"
-              value={this.state.password}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div className="signup-field">
-            <span htmlFor="password">Re-type password</span>
-            <input
-              type="password"
-              name="passwordCopy"
-              placeholder="password123"
-              value={this.state.passwordCopy}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div className="signup-field radio">
-            <span>Select your role</span>
-            <input
-              type="radio"
-              name="role"
-              value="student"
-              onChange={this.handleInputChange}
-              id="student"
-            />
-            <label
-              htmlFor="student"
-              className={this.state.role === "student" ? "active-orange" : ""}
-            >
-              Student
-            </label>
-            <input
-              type="radio"
-              name="role"
-              value="teacher"
-              onChange={this.handleInputChange}
-              id="teacher"
-            />
-            <label
-              htmlFor="teacher"
-              className={this.state.role === "teacher" ? "active-orange" : ""}
-            >
-              Teacher
-            </label>
-          </div>
-          <div className="signup-field">
-            <input
-              type="checkbox"
-              name="terms"
-              onChange={this.handleInputChange}
-            />
-            <label> I agree to the Terms and Conditions</label>
-          </div>
-          <button
-            className="signup-button"
-            type="submit"
-            id="submit-button"
-            onClick={this.handleSignupClick}
+  return (
+    <div
+      className={
+        createLvl === 0
+          ? "signup-form-main-outer"
+          : "signup-form-main-outer-second"
+      }
+    >
+      {createLvl === 0 ? (
+        <React.Fragment>
+          <h4>
+            Create <span>Account</span>
+          </h4>
+          <Form
+            layout="vertical"
+            ref={formRef}
+            name="control-ref"
+            onFinish={onFinish}
+            className="signup-form-main"
           >
-            Submit
+            <Form.Item
+              name="name"
+              // label="First Name"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your name!",
+                },
+              ]}
+            >
+              <Input placeholder="First Name" />
+            </Form.Item>
+
+            <Form.Item
+              name="surname"
+              // label="Last Name"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your last name!",
+                },
+              ]}
+            >
+              <Input placeholder="Last Name" />
+            </Form.Item>
+
+            <Form.Item
+              name="email"
+              // label="Email address"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your email address!",
+                },
+              ]}
+            >
+              <Input placeholder="Email address" />
+            </Form.Item>
+            <Form.Item
+              name="username"
+              // label="Username"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your username!",
+                },
+              ]}
+            >
+              <Input placeholder="Username" />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              // label="Password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your password!",
+                },
+              ]}
+            >
+              <Input.Password placeholder="Password" />
+            </Form.Item>
+            <Form.Item
+              name="confirm"
+              // label="Confirm Password"
+              dependencies={["password"]}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: "Please confirm your password!",
+                },
+                ({ getFieldValue }) => ({
+                  validator(rule, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      "The two passwords that you entered do not match!"
+                    );
+                  },
+                }),
+              ]}
+            >
+              <Input.Password placeholder="Confirm Password" />
+            </Form.Item>
+            <Form.Item>
+              <div className="signup-field radio">
+                <input
+                  type="radio"
+                  name="role"
+                  value="student"
+                  onChange={handleInputChange}
+                  id="student"
+                />
+                <label
+                  htmlFor="student"
+                  className={userRole === "student" ? "active-orange" : ""}
+                >
+                  Student
+                </label>
+                <input
+                  type="radio"
+                  name="role"
+                  value="teacher"
+                  onChange={handleInputChange}
+                  id="teacher"
+                />
+                <label
+                  htmlFor="teacher"
+                  className={userRole === "teacher" ? "active-orange" : ""}
+                >
+                  Teacher
+                </label>
+              </div>
+            </Form.Item>
+
+            <Form.Item>
+              <button className="btn create-c-btn" htmltype="submit">
+                Create Account
+              </button>
+            </Form.Item>
+          </Form>
+        </React.Fragment>
+      ) : createLvl === 1 ? (
+        <React.Fragment>
+          <h4>
+            Hi, <span>{userData.username}</span>!
+          </h4>
+          <p>
+            We're excited to have you get started. First, you need to confirm
+            your account. Just type the code we have sent you on{" "}
+            <span>{userData.email}</span>
+          </p>
+          <Form
+            layout="vertical"
+            ref={formRefSecond}
+            onFinish={onFinishSecond}
+            className="signup-form-main"
+          >
+            <Form.Item
+              name="confirmationCode"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your confirmation code!",
+                },
+              ]}
+            >
+              <Input
+                className="confirm-token-signup"
+                placeholder="Enter here your confirmation code"
+              />
+            </Form.Item>
+            <Form.Item>
+              <button className="btn create-c-btn" htmltype="submit">
+                Confirm
+              </button>
+            </Form.Item>
+          </Form>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <img
+            src="https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Tick_Mark_Dark-512.png"
+            alt="tick"
+            className="image-signup-tick"
+          />
+          <p className="success-p-mess">
+            Your Profile has been Successfully Created!
+          </p>
+          <button
+            className="btn proceed-login"
+            onClick={() => setModalWin([true, "login"])}
+          >
+            Proceed to Login
           </button>
-        </form>
-        {this.checkErrors()}
-      </div>
-    );
-  }
-}
+        </React.Fragment>
+      )}
+    </div>
+  );
+};
 
 export default Signup;

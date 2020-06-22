@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import "./TeacherPanel.css";
 import TeacherCourseCard from "../TeacherCourseCard/TeacherCourseCard";
 import AuthService from "../../../../auth/AuthService";
+import ProfileCourseCard from "../ProfileCourseCard/ProfileCourseCard";
 
 const TeacherPanel = () => {
   const [myCourses, setMyCourses] = useState([]);
@@ -14,19 +15,36 @@ const TeacherPanel = () => {
 
   //calling useEffect with different params every time curent course selection changes
   useEffect(() => {
-    axios
-      .get(
-        `https://courses4me.herokuapp.com/users/${
-          AuthService.getCurrentUser().username
-        }/my-courses`,
-        {
-          headers: { authorization: AuthService.getAuthHeader() },
-        }
-      )
-      .then(res => {
-        setMyCourses(res.data);
-      });
-  }, []);
+    if (selectedNavItem === "my_subscriptions") {
+      axios
+        .get(
+          `https://courses4me.herokuapp.com/users/${
+            AuthService.getCurrentUser().username
+          }/courses`,
+          {
+            headers: { authorization: AuthService.getAuthHeader() },
+          }
+        )
+        .then(res => {
+          console.log("subscribed courses please");
+          console.log(res.data);
+          setMyCourses(res.data);
+        });
+    } else {
+      axios
+        .get(
+          `https://courses4me.herokuapp.com/users/${
+            AuthService.getCurrentUser().username
+          }/my-courses`,
+          {
+            headers: { authorization: AuthService.getAuthHeader() },
+          }
+        )
+        .then(res => {
+          setMyCourses(res.data);
+        });
+    }
+  }, [selectedNavItem]);
 
   const handleNavItemChanged = e => {
     setSelectedNavItem(e.target.id);
@@ -35,6 +53,12 @@ const TeacherPanel = () => {
   const renderProfileCourses = () => {
     return myCourses.map((course, index) => {
       return <TeacherCourseCard course={course} key={index} />;
+    });
+  };
+
+  const renderSubscribedCourses = () => {
+    return myCourses.map((course, index) => {
+      return <ProfileCourseCard course={course} key={index} />;
     });
   };
 
@@ -114,10 +138,26 @@ const TeacherPanel = () => {
           >
             Hidden
           </li>
+          <li
+            style={
+              selectedNavItem === "my_subscriptions"
+                ? { color: "#ee6c4d", borderBottom: "#ee6c4d 1px solid" }
+                : {}
+            }
+            className="profile-nav-item"
+            id="my_subscriptions"
+            onClick={handleNavItemChanged}
+          >
+            My Subscriptions
+          </li>
         </ul>
       </div>
       <div className="profile-courses-display">
-        <Slider {...settings}>{renderProfileCourses()}</Slider>
+        {selectedNavItem === "my_subscriptions" ? (
+          <Slider {...settings}>{renderSubscribedCourses()}</Slider>
+        ) : (
+          <Slider {...settings}>{renderProfileCourses()}</Slider>
+        )}
       </div>
     </div>
   );
