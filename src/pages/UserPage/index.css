@@ -7,7 +7,11 @@
 }
 
 .profile-user-back {
-  background-color: #eff6fd;
+  background: linear-gradient(
+    90deg,
+    rgb(222, 227, 236) 0%,
+    rgb(192, 199, 211) 100%
+  );
 }
 
 .profile-user-info {
@@ -15,13 +19,44 @@
   align-items: center;
 }
 
-.profile-user-info img {
+.profile-user-image-section {
+  position: relative;
   width: 230px;
   height: 230px;
+  margin: 3rem 0 3rem;
+}
+
+.profile-user-info img {
+  width: 100%;
+  height: 100%;
   border-radius: 115px;
   object-fit: cover;
   box-shadow: 2px 2px 5px #777, 0px 0px 0px 20px #fff;
-  margin: 3rem 0 3rem;
+}
+
+.edit-image-btn {
+  cursor: pointer;
+  height: 2.6rem;
+  width: 2.6rem;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgb(222, 227, 236) 100%
+  );
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5rem;
+  font-size: 1.4rem;
+  box-shadow: 0px 0px 0px 7px rgba(233, 148, 127, 1);
+  transition: box-shadow 0.3s;
+}
+
+.edit-image-btn:hover {
+  box-shadow: 0px 0px 0px 7px rgb(224, 117, 91);
 }
 
 .profile-about-user {
@@ -95,4 +130,25 @@
 .profile-nav-item:hover {
   color: var(--primary-clr);
   border-bottom: var(--primary-clr) 1px solid;
+}
+
+.edit-img-modal .ant-modal-content {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.edit-img-modal .ant-modal-content .ant-input {
+  background: linear-gradient(
+    90deg,
+    rgb(234, 236, 241) 0%,
+    rgb(222, 227, 236) 100%
+  );
+}
+
+.edit-img-modal
+  .ant-modal-content
+  .ant-modal-footer
+  button.ant-btn.ant-btn-primary {
+  background-color: var(--primary-clr);
+  border: none;
 }

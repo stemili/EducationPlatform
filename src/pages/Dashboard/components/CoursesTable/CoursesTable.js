@@ -60,6 +60,7 @@ const CoursesTable = ({ itemData }) => {
       })
       .then(res => {
         message.success("Course Deleted!");
+        // window.location.reload();
       })
       .catch(err => {
         message.error("Failed To Delete Course");

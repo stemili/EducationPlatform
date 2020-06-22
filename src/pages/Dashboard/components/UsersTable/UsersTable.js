@@ -17,6 +17,7 @@ const UsersTable = ({ itemData }) => {
       })
       .then(res => {
         message.success("User Deleted!");
+        // window.location.reload();
       })
       .catch(err => {
         message.error("Failed To Delete User");

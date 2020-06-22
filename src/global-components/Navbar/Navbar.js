@@ -68,7 +68,11 @@ const Navbar = ({
                   <Link to="/userprofile">
                     <img
                       className="nav-avatar"
-                      src="https://www.nj.com/resizer/h8MrN0-Nw5dB5FOmMVGMmfVKFJo=/450x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg"
+                      src={
+                        currentUser.picture
+                          ? currentUser.picture
+                          : "https://www.in-tend.co.uk/images/default.jpg"
+                      }
                       alt="useravatar"
                     />
                   </Link>

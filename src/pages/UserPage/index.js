@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Modal, Input } from "antd";
 
 import AuthService from "../../auth/AuthService";
 import "./index.css";
 import StudentPanel from "./components/StudentPanel/StudentPanel";
 import TeacherPanel from "./components/TeacherPanel/TeacherPanel";
+import { EditOutlined } from "@ant-design/icons";
+import axios from "axios";
 
 const UserPage = () => {
   const currentUser = AuthService.getCurrentUser();
 
+  const [editModal, setEditModal] = useState(false);
+  const [imgUrlUpdate, setImgUrlUpdate] = useState("");
   const renderUserPanel = () => {
     if (currentUser.role_id === "student") {
       return <StudentPanel />;
@@ -23,14 +28,73 @@ const UserPage = () => {
     }
   };
 
+  const showModal = () => {
+    setEditModal(true);
+  };
+
+  const confirmModal = e => {
+    setEditModal(false);
+    axios
+      .put(
+        `https://courses4me.herokuapp.com/users/${
+          AuthService.getCurrentUser().username
+        }/picture`,
+        { picture: imgUrlUpdate },
+        {
+          headers: {
+            authorization: AuthService.getAuthHeader(),
+          },
+        }
+      )
+      .then(res => {
+        axios
+          .get(
+            `https://courses4me.herokuapp.com/users/${
+              AuthService.getCurrentUser().username
+            }`
+          )
+          .then(res => {
+            console.log(res.data[0]);
+            localStorage.setItem("user-info", JSON.stringify(res.data[0]));
+            window.location.reload();
+          });
+      });
+  };
+
+  const cancelModal = e => {
+    setEditModal(false);
+  };
+
+  const handleImgUrlChange = e => {
+    setImgUrlUpdate(e.target.value);
+  };
+
   return (
     <div className="user-page">
       <div className="profile-user-back">
         <div className="container profile-user-info">
-          <img
-            src="https://www.nj.com/resizer/h8MrN0-Nw5dB5FOmMVGMmfVKFJo=/450x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg"
-            alt="avatar"
-          />
+          <div className="profile-user-image-section">
+            <img
+              src={
+                currentUser.picture
+                  ? currentUser.picture
+                  : "https://www.in-tend.co.uk/images/default.jpg"
+              }
+              alt="avatar"
+            />
+            <div className="edit-image-btn" onClick={showModal}>
+              <EditOutlined />
+            </div>
+          </div>
+          <Modal
+            title="Update Profile Image"
+            visible={editModal}
+            onOk={confirmModal}
+            onCancel={cancelModal}
+            className="edit-img-modal"
+          >
+            <Input value={imgUrlUpdate} onChange={handleImgUrlChange}></Input>
+          </Modal>
           <div className="profile-about-user">
             <h3>
               {currentUser.name + " " + currentUser.surname}
