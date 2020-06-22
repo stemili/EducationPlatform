@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import Navbar from "./global-components/Navbar/Navbar";
 import Footer from "./global-components/Footer/Footer";
@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <Navbar
           toggleModal={toggleModal}
           currentUser={currentUser}
@@ -104,7 +104,7 @@ function App() {
           setCurrentUser={setCurrentUser}
         />
         <Footer dashboard={dashboard} />
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }
