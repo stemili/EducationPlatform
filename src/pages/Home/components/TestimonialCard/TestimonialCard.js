@@ -12,7 +12,7 @@ export default class TestimonialCards extends React.Component {
   componentDidMount() {
     axios
       .get(`https://courses4me.herokuapp.com/testimonials/randomfive`)
-      .then((res) => this.setState({ testimonials: res.data }))
+      .then(res => this.setState({ testimonials: res.data }))
       .then(
         () =>
           (this.swiper = new Swiper(".swiper-container", {
@@ -42,18 +42,25 @@ export default class TestimonialCards extends React.Component {
   }
 
   renderTestimonials() {
-    const items = this.state.testimonials.map((item) => {
+    const items = this.state.testimonials.map(item => {
       return (
         <div className="swiper-slide" key={item.username}>
           <div className="swiper-inner-circle">
-            <img src={item.picture} alt="User" />
+            <img
+              src={
+                item.picture
+                  ? item.picture
+                  : "https://www.in-tend.co.uk/images/default.jpg"
+              }
+              alt="User"
+            />
           </div>
         </div>
       );
     });
     return items;
   }
-  handleClick = (e) => {
+  handleClick = e => {
     let value = e.target.classList.value;
     return value.includes("swiper-button-next") && value !== 4
       ? this.setState({ current: this.state.current + 1 })
@@ -70,11 +77,11 @@ export default class TestimonialCards extends React.Component {
           <div className="swiper-wrapper">{this.renderTestimonials()}</div>
           <div
             className="swiper-button-next"
-            onClick={(e) => this.handleClick(e)}
+            onClick={e => this.handleClick(e)}
           ></div>
           <div
             className="swiper-button-prev"
-            onClick={(e) => this.handleClick(e)}
+            onClick={e => this.handleClick(e)}
           ></div>
         </div>
         <div className="testimonial-text-box fadeIn">
