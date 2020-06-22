@@ -3,7 +3,6 @@ import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import "./TestimonialCard.css";
 import axios from "axios";
-import avatar from "../../../../resources/avatar1.jpg";
 
 export default class TestimonialCards extends React.Component {
   state = {
@@ -47,14 +46,7 @@ export default class TestimonialCards extends React.Component {
       return (
         <div className="swiper-slide" key={item.username}>
           <div className="swiper-inner-circle">
-            <img
-              src={
-                this.state.testimonials[this.state.current].picture
-                  ? this.state.testimonials[this.state.current].picture
-                  : avatar
-              }
-              alt="User"
-            />
+            <img src={item.picture} alt="User" />
           </div>
         </div>
       );

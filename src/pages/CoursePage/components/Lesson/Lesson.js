@@ -2,17 +2,30 @@ import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import axios from "axios";
 import "./Lesson.css";
+import { Menu } from "antd";
+import { Link } from "react-router-dom";
+import { Spin } from "antd";
 
-const Lesson = props => {
+const Lesson = (props) => {
   const [lessons, setLessons] = useState([]);
-  const [currentLesson, setCurrentLesson] = useState();
+  const [currentLesson, setCurrentLesson] = useState("");
+  const [courseInfo, setCourse] = useState({});
+  const { SubMenu } = Menu;
+
+  const handleClick = (e) => {
+    let current = lessons.filter((lesson) => lesson.id === parseInt(e.key));
+    setCurrentLesson(current[0]);
+  };
 
   useEffect(() => {
     axios
       .get(
         `https://courses4me.herokuapp.com/lessons?courseId=${props.match.params.id}`
       )
-      .then(res => setLessons(res.data));
+      .then((res) => setLessons(res.data));
+    axios
+      .get(`https://courses4me.herokuapp.com/courses/${props.match.params.id}`)
+      .then((res) => setCourse(res.data[0]));
   }, [props.match.params.id]);
 
   useEffect(() => {
@@ -23,6 +36,17 @@ const Lesson = props => {
     if (currentLesson) {
       return (
         <div className="view-course-section">
+          <div className="mini-course-heading">
+            <div className="course-left">
+              <img src={courseInfo.cover_photo} alt="Lesson heading img" />
+              <h1>{courseInfo.title}</h1>
+            </div>
+            <div className="course-right">
+              <Link to={`/courses/${props.match.params.id}`}>
+                <i className="fas fa-arrow-circle-right"></i>
+              </Link>
+            </div>
+          </div>
           <div className="video-box">
             <div className="video-heading">
               <ReactPlayer
@@ -34,38 +58,49 @@ const Lesson = props => {
             </div>
             <p>{currentLesson.description}</p>
           </div>
-          <div className="side-menu">{renderLessons(lessons)}</div>
+          <div className="side-menu">
+            <Menu
+              onClick={(e) => handleClick(e)}
+              style={{ width: 300 }}
+              defaultSelectedKeys={[`${currentLesson.id}`]}
+              defaultOpenKeys={["sub1"]}
+              mode="inline"
+            >
+              {renderLessons(lessons)}
+            </Menu>
+          </div>
         </div>
       );
     } else {
-      return <div>No lessons!</div>;
+      return (
+        <div className="course-spinner">
+          <Spin />
+        </div>
+      );
     }
   }
 
   function renderLessons(lessons) {
-    const lessonList = lessons.map(lesson => {
+    const lessonList = lessons.map((lesson, index) => {
       return (
-        <li
-          className={currentLesson === lesson ? "active" : ""}
-          key={lesson.id}
-          onClick={e => changeActive(e)}
+        <SubMenu
+          key={`sub${index + 1}`}
+          title={
+            <span>
+              <div className="menu-numbering">{index + 1}.</div>
+              <span>{lesson.title}</span>
+            </span>
+          }
+          style={{ fontSize: 16 }}
         >
-          {lesson.title}
-        </li>
+          <Menu.Item key={lesson.id}>
+            <i className="fas fa-video "></i>Lesson Video
+          </Menu.Item>
+        </SubMenu>
       );
     });
     return lessonList;
   }
-
-  const changeActive = e => {
-    if (e.target.textContent !== currentLesson.title) {
-      const filtered = lessons.filter(
-        les => les.title === e.target.textContent
-      );
-      console.log(filtered);
-      setCurrentLesson(filtered[0]);
-    }
-  };
 
   return <React.Fragment>{checkForLessons()}</React.Fragment>;
 };

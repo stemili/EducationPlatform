@@ -22,18 +22,18 @@ class CoursePage extends React.Component {
       .get(
         `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`
       )
-      .then(res => this.setState({ course: res.data[0] }));
+      .then((res) => this.setState({ course: res.data[0] }));
 
     axios
       .get(
         `https://courses4me.herokuapp.com/lessons?courseId=${this.props.match.params.id}`
       )
-      .then(res => this.setState({ lessons: res.data, isLoading: false }));
+      .then((res) => this.setState({ lessons: res.data, isLoading: false }));
     axios
       .get(
         `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}/users`
       )
-      .then(res => this.setState({ courseUsers: res.data }));
+      .then((res) => this.setState({ courseUsers: res.data }));
     this.checkifEnrolled();
   }
 
@@ -43,17 +43,19 @@ class CoursePage extends React.Component {
         .get(
           `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`
         )
-        .then(res => this.setState({ course: res.data[0], isLoading: false }));
+        .then((res) =>
+          this.setState({ course: res.data[0], isLoading: false })
+        );
       axios
         .get(
           `https://courses4me.herokuapp.com/lessons?courseId=${this.props.match.params.id}`
         )
-        .then(res => this.setState({ lessons: res.data }));
+        .then((res) => this.setState({ lessons: res.data }));
       axios
         .get(
           `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}/users`
         )
-        .then(res =>
+        .then((res) =>
           this.setState({ courseUsers: res.data, isEnrolled: false })
         );
     }
@@ -73,9 +75,9 @@ class CoursePage extends React.Component {
             username: `${this.state.currentUser.username}`,
           }
         )
-        .then(res => alert(res.data.success))
+        .then((res) => alert(res.data.success))
         .then(() => this.setState({ isEnrolled: true }))
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     } else {
       this.props.toggleModal(true, "login");
       // alert("You have to log-in first");
@@ -105,14 +107,20 @@ class CoursePage extends React.Component {
   }
 
   checkifEnrolled() {
-    if (this.state.isEnrolled === false) {
-      if (this.state.currentUser) {
+    if (this.state.isEnrolled === false && this.state.currentUser !== null) {
+      if (this.state.currentUser.role_id === "administrator") {
+        this.setState({ isEnrolled: true });
+      } else if (this.state.currentUser.role_id === "student") {
         const checkForUser = this.state.courseUsers.filter(
-          user => user.username === this.state.currentUser.username
+          (user) => user.username === this.state.currentUser.username
         );
         if (checkForUser.length === 1) {
           this.setState({ isEnrolled: true });
         }
+      } else if (
+        this.state.currentUser.username === this.state.course.teacher
+      ) {
+        this.setState({ isEnrolled: true });
       }
     }
   }
