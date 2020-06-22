@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "220308071e0b9b018aaac250d893cf8c",
+    "revision": "0eea1c2fb919c47ae3154d51270c415d",
     "url": "/EducationPlatform/index.html"
   },
   {
-    "revision": "9dc28602cea18a523493",
+    "revision": "236a984cc468b1ef7b04",
     "url": "/EducationPlatform/static/css/2.eb1bef97.chunk.css"
   },
   {
-    "revision": "71d70ce5d3160a1fb580",
+    "revision": "f3ab1abc3f81b86b1127",
     "url": "/EducationPlatform/static/css/main.1dd8cc48.chunk.css"
   },
   {
-    "revision": "9dc28602cea18a523493",
-    "url": "/EducationPlatform/static/js/2.7784f974.chunk.js"
+    "revision": "236a984cc468b1ef7b04",
+    "url": "/EducationPlatform/static/js/2.377d0b12.chunk.js"
   },
   {
     "revision": "d101784e6414d4293d250fa98b88d65a",
-    "url": "/EducationPlatform/static/js/2.7784f974.chunk.js.LICENSE.txt"
+    "url": "/EducationPlatform/static/js/2.377d0b12.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "71d70ce5d3160a1fb580",
-    "url": "/EducationPlatform/static/js/main.7bb6475a.chunk.js"
+    "revision": "f3ab1abc3f81b86b1127",
+    "url": "/EducationPlatform/static/js/main.c25f83e1.chunk.js"
   },
   {
     "revision": "f32ce0e50ebb12f0489c",
