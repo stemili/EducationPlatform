@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/EducationPlatform/static/css/main.fddd8e60.chunk.css",
-    "main.js": "/EducationPlatform/static/js/main.f2f69d06.chunk.js",
-    "main.js.map": "/EducationPlatform/static/js/main.f2f69d06.chunk.js.map",
+    "main.js": "/EducationPlatform/static/js/main.005162a3.chunk.js",
+    "main.js.map": "/EducationPlatform/static/js/main.005162a3.chunk.js.map",
     "runtime-main.js": "/EducationPlatform/static/js/runtime-main.5988cf17.js",
     "runtime-main.js.map": "/EducationPlatform/static/js/runtime-main.5988cf17.js.map",
     "static/css/2.18899b43.chunk.css": "/EducationPlatform/static/css/2.18899b43.chunk.css",
     "static/js/2.095b53b4.chunk.js": "/EducationPlatform/static/js/2.095b53b4.chunk.js",
     "static/js/2.095b53b4.chunk.js.map": "/EducationPlatform/static/js/2.095b53b4.chunk.js.map",
     "index.html": "/EducationPlatform/index.html",
-    "precache-manifest.9b9f2a6b1f5eec02d1019b80052203be.js": "/EducationPlatform/precache-manifest.9b9f2a6b1f5eec02d1019b80052203be.js",
+    "precache-manifest.4b9aa97a1351e8d3976e66e127f144f7.js": "/EducationPlatform/precache-manifest.4b9aa97a1351e8d3976e66e127f144f7.js",
     "service-worker.js": "/EducationPlatform/service-worker.js",
     "static/css/2.18899b43.chunk.css.map": "/EducationPlatform/static/css/2.18899b43.chunk.css.map",
     "static/css/main.fddd8e60.chunk.css.map": "/EducationPlatform/static/css/main.fddd8e60.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.18899b43.chunk.css",
     "static/js/2.095b53b4.chunk.js",
     "static/css/main.fddd8e60.chunk.css",
-    "static/js/main.f2f69d06.chunk.js"
+    "static/js/main.005162a3.chunk.js"
   ]
 }
