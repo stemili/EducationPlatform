@@ -61,7 +61,7 @@ const UserPage = () => {
           .then(res => {
             console.log(res.data[0]);
             localStorage.setItem("user-info", JSON.stringify(res.data[0]));
-            window.location.reload();
+            // window.location.reload();
           });
       });
   };
