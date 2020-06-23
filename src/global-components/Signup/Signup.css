@@ -32,7 +32,7 @@ span.ant-input-password.ant-input-affix-wrapper {
   border-radius: 14px;
 }
 label.ant-form-item-required {
-  color: #fff;
+  /* color: #fff; */
   /* font-size: 0.9rem; */
 }
 

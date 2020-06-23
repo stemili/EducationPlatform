@@ -138,11 +138,8 @@
 }
 
 .edit-img-modal .ant-modal-content .ant-input {
-  background: linear-gradient(
-    90deg,
-    rgb(234, 236, 241) 0%,
-    rgb(222, 227, 236) 100%
-  );
+  background-color: #fff;
+  border: 1px solid #ccc;
 }
 
 .edit-img-modal
@@ -150,5 +147,11 @@
   .ant-modal-footer
   button.ant-btn.ant-btn-primary {
   background-color: var(--primary-clr);
+  border: none;
+}
+
+.ant-input-affix-wrapper input#confirm,
+.ant-input-affix-wrapper input#password,
+.ant-input-affix-wrapper input#oldPassword {
   border: none;
 }
