@@ -1,5 +1,5 @@
 .testimonial-section {
-  height: 30rem;
+  height: 31rem;
   margin-top: 2rem;
   padding: 3rem;
   background-color: #f4f4f4;
@@ -162,4 +162,103 @@
   100% {
     opacity: 100;
   }
+}
+
+.add-testimonial-section {
+  background-color: var(--primary-clr);
+  padding: 4rem;
+  text-align: center;
+  color: var(--secondary-clr);
+}
+.add-testimonial-section h1 {
+  color: white;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.add-testimonial-section h3 {
+  color: white;
+  font-style: italic;
+}
+
+.add-testimonial-section button {
+  padding: 0.8rem 1rem 0.8rem 1rem;
+  border-radius: 1.2rem;
+  font-size: 1rem;
+  border: none;
+  margin-top: 1rem;
+  background: linear-gradient(
+    90deg,
+    rgba(41, 50, 65, 1) 0%,
+    rgba(12, 37, 79, 1) 100%
+  );
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0px 0px 5px black;
+  transform: scale(1);
+}
+
+.add-testimonial-section button:hover {
+  background: white;
+  color: var(--secondary-clr);
+}
+
+.add-testimonial-section button:focus {
+  outline: none;
+}
+.ant-modal .ant-modal-content {
+  border-radius: 1rem;
+}
+
+.ant-modal-content .ant-modal-header {
+  background-color: var(--secondary-clr);
+  font-weight: 900;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.ant-modal-content .ant-modal-header .ant-modal-title {
+  font-weight: 900;
+  color: white;
+  padding: 0.3rem;
+}
+
+.ant-modal {
+  border-radius: 1rem;
+}
+
+.ant-modal-footer .ant-btn-primary {
+  background-color: var(--primary-clr);
+  border: none;
+  font-size: 1rem;
+  border-radius: 10px;
+  height: 3rem;
+}
+
+.ant-modal-footer .ant-btn {
+  font-size: 1rem;
+  border-radius: 10px;
+  height: 3rem;
+}
+.ant-modal-footer .ant-btn:hover {
+  border: 1px solid var(--primary-clr);
+  color: var(--primary-clr);
+}
+
+.ant-modal-footer .ant-btn-primary:hover,
+.ant-modal-footer .ant-btn-primary:focus {
+  background-color: #b94f35;
+  color: white;
+}
+
+.ant-modal-body p {
+  color: red;
+  font-style: italic;
+}
+
+.ant-modal-content .ant-modal-close-x .anticon svg {
+  color: white;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-top: 1.2rem;
 }
