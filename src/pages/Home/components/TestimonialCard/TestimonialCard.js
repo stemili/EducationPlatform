@@ -49,7 +49,6 @@ export default class TestimonialCards extends React.Component {
           (item) => item.username === this.state.currentUser.username
         );
         if (checkForTestimonial.length > 0) {
-          console.log(checkForTestimonial);
           this.setState({
             editTestimonial: true,
             textArea: `${checkForTestimonial[0].text}`,
@@ -215,19 +214,24 @@ export default class TestimonialCards extends React.Component {
             onCancel={this.handleCancel}
             height="400"
             centered
-            footer={[
-              <Button key="back" onClick={this.handleReturn}>
-                Return
-              </Button>,
-              <Button
-                key="submit"
-                type="primary"
-                loading={loading}
-                onClick={this.handleOk}
-              >
-                Submit
-              </Button>,
-            ]}
+            footer={
+              this.state.showError || this.state.showSuccess
+                ? [
+                    <Button key="back" onClick={this.handleReturn}>
+                      Return
+                    </Button>,
+                  ]
+                : [
+                    <Button
+                      key="submit"
+                      type="primary"
+                      loading={loading}
+                      onClick={this.handleOk}
+                    >
+                      Submit
+                    </Button>,
+                  ]
+            }
           >
             {this.checkForAnswer()}
           </Modal>

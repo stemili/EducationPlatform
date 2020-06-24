@@ -5,7 +5,6 @@ import "./Lesson.css";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
 import { Spin } from "antd";
-import FileViewer from "react-file-viewer";
 
 const Lesson = (props) => {
   const [lessons, setLessons] = useState([]);
@@ -14,8 +13,10 @@ const Lesson = (props) => {
   const { SubMenu } = Menu;
 
   const handleClick = (e) => {
-    let current = lessons.filter((lesson) => lesson.id === parseInt(e.key));
-    setCurrentLesson(current[0]);
+    if (e.key.indexOf("doc") === -1) {
+      let current = lessons.filter((lesson) => lesson.id === parseInt(e.key));
+      setCurrentLesson(current[0]);
+    }
   };
 
   useEffect(() => {
@@ -98,7 +99,13 @@ const Lesson = (props) => {
             <i className="fas fa-video "></i>Lesson Video
           </Menu.Item>
           {lesson.documents.map((doc, index) => {
-            return <Menu.Item key={index + 1}>Document {index + 1}</Menu.Item>;
+            return (
+              <Menu.Item key={`doc${index + 1}`}>
+                <a href={doc.link} target="_blank">
+                  <i className="fas fa-file-alt"></i> Document {index + 1}
+                </a>
+              </Menu.Item>
+            );
           })}
         </SubMenu>
       );
