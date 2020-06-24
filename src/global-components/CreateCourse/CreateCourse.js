@@ -118,6 +118,7 @@ class CreateCourse extends React.Component {
           .post("https://courses4me.herokuapp.com/documents", newDocument, {
             headers: {
               authorization: `token ${AuthService.getAuthHeader()}`,
+              "Access-Control-Allow-Origin": "*",
             },
           })
           .then(res => {
