@@ -15,6 +15,7 @@ class CoursePage extends React.Component {
     currentUser: Auth.getCurrentUser(),
     isLoading: true,
     isEnrolled: false,
+    isTeacher: false,
   };
 
   componentDidMount() {
@@ -100,6 +101,7 @@ class CoursePage extends React.Component {
             lessons={this.state.lessons}
             handleBuy={this.handleBuy}
             isEnrolled={this.state.isEnrolled}
+            isTeacher={this.state.isTeacher}
           />
         </React.Fragment>
       );
@@ -110,17 +112,20 @@ class CoursePage extends React.Component {
     if (this.state.isEnrolled === false && this.state.currentUser !== null) {
       if (this.state.currentUser.role_id === "administrator") {
         this.setState({ isEnrolled: true });
-      } else if (this.state.currentUser.role_id === "student") {
+      } else if (
+        this.state.currentUser.username === this.state.course.teacher
+      ) {
+        this.setState({ isEnrolled: true, isTeacher: true });
+      } else if (
+        this.state.currentUser.role_id === "student" ||
+        this.state.currentUser.role_id === "teacher"
+      ) {
         const checkForUser = this.state.courseUsers.filter(
           (user) => user.username === this.state.currentUser.username
         );
         if (checkForUser.length === 1) {
           this.setState({ isEnrolled: true });
         }
-      } else if (
-        this.state.currentUser.username === this.state.course.teacher
-      ) {
-        this.setState({ isEnrolled: true });
       }
     }
   }

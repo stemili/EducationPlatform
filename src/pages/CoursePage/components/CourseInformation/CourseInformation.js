@@ -20,6 +20,7 @@ export const CourseInformation = (props) => {
       minute < 10 ? "0" + minute : minute
     }:00`;
   }
+
   return (
     <div className="content-section">
       <h2>COURSE INFORMATION</h2>
@@ -59,7 +60,7 @@ export const CourseInformation = (props) => {
         {props.isEnrolled === true ? (
           <button className="bottom-button go-to">
             <Link to={`/courses/${currentCourse.id}/lessons`}>
-              Go to Lessons
+              {props.isTeacher ? "View my course" : "Go to Lessons"}
             </Link>
           </button>
         ) : (
