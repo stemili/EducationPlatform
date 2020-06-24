@@ -15,7 +15,7 @@ const Home = ({ toggleModal, setSelectedCategory, setFocusSearch }) => {
         setSelectedCategory={setSelectedCategory}
         setFocusSearch={setFocusSearch}
       />
-      <TestimonialCards />
+      <TestimonialCards toggleModal={toggleModal} />
     </div>
   );
 };

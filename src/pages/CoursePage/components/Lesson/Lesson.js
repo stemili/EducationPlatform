@@ -13,14 +13,16 @@ const Lesson = (props) => {
   const { SubMenu } = Menu;
 
   const handleClick = (e) => {
-    let current = lessons.filter((lesson) => lesson.id === parseInt(e.key));
-    setCurrentLesson(current[0]);
+    if (e.key.indexOf("doc") === -1) {
+      let current = lessons.filter((lesson) => lesson.id === parseInt(e.key));
+      setCurrentLesson(current[0]);
+    }
   };
 
   useEffect(() => {
     axios
       .get(
-        `https://courses4me.herokuapp.com/lessons?courseId=${props.match.params.id}`
+        `https://courses4me.herokuapp.com/lessons/course/${props.match.params.id}`
       )
       .then((res) => setLessons(res.data));
     axios
@@ -96,6 +98,15 @@ const Lesson = (props) => {
           <Menu.Item key={lesson.id}>
             <i className="fas fa-video "></i>Lesson Video
           </Menu.Item>
+          {lesson.documents.map((doc, index) => {
+            return (
+              <Menu.Item key={`doc${index + 1}`}>
+                <a href={doc.link} target="_blank">
+                  <i className="fas fa-file-alt"></i> Document {index + 1}
+                </a>
+              </Menu.Item>
+            );
+          })}
         </SubMenu>
       );
     });
