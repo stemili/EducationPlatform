@@ -36,9 +36,7 @@ const UserPage = () => {
     setImageEditModal(false);
     axios
       .put(
-        `https://courses4me.herokuapp.com/users/${
-          AuthService.getCurrentUser().username
-        }/picture`,
+        `https://courses4me.herokuapp.com/users/${currentUser.username}/picture`,
         { picture: imgUrlUpdate },
         {
           headers: {
@@ -58,6 +56,38 @@ const UserPage = () => {
             localStorage.setItem("user-info", JSON.stringify(res.data[0]));
             // window.location.reload();
           });
+      })
+      .catch(err => {
+        if (err.response.status === 420) {
+          AuthService.setJwt(err.response.data.token);
+          console.log(err.response.data.token);
+          axios
+            .put(
+              `https://courses4me.herokuapp.com/users/${currentUser.username}/picture`,
+              { picture: imgUrlUpdate },
+              {
+                headers: {
+                  authorization: AuthService.getAuthHeader(),
+                },
+              }
+            )
+            .then(res => {
+              axios
+                .get(
+                  `https://courses4me.herokuapp.com/users/${
+                    AuthService.getCurrentUser().username
+                  }`
+                )
+                .then(res => {
+                  console.log(res.data[0]);
+                  localStorage.setItem(
+                    "user-info",
+                    JSON.stringify(res.data[0])
+                  );
+                  // window.location.reload();
+                });
+            });
+        }
       });
   };
 

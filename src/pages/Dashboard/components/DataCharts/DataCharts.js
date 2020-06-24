@@ -8,11 +8,16 @@ import axios from "axios";
 const DataChards = () => {
   const [studentCount, setStudentCount] = useState(0);
   const [teacherCount, setTeacherCount] = useState(0);
-  const [createdCourses, setCreatedCourses] = useState([1, 4, 5, 11, 3, 4]);
-  const [newUsers, setNewUsers] = useState([4, 5, 0, 1, 0, 2]);
+  const [createdCourses, setCreatedCourses] = useState([0, 0, 0, 0, 0, 0, 0]);
+  const [newUsers, setNewUsers] = useState([0, 0, 0, 0, 0, 0, 0]);
+  const [verUnver, setVerUnver] = useState({
+    "Verified Users": 5,
+    "Unverified Users": 1,
+  });
 
   const coursesData = {
     labels: [
+      "6 Days Ago",
       "5 Days Ago",
       "4 Days Ago",
       "3 Days Ago",
@@ -22,7 +27,7 @@ const DataChards = () => {
     ],
     datasets: [
       {
-        label: "Created Courses",
+        label: "Courses",
         data: [...createdCourses],
         backgroundColor: ["rgba(41, 50, 65, 0.9)"],
       },
@@ -30,6 +35,7 @@ const DataChards = () => {
   };
   const usersData = {
     labels: [
+      "6 Days Ago",
       "5 Days Ago",
       "4 Days Ago",
       "3 Days Ago",
@@ -39,7 +45,7 @@ const DataChards = () => {
     ],
     datasets: [
       {
-        label: "Sign ups",
+        label: "Users",
         data: [...newUsers],
         backgroundColor: ["rgba(238, 108, 77, 0.9)"],
       },
@@ -52,7 +58,17 @@ const DataChards = () => {
       {
         label: "Student/Teacher Ratio",
         data: [studentCount, teacherCount],
-        backgroundColor: ["rgba(238, 108, 77, 0.9)", "rgba(41, 50, 65, 0.9)"],
+        backgroundColor: ["rgba(238, 108, 77, 0.9)", "rgba(78, 163, 154, 0.9)"],
+      },
+    ],
+  };
+  const verUnVerAccounts = {
+    labels: ["Verified", "Unverified"],
+    datasets: [
+      {
+        label: "Verified/Unverified Ratio",
+        data: [verUnver["Verified users"], verUnver["Unverified users"]],
+        backgroundColor: ["rgba(78, 163, 154, 0.9)", "rgba(41, 50, 65, 0.9)"],
       },
     ],
   };
@@ -65,14 +81,20 @@ const DataChards = () => {
       .get("https://courses4me.herokuapp.com/users/students-count")
       .then(res => setStudentCount(res.data));
     /*future fix */
-    if (false) {
-      axios
-        .get("https://courses4me.herokuapp.com/users/teachers-count")
-        .then(res => setNewUsers(res.data));
-      axios
-        .get("https://courses4me.herokuapp.com/users/students-count")
-        .then(res => setCreatedCourses(res.data));
-    }
+    // if (false) {
+    axios
+      .get(
+        "https://courses4me.herokuapp.com/users/statistics/new-teachers-number"
+      )
+      .then(res => setNewUsers(res.data.data));
+    axios
+      .get(
+        "https://courses4me.herokuapp.com/courses/statistics/new-courses-number"
+      )
+      .then(res => setCreatedCourses(res.data.data));
+    axios
+      .get("https://courses4me.herokuapp.com/users/enabled-disabled")
+      .then(res => setVerUnver(res.data));
   }, []);
   return (
     <div className="data-charts-main">
@@ -119,20 +141,20 @@ const DataChards = () => {
             }}
           />
         </div>
-        {/* <div className="charts-bottom">
+        <div className="charts-bottom">
           <Pie
-            data={data}
+            data={verUnVerAccounts}
             options={{
               responsive: true,
               title: {
                 display: true,
-                text: "New Users",
+                text: "Verified & Unverified Accounts",
               },
               legend: { display: true, position: "right" },
               maintainAspectRatio: false,
             }}
           />
-        </div> */}
+        </div>
       </div>
     </div>
   );

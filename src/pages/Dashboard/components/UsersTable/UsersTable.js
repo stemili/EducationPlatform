@@ -24,6 +24,22 @@ const UsersTable = ({ itemData }) => {
       });
   };
 
+  const handlePruneButton = () => {
+    axios
+      .delete("https://courses4me.herokuapp.com/users/prune", {
+        headers: {
+          authorization: AuthService.getAuthHeader(),
+        },
+      })
+      .then(res => {
+        message.success("Unverified Users Deleted!");
+        // window.location.reload();
+      })
+      .catch(err => {
+        message.error("Failed To Delete Users");
+      });
+  };
+
   const columns = [
     {
       title: "Username",
@@ -77,6 +93,14 @@ const UsersTable = ({ itemData }) => {
 
   return (
     <div>
+      <Button
+        type="primary"
+        danger
+        className="prune-delete"
+        onClick={handlePruneButton}
+      >
+        Remove Unverified Accounts
+      </Button>
       <Table dataSource={passedData} columns={columns} />
     </div>
   );

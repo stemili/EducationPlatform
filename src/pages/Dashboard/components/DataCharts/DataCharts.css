@@ -8,6 +8,7 @@
 .charts-top {
   height: 250px;
   width: 100%;
+  border-bottom: 1px solid var(--secondary-clr);
   /* min-width: 0; */
   /* position: relative; */
 }
