@@ -17,10 +17,12 @@ const CategoryCard = ({ setSelectedCategory, setFocusSearch }) => {
       <div
         className="category-card"
         key={item.id}
-        onClick={() => {
-          setFocusSearch(true);
-          setSelectedCategory(item.name.toLowerCase());
+        onClick={async () => {
           window.scrollTo(0, 0);
+          setSelectedCategory(item.name.toLowerCase());
+          setTimeout(() => {
+            setFocusSearch(true);
+          }, 800);
         }}
       >
         <img

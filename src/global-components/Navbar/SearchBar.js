@@ -19,6 +19,8 @@ const SearchBar = props => {
   useEffect(() => {
     if (props.focusSearch) {
       textSearchInput.current.focus();
+      // console.log(textSearchInput.current.props);
+      // console.log(textSearchInput);
     }
   }, [props]);
 
@@ -50,7 +52,10 @@ const SearchBar = props => {
         option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
       }
       // autoFocus={props.focusSearch}
+      onBlur={() => props.setFocusSearch(false)}
+      open={props.focusSearch}
       ref={textSearchInput}
+      onFocus={() => props.setFocusSearch(true)}
       size="large"
       value={searchState}
       onSelect={value => setSearchState(value)}

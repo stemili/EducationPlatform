@@ -14,6 +14,7 @@ const Navbar = ({
   selectedCategory,
   setSelectedCategory,
   focusSearch,
+  setFocusSearch,
 }) => {
   const antdMenu = (
     <Menu>
@@ -50,6 +51,7 @@ const Navbar = ({
             <SearchBar
               dropdownValue={selectedCategory}
               focusSearch={focusSearch}
+              setFocusSearch={setFocusSearch}
             />
           </div>
         )}

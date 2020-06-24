@@ -40,7 +40,9 @@ const EditProfileModal = ({
           surname: currentUser.surname,
           location: currentUser.location,
           phone: currentUser.phone,
-          dateOfBirth: moment(currentUser.date_of_birth),
+          dateOfBirth: currentUser.date_of_birth
+            ? moment(currentUser.date_of_birth)
+            : moment(Date.now()),
         }}
       >
         <Form.Item

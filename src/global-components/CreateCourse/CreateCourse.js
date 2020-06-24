@@ -81,9 +81,16 @@ class CreateCourse extends React.Component {
   };
 
   onFinishSecond = async values => {
-    const parsedDocuments = await values.upload.map(value => {
-      return toBase64(value.originFileObj);
+    console.log(1);
+    // const parsedDocuments = await values.upload.map(value => {
+    //   return toBase64(value.originFileObj);
+    // });
+    let parsedDocuments;
+    await toBase64(values.upload[0].originFileObj).then(res => {
+      parsedDocuments = res;
     });
+    console.log(parsedDocuments);
+    console.log(2);
     const postLesson = {
       title: values.lessonTitle,
       course_id: this.state.currentCourse.id || 1,
@@ -93,7 +100,7 @@ class CreateCourse extends React.Component {
     };
     console.log(postLesson, parsedDocuments);
     // return;
-
+    console.log(3);
     message.loading({ content: "Uploading Lesson...", key: messageKey });
     axios
       .post("https://courses4me.herokuapp.com/lessons", postLesson, {
@@ -102,7 +109,24 @@ class CreateCourse extends React.Component {
         },
       })
       .then(res => {
-        console.log(res.data);
+        const newDocument = {
+          lessonId: res.data.lessonId,
+          courseId: this.state.currentCourse.id,
+          document: parsedDocuments,
+        };
+        axios
+          .post("https://courses4me.herokuapp.com/documents", newDocument, {
+            headers: {
+              authorization: `token ${AuthService.getAuthHeader()}`,
+            },
+          })
+          .then(res => {
+            console.log("success ", res.data);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        // console.log(res.data);
         message.success({
           content: "Lesson Uploaded",
           key: messageKey,

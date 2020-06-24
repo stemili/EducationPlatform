@@ -43,6 +43,7 @@ function App() {
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           focusSearch={focusSearch}
+          setFocusSearch={setFocusSearch}
         />
 
         <Switch>
