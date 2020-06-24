@@ -22,6 +22,10 @@ class AuthService {
     localStorage.removeItem("user-info");
   }
 
+  setJwt(myToken) {
+    localStorage.setItem("user-jwt", JSON.stringify(myToken));
+  }
+
   register(data) {
     return axios.post(`${API_URL}/register`, data);
   }
