@@ -44,7 +44,7 @@ const SearchBar = props => {
 
   return (
     <AutoComplete
-      style={{ width: 420, border: "1px solid #ffffff" }}
+      style={{ width: 350, border: "1px solid #ffffff" }}
       placeholder="Search for courses..."
       filterOption={(inputValue, option) =>
         option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
@@ -55,6 +55,8 @@ const SearchBar = props => {
       value={searchState}
       onSelect={value => setSearchState(value)}
       onChange={value => setSearchState(value)}
+      // className={props.focusSearch ? "main-search-bar-active" : "main-search-bar"}
+      // className="main-search-bar"
     >
       {courses !== [] ? renderCourses() : ""}
     </AutoComplete>

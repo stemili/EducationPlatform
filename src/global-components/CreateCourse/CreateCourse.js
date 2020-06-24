@@ -4,11 +4,11 @@ import {
   Input,
   Select,
   InputNumber,
-  // Button,
-  // Upload,
+  Button,
+  Upload,
   message,
 } from "antd";
-// import { UploadOutlined } from "@ant-design/icons";
+import { UploadOutlined } from "@ant-design/icons";
 import "./CreateCourse.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -17,13 +17,13 @@ import AuthService from "../../auth/AuthService";
 const messageKey = "updatable";
 const { Option } = Select;
 
-// const toBase64 = file =>
-//   new Promise((resolve, reject) => {
-//     const reader = new FileReader();
-//     reader.readAsDataURL(file);
-//     reader.onload = () => resolve(reader.result);
-//     reader.onerror = error => reject(error);
-//   });
+const toBase64 = file =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
 
 class CreateCourse extends React.Component {
   state = {
@@ -80,13 +80,19 @@ class CreateCourse extends React.Component {
       });
   };
 
-  onFinishSecond = values => {
+  onFinishSecond = async values => {
+    const parsedDocuments = await values.upload.map(value => {
+      return toBase64(value.originFileObj);
+    });
     const postLesson = {
       title: values.lessonTitle,
       course_id: this.state.currentCourse.id || 1,
       description: values.lesson_description,
       video: values.video_url,
+      // documents: parsedDocuments,
     };
+    console.log(postLesson, parsedDocuments);
+    // return;
 
     message.loading({ content: "Uploading Lesson...", key: messageKey });
     axios
@@ -96,6 +102,7 @@ class CreateCourse extends React.Component {
         },
       })
       .then(res => {
+        console.log(res.data);
         message.success({
           content: "Lesson Uploaded",
           key: messageKey,
@@ -316,7 +323,7 @@ class CreateCourse extends React.Component {
               <Input />
             </Form.Item>
 
-            {/* <Form.Item
+            <Form.Item
               name="upload"
               label="Upload"
               valuePropName="fileList"
@@ -331,7 +338,7 @@ class CreateCourse extends React.Component {
                   <UploadOutlined /> Click to upload
                 </Button>
               </Upload>
-            </Form.Item> */}
+            </Form.Item>
 
             <Form.Item>
               <button className="btn create-c-btn" htmltype="submit">

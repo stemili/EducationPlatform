@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Modal, Form, Input, DatePicker } from "antd";
 import AuthService from "../../../../auth/AuthService";
 import "./EditProfileModal.css";
+import moment from "moment";
 
 const EditProfileModal = ({
   editProfileModal,
@@ -39,6 +40,7 @@ const EditProfileModal = ({
           surname: currentUser.surname,
           location: currentUser.location,
           phone: currentUser.phone,
+          dateOfBirth: moment(currentUser.date_of_birth),
         }}
       >
         <Form.Item

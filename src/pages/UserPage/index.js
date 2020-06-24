@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Modal, Input, Form, DatePicker, message } from "antd";
+import { Modal, Input, message } from "antd";
 
 import AuthService from "../../auth/AuthService";
 import "./index.css";
@@ -9,7 +9,6 @@ import TeacherPanel from "./components/TeacherPanel/TeacherPanel";
 import EditProfileModal from "./components/EditProfileModal/EditProfileModal";
 import { EditOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { useEffect } from "react";
 
 const UserPage = () => {
   const currentUser = AuthService.getCurrentUser();
@@ -25,11 +24,7 @@ const UserPage = () => {
     } else if (currentUser.role_id === "teacher") {
       return <TeacherPanel />;
     } else if (currentUser.role_id === "administrator") {
-      return (
-        <div>
-          <h1>ADMINISTRATOR</h1>
-        </div>
-      );
+      return <div></div>;
     }
   };
 
@@ -79,7 +74,8 @@ const UserPage = () => {
       phone: formValues.phone,
     };
     if (formValues.password === formValues.confirm) {
-      if (formValues.oldPassword !== "" && formValues.password !== "") {
+      console.log(formValues);
+      if (formValues.oldPassword && formValues.password) {
         console.log("we are changing passwords");
         const changePassData = {
           oldPassword: formValues.oldPassword,
@@ -111,7 +107,20 @@ const UserPage = () => {
               },
             }
           )
-          .then(res => message.success("User Profile Updated!"))
+          .then(res => {
+            axios
+              .get(
+                `https://courses4me.herokuapp.com/users/${
+                  AuthService.getCurrentUser().username
+                }`
+              )
+              .then(res => {
+                console.log(res.data[0]);
+                localStorage.setItem("user-info", JSON.stringify(res.data[0]));
+                message.success("User Profile Updated!");
+                // window.location.reload();
+              });
+          })
           .catch(err => message.error(err.response.data.error));
 
         axios.all([userInfoChangeReq, passwordChangeReq]).finally(res => {
@@ -122,6 +131,33 @@ const UserPage = () => {
         //   let secondResponse = errors[1];
         //   message.error()
         // })
+      } else {
+        axios
+          .put(
+            `https://courses4me.herokuapp.com/users/${currentUser.username}`,
+            changeUserInfoData,
+            {
+              headers: {
+                authorization: AuthService.getAuthHeader(),
+              },
+            }
+          )
+          .then(res => {
+            axios
+              .get(
+                `https://courses4me.herokuapp.com/users/${
+                  AuthService.getCurrentUser().username
+                }`
+              )
+              .then(res => {
+                console.log(res.data[0]);
+                localStorage.setItem("user-info", JSON.stringify(res.data[0]));
+                message.success("User Profile Updated!");
+                // window.location.reload();
+                setEditProfileModal(false);
+              });
+          })
+          .catch(err => message.error(err.response.data.error));
       }
     }
   };
@@ -180,14 +216,28 @@ const UserPage = () => {
             <p className="profile-about-occupation">
               {currentUser.role_id === "administrator" ? (
                 <i className="fas fa-user-cog" style={{ color: "#ee6c4d" }}></i>
+              ) : currentUser.role_id === "teacher" ? (
+                <i
+                  className="fas fa-chalkboard-teacher"
+                  style={{ color: "#ee6c4d" }}
+                ></i>
               ) : (
-                ""
+                <i
+                  className="fas fa-user-graduate"
+                  style={{ color: "#ee6c4d" }}
+                ></i>
               )}
               {"   " + currentUser.role_id}
             </p>
-            <p className="profile-dob">D.O.B. 12/12/2012 (static)</p>
+            <p className="profile-dob">
+              <i className="fas fa-birthday-cake"></i>{" "}
+              {currentUser.date_of_birth}
+            </p>
             <p className="profile-location">
-              <i className="fas fa-map-marker"></i> Podgorica (static)
+              <i className="fas fa-map-marker"></i> {currentUser.location}
+            </p>
+            <p>
+              <i className="fas fa-phone"></i> {currentUser.phone}
             </p>
             <div className="profile-btn-section">
               <button

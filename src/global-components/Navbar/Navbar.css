@@ -101,10 +101,9 @@
   font-size: 1.1rem;
 }
 .nav-user-dashboard {
-  background-color: #ffffffbd;
-  padding: 0rem 1rem 0rem 0rem;
+  background-color: #ffffff;
+  padding: 0.2rem 1rem 0.2rem 0.2rem;
   border-radius: 50px;
-  color: teal;
 }
 
 .nav-avatar {
