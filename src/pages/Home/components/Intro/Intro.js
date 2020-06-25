@@ -22,7 +22,7 @@ const Intro = ({ toggleModal }) => {
     <div className="intro-main">
       <div className="intro-image-layer"></div>
       <div className="intro-content-layer">
-        <div className="container">
+        <div className="container intro-quote">
           <p>
             {/* <i className="fas fa-quote-left"></i> */}
             Every student can learn,
