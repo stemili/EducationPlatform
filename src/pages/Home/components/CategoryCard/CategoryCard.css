@@ -68,3 +68,37 @@
 .category-card:hover > .category-card-content > .silver {
   color: var(--primary-clr);
 }
+
+@media (max-width: 1000px) {
+  .categories-section {
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem 2rem 1rem 2rem;
+  }
+
+  .categories-section h1 {
+    grid-column: 1/3;
+  }
+
+  .category-card {
+    height: 16rem;
+  }
+
+  .category-card h3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .categories-section {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .categories-section h1 {
+    grid-column: 1/2;
+  }
+
+  .category-card {
+    height: 20rem;
+  }
+}

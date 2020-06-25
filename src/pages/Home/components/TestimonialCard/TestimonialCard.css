@@ -1,9 +1,10 @@
 .testimonial-section {
-  height: 31rem;
+  min-height: 31rem;
   margin-top: 2rem;
   padding: 3rem;
   background-color: #f4f4f4;
   text-align: center;
+  transition: all 0.5s linear;
 }
 
 .testimonial-section > h1 {
@@ -271,4 +272,28 @@
   height: 1.5rem;
   width: 1.5rem;
   margin-top: 1.2rem;
+}
+
+@media (max-width: 1000px) {
+  .testimonial-section {
+    padding: 2rem;
+  }
+
+  .testimonial-text-box {
+    width: 60%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .testimonial-section {
+    padding: 1.5rem 0.5rem 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .testimonial-text-box {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
 }

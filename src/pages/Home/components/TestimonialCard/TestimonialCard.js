@@ -32,15 +32,25 @@ export default class TestimonialCards extends React.Component {
             initialSlide: 2,
             speed: 800,
             simulateTouch: false,
+            allowTouchMove: false,
             navigation: {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
             },
-            //on: {
-            //  resize: function () {
-            //    this.swiper.changeDirection(this.getDirection());
-            //  },
-            //},
+            breakpoints: {
+              // when window width is >= 320px
+              320: {
+                slidesPerView: 1,
+              },
+              // when window width is >= 480px
+              480: {
+                slidesPerView: 3,
+              },
+              // when window width is >= 680px
+              680: {
+                slidesPerView: 5,
+              },
+            },
           }))
       );
     axios.get("https://courses4me.herokuapp.com/testimonials/").then((res) => {

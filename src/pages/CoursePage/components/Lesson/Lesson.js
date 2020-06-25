@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import axios from "axios";
 import "./Lesson.css";
-import { Menu } from "antd";
+import { Menu, Spin } from "antd";
 import { Link } from "react-router-dom";
-import { Spin } from "antd";
 
 const Lesson = (props) => {
   const [lessons, setLessons] = useState([]);
@@ -63,7 +62,6 @@ const Lesson = (props) => {
           <div className="side-menu">
             <Menu
               onClick={(e) => handleClick(e)}
-              style={{ width: 300 }}
               defaultSelectedKeys={[`${currentLesson.id}`]}
               defaultOpenKeys={["sub1"]}
               mode="inline"
@@ -100,7 +98,10 @@ const Lesson = (props) => {
           </Menu.Item>
           {lesson.documents.map((doc, index) => {
             return (
-              <Menu.Item key={`doc${index + 1}`}>
+              <Menu.Item
+                key={`doc${index + 1}`}
+                icon={<span>{index + 1}</span>}
+              >
                 <a href={doc.link} target="_blank">
                   <i className="fas fa-file-alt"></i> Document {index + 1}
                 </a>

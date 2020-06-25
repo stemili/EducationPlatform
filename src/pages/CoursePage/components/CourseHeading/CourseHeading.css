@@ -44,3 +44,22 @@
   float: right;
   margin-left: 1rem;
 }
+
+@media (max-width: 750px) {
+  .heading-section img {
+    height: 10rem;
+    width: 10rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .heading-section {
+    height: auto;
+    justify-items: center;
+    text-align: center;
+    grid-template-columns: 1fr;
+  }
+  .heading-section span:first-of-type {
+    float: left;
+  }
+}

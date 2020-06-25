@@ -22,12 +22,16 @@ ul.ant-menu.ant-menu-light.ant-menu-root.ant-menu-inline {
 
 .video-box {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  width: 100%;
 }
 
 .video-box p {
   padding: 1rem;
   font-size: 1rem;
   font-style: italic;
+}
+.side-menu {
+  max-width: 320px;
 }
 
 .mini-course-heading {
@@ -96,4 +100,27 @@ ul.ant-menu.ant-menu-light.ant-menu-root.ant-menu-inline {
 
 .ant-menu-item svg {
   margin-right: 0.3rem;
+}
+
+@media (max-width: 1000px) {
+  .view-course-section {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .mini-course-heading {
+    grid-column: 1/2;
+    grid-template-columns: auto auto;
+  }
+
+  .side-menu {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .mini-course-heading h1 {
+    font-size: 1.2rem;
+    padding: 0 0.2rem 0 0.2rem;
+  }
 }
