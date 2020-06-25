@@ -6,15 +6,15 @@ import { Menu } from "antd";
 import { Link } from "react-router-dom";
 import { Spin } from "antd";
 
-const Lesson = (props) => {
+const Lesson = props => {
   const [lessons, setLessons] = useState([]);
   const [currentLesson, setCurrentLesson] = useState("");
   const [courseInfo, setCourse] = useState({});
   const { SubMenu } = Menu;
 
-  const handleClick = (e) => {
+  const handleClick = e => {
     if (e.key.indexOf("doc") === -1) {
-      let current = lessons.filter((lesson) => lesson.id === parseInt(e.key));
+      let current = lessons.filter(lesson => lesson.id === parseInt(e.key));
       setCurrentLesson(current[0]);
     }
   };
@@ -24,10 +24,10 @@ const Lesson = (props) => {
       .get(
         `https://courses4me.herokuapp.com/lessons/course/${props.match.params.id}`
       )
-      .then((res) => setLessons(res.data));
+      .then(res => setLessons(res.data));
     axios
       .get(`https://courses4me.herokuapp.com/courses/${props.match.params.id}`)
-      .then((res) => setCourse(res.data[0]));
+      .then(res => setCourse(res.data[0]));
   }, [props.match.params.id]);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const Lesson = (props) => {
           </div>
           <div className="side-menu">
             <Menu
-              onClick={(e) => handleClick(e)}
+              onClick={e => handleClick(e)}
               style={{ width: 300 }}
               defaultSelectedKeys={[`${currentLesson.id}`]}
               defaultOpenKeys={["sub1"]}
@@ -101,7 +101,7 @@ const Lesson = (props) => {
           {lesson.documents.map((doc, index) => {
             return (
               <Menu.Item key={`doc${index + 1}`}>
-                <a href={doc.link} target="_blank">
+                <a href={doc.link} target="_blank" rel="noopener noreferrer">
                   <i className="fas fa-file-alt"></i> Document {index + 1}
                 </a>
               </Menu.Item>
