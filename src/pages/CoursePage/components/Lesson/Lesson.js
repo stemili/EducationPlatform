@@ -81,6 +81,7 @@ const Lesson = (props) => {
   }
 
   function renderLessons(lessons) {
+    let counter = 1;
     const lessonList = lessons.map((lesson, index) => {
       return (
         <SubMenu
@@ -96,14 +97,11 @@ const Lesson = (props) => {
           <Menu.Item key={lesson.id}>
             <i className="fas fa-video "></i>Lesson Video
           </Menu.Item>
-          {lesson.documents.map((doc, index) => {
+          {lesson.documents.map((doc) => {
             return (
-              <Menu.Item
-                key={`doc${index + 1}`}
-                icon={<span>{index + 1}</span>}
-              >
+              <Menu.Item key={`doc${counter}`}>
                 <a href={doc.link} target="_blank">
-                  <i className="fas fa-file-alt"></i> Document {index + 1}
+                  <i className="fas fa-file-alt"></i> Document {`${counter++}`}
                 </a>
               </Menu.Item>
             );
