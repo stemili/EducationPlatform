@@ -48,28 +48,34 @@ export const CourseInformation = (props) => {
         </div>
         <div className="lessons-list">
           <ol>
-            {currentLessons.map((les) => {
-              return <li key={les.id}>{les.title}</li>;
-            })}
+            {currentLessons.length > 0 ? (
+              currentLessons.map((les) => {
+                return <li key={les.id}>{les.title}</li>;
+              })
+            ) : (
+              <span>No lessons to show</span>
+            )}
           </ol>
         </div>
       </div>
       <h2>DESCRIPTION</h2>
       <div className="bottom-content">
         <p>{currentCourse.long_desc}</p>
-        {props.isEnrolled === true ? (
+        {props.isEnrolled === true && currentLessons.length > 0 ? (
           <button className="bottom-button go-to">
             <Link to={`/courses/${currentCourse.id}/lessons`}>
               {props.isTeacher ? "View my course" : "Go to Lessons"}
             </Link>
           </button>
-        ) : (
+        ) : props.isEnrolled === false ? (
           <button
             className="bottom-button buy"
             onClick={() => props.handleBuy()}
           >
             Buy for {currentCourse.price}$
           </button>
+        ) : (
+          <h3>No lessons to show.</h3>
         )}
       </div>
     </div>

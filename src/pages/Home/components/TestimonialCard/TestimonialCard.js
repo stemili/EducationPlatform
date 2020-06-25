@@ -103,7 +103,7 @@ export default class TestimonialCards extends React.Component {
 
   handleOk = () => {
     this.setState({ loading: true });
-    if (this.state.testimonials === false) {
+    if (this.state.editTestimonial === false) {
       axios
         .post("https://courses4me.herokuapp.com/testimonials/", {
           username: `${this.state.currentUser.username}`,
