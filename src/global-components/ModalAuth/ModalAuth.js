@@ -24,8 +24,8 @@ const ModalAuth = ({ modalOpen, type, setModalWin, setCurrentUser }) => {
           backgroundColor: "#293241cc",
         },
         content: {
-          width: "60%",
-          height: "80%",
+          width: "70%",
+          height: "90%",
           margin: "auto",
           padding: 0,
           border: "none",

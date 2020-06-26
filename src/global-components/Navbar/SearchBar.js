@@ -58,8 +58,15 @@ const SearchBar = props => {
       onFocus={() => props.setFocusSearch(true)}
       size="large"
       value={searchState}
-      onSelect={value => setSearchState(value)}
+      onSelect={value => {
+        setSearchState(value);
+        if (!props.desktop) {
+          props.closeMenu();
+        }
+        props.setFocusSearch(false);
+      }}
       onChange={value => setSearchState(value)}
+
       // className={props.focusSearch ? "main-search-bar-active" : "main-search-bar"}
       // className="main-search-bar"
     >

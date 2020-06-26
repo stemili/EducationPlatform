@@ -1,5 +1,5 @@
 .about-us {
-  min-height: 350px;
+  min-height: 360px;
   background: linear-gradient(
     90deg,
     rgba(41, 50, 65, 1) 0%,
@@ -47,31 +47,16 @@
   padding: 1rem 5rem 1.5rem;
 }
 
-@media (max-width: 800px) {
-  .about-us {
-    margin: auto;
-    padding: 1rem;
-  }
+@media (max-width: 990px) {
   .about-us-display {
-    display: grid;
-    grid-template-rows: 1fr 2fr;
-    justify-items: center;
+    flex-direction: column;
   }
-
   .about-us-display img {
-    margin-bottom: 0;
-    height: 100%;
-    width: auto;
+    display: none;
   }
-
   .about-us .about-content {
-    margin-top: 3rem;
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .about-us .about-content {
-    padding: 0;
+    padding: 0.5rem;
+    display: inline-block;
+    margin-bottom: 2rem;
   }
 }

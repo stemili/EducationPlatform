@@ -23,7 +23,11 @@ const Intro = ({ toggleModal }) => {
       <div className="intro-image-layer"></div>
       <div className="intro-content-layer">
         <div className="container intro-quote">
-          <p>
+          <p className="intro-message-mobile">
+            Welcome to <span>Discite</span> <br />
+            <span>Let us help you get started!</span>
+          </p>
+          <p className="intro-message-desktop">
             {/* <i className="fas fa-quote-left"></i> */}
             Every student can learn,
             <br /> just not on the same day, <br /> or the same way.
@@ -45,6 +49,9 @@ const Intro = ({ toggleModal }) => {
       </div>
       <div className="intro-min-info">
         <div className="container intro-info-flex">
+          <span className="mobile-info-intro-crs">
+            {courseCount} <i className="fas fa-book-open"></i> Available Courses
+          </span>
           <span className="disabled">24/7 Customer Support</span>
           <span>{teacherCount} Teachers From The Entire World</span>
           <span>{courseCount} Available Courses</span>

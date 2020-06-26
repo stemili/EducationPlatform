@@ -18,6 +18,31 @@ const Navbar = ({
   focusSearch,
   setFocusSearch,
 }) => {
+  const [menuOpen, setMenuOpen] = useState(null);
+  const [desktop, setDesktop] = useState(true);
+  useEffect(() => {
+    if (window.innerWidth > 990) {
+      setMenuOpen(true);
+      setDesktop(true);
+    } else if (window.innerWidth > 650) {
+      setMenuOpen(false);
+      setDesktop(false);
+    }
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 990) {
+        setDesktop(true);
+        setMenuOpen(true);
+      } else {
+        setMenuOpen(false);
+        setDesktop(false);
+      }
+    });
+  }, []);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+  const menuBtnRef = React.useRef();
   const antdMenu = (
     <Menu>
       <Menu.Item>
@@ -30,22 +55,6 @@ const Navbar = ({
       </Menu.Item>
     </Menu>
   );
-  const [menuOpen, setMenuOpen] = useState(null);
-  useEffect(() => {
-    if (window.innerWidth > 990) {
-      setMenuOpen(true);
-    } else if (window.innerWidth > 650) {
-      setMenuOpen(false);
-    }
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 990) {
-        setMenuOpen(true);
-      } else if (window.innerWidth > 650) {
-        setMenuOpen(false);
-      }
-    });
-  }, []);
-  const menuBtnRef = React.useRef();
   return (
     <React.Fragment>
       <div className="mobile-left-logo">
@@ -92,6 +101,8 @@ const Navbar = ({
                 dropdownValue={selectedCategory}
                 focusSearch={focusSearch}
                 setFocusSearch={setFocusSearch}
+                desktop={desktop}
+                closeMenu={closeMenu}
               />
             </div>
           )}
@@ -128,8 +139,26 @@ const Navbar = ({
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  <li onClick={() => toggleModal(true, "login")}>Log in</li>
-                  <li onClick={() => toggleModal(true, "signup")}>Sign up</li>
+                  <li
+                    onClick={async () => {
+                      await toggleModal(true, "login");
+                      if (!desktop) {
+                        closeMenu();
+                      }
+                    }}
+                  >
+                    Log in
+                  </li>
+                  <li
+                    onClick={async () => {
+                      await toggleModal(true, "signup");
+                      if (!desktop) {
+                        closeMenu();
+                      }
+                    }}
+                  >
+                    Sign up
+                  </li>
                 </React.Fragment>
               )}
             </nav>

@@ -7,7 +7,7 @@ import TestimonialCards from "./components/TestimonialCard/TestimonialCard";
 
 const Home = ({ toggleModal, setSelectedCategory, setFocusSearch }) => {
   return (
-    <div>
+    <div style={{ overflow: "hidden" }}>
       <Intro toggleModal={toggleModal} />
       <CoursesDisplay title="hello World" />
       <AboutUs />

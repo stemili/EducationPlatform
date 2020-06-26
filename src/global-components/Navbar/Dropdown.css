@@ -1,0 +1,8 @@
+@media (max-width: 990px) {
+  .main-dropdown-cat {
+    border: 1px solid #fff;
+  }
+  .ant-select.main-dropdown-cat.ant-select-borderless.ant-select-single.ant-select-show-arrow {
+    margin: 1rem;
+  }
+}
