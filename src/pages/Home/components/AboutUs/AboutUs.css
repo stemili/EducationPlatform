@@ -1,5 +1,5 @@
 .about-us {
-  min-height: 350px;
+  min-height: 360px;
   background: linear-gradient(
     90deg,
     rgba(41, 50, 65, 1) 0%,
@@ -41,4 +41,18 @@
 
 .about-us .about-content {
   padding: 1rem 5rem 1.5rem;
+}
+
+@media (max-width: 990px) {
+  .about-us-display {
+    flex-direction: column;
+  }
+  .about-us-display img {
+    display: none;
+  }
+  .about-us .about-content {
+    padding: 0.5rem;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
 }

@@ -5,6 +5,7 @@ import axios from "axios";
 
 import AuthService from "../../auth/AuthService";
 import { useHistory } from "react-router-dom";
+import { message } from "antd";
 const Login = ({ setCurrentUser, setModalWin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,14 +14,19 @@ const Login = ({ setCurrentUser, setModalWin }) => {
 
   const handleLogIn = e => {
     e.preventDefault();
-    AuthService.login(username, password).then(([username, API_URL]) => {
-      axios.get(`${API_URL}/users/${username}`).then(res => {
-        localStorage.setItem("user-info", JSON.stringify(res.data[0]));
-        setCurrentUser(AuthService.getCurrentUser());
-        setModalWin([false, "login"]);
-        history.push("/userprofile");
+    AuthService.login(username, password)
+      .then(([username, API_URL]) => {
+        axios.get(`${API_URL}/users/${username}`).then(res => {
+          localStorage.setItem("user-info", JSON.stringify(res.data[0]));
+          setCurrentUser(AuthService.getCurrentUser());
+          setModalWin([false, "login"]);
+          history.push("/userprofile");
+        });
+      })
+      .catch(err => {
+        console.log(err.response.data);
+        message.error(err.response.data.error);
       });
-    });
   };
 
   const handleInputChange = e => {

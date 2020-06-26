@@ -136,9 +136,10 @@
     position: absolute;
     z-index: 10;
     width: 100%;
-    background-color: #fff;
-    /* transform: translateX(100%); */
+    background-color: rgba(255, 255, 255, 0.9);
     height: auto;
+    min-height: 100vh;
+    /* transform: translateX(100%); */
     box-shadow: none;
     transition: transform 0.7s;
     border-bottom-left-radius: 1rem;
@@ -229,17 +230,18 @@
   }
 
   .main-nav-right-content li:last-child {
-    background: #fff;
+    background: transparent;
     color: var(--secondary-clr);
     border-radius: 0px;
     border: none;
     border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
   }
 
   .main-nav-right-content li:first-child {
     border: none;
     border-top: 1px solid #ccc;
-    background: #fff;
+    background: transparent;
     color: var(--secondary-clr);
     border-radius: 0;
   }

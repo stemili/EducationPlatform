@@ -37,9 +37,10 @@ const DropdownList = props => {
         //   rgba(238, 108, 77, 1) 0%,
         //   rgba(244, 155, 133, 1) 100%
         // )`,
-        backgroundColor: "#fff",
+
         color: "#999",
       }}
+      className="main-dropdown-cat"
       bordered={false}
       size="medium"
       onChange={value => props.setDropDownValue(value.toLowerCase())}
