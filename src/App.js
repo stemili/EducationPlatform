@@ -21,7 +21,6 @@ function App() {
 
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [focusSearch, setFocusSearch] = useState(false);
-
   const toggleModal = (modalOpen, type) => {
     setModalWin([modalOpen, type]);
   };

@@ -24,22 +24,21 @@ const Navbar = ({
     if (window.innerWidth > 990) {
       setMenuOpen(true);
       setDesktop(true);
-    } else if (window.innerWidth > 650) {
+    } else {
       setMenuOpen(false);
       setDesktop(false);
     }
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 990) {
-        setDesktop(true);
-        setMenuOpen(true);
-      } else {
-        setMenuOpen(false);
-        setDesktop(false);
-      }
-    });
+    // window.addEventListener("resize", () => {
+    //   if (window.innerWidth > 990) {
+    //     setMenuOpen(true);
+    //   } else {
+    //     setMenuOpen(false);
+    //   }
+    // });
   }, []);
 
   const closeMenu = () => {
+    console.log("closing");
     setMenuOpen(false);
   };
   const menuBtnRef = React.useRef();
