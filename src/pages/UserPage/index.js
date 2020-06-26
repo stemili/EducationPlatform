@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Modal, Input, message } from "antd";
+import { Modal, message } from "antd";
 
 import AuthService from "../../auth/AuthService";
 import "./index.css";
@@ -16,7 +16,7 @@ const UserPage = () => {
   const [imageEditModal, setImageEditModal] = useState(false);
   const [editProfileModal, setEditProfileModal] = useState(false);
 
-  const [imgUrlUpdate, setImgUrlUpdate] = useState("");
+  const [profileImgUpdate, setProfileImgUpdate] = useState(null);
 
   const renderUserPanel = () => {
     if (currentUser.role_id === "student") {
@@ -32,15 +32,24 @@ const UserPage = () => {
     setImageEditModal(true);
   };
 
+  const handleChangeProfileImage = e => {
+    setProfileImgUpdate(e.target.files[0]);
+  };
+
   const confirmImageModal = e => {
     setImageEditModal(false);
+
+    console.log(profileImgUpdate);
+    const newProfilePic = new FormData();
+    newProfilePic.append("picture", profileImgUpdate);
     axios
       .put(
-        `https://courses4me.herokuapp.com/users/${currentUser.username}/picture`,
-        { picture: imgUrlUpdate },
+        `https://courses4me.herokuapp.com/users/${currentUser.username}/pictureupload`,
+        newProfilePic,
         {
           headers: {
             authorization: AuthService.getAuthHeader(),
+            "Content-Type": "multipart/form-data",
           },
         }
       )
@@ -54,40 +63,8 @@ const UserPage = () => {
           .then(res => {
             console.log(res.data[0]);
             localStorage.setItem("user-info", JSON.stringify(res.data[0]));
-            // window.location.reload();
+            window.location.reload();
           });
-      })
-      .catch(err => {
-        if (err.response.status === 420) {
-          AuthService.setJwt(err.response.data.token);
-          console.log(err.response.data.token);
-          axios
-            .put(
-              `https://courses4me.herokuapp.com/users/${currentUser.username}/picture`,
-              { picture: imgUrlUpdate },
-              {
-                headers: {
-                  authorization: AuthService.getAuthHeader(),
-                },
-              }
-            )
-            .then(res => {
-              axios
-                .get(
-                  `https://courses4me.herokuapp.com/users/${
-                    AuthService.getCurrentUser().username
-                  }`
-                )
-                .then(res => {
-                  console.log(res.data[0]);
-                  localStorage.setItem(
-                    "user-info",
-                    JSON.stringify(res.data[0])
-                  );
-                  // window.location.reload();
-                });
-            });
-        }
       });
   };
 
@@ -197,10 +174,6 @@ const UserPage = () => {
     setEditProfileModal(false);
   };
 
-  const handleImgUrlChange = e => {
-    setImgUrlUpdate(e.target.value);
-  };
-
   return (
     <div className="user-page">
       <div className="profile-user-back">
@@ -225,7 +198,11 @@ const UserPage = () => {
             onCancel={cancelModal}
             className="edit-img-modal"
           >
-            <Input value={imgUrlUpdate} onChange={handleImgUrlChange}></Input>
+            <input
+              type="file"
+              name="file"
+              onChange={handleChangeProfileImage}
+            />
           </Modal>
 
           <EditProfileModal

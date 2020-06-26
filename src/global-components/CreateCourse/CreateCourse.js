@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Form,
-  Input,
-  Select,
-  InputNumber,
-  // Button,
-  // Upload,
-  message,
-} from "antd";
-// import { UploadOutlined } from "@ant-design/icons";
+import { Form, Input, Select, InputNumber, message } from "antd";
 import "./CreateCourse.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -37,27 +28,45 @@ class CreateCourse extends React.Component {
     currentCourse: this.props.location.aboutProps
       ? this.props.location.aboutProps.course
       : null,
+    coverPhoto: null,
+    lessonVideo: null,
+    documentArrayUpload: null,
   };
   formRef = React.createRef();
   formRefSecond = React.createRef();
   componentDidMount() {}
   onFinish = async values => {
-    console.log(values);
     // const coverPhoto = await toBase64(values.upload[0].originFileObj);
-    const postCourse = {
-      title: values.title,
-      shortDesc: values.shortdescription,
-      longDesc: values.description,
-      price: values.price,
-      duration: 12,
-      category: values.category,
-      teacher: AuthService.getCurrentUser().username,
-      coverPhoto: values.imgUrl,
-    };
+
+    const postCourse = new FormData();
+    postCourse.append("coverPhoto", this.state.coverPhoto);
+    postCourse.append("title", values.title);
+    postCourse.append("shortDesc", values.shortdescription);
+    postCourse.append("longDesc", values.description);
+    postCourse.append("price", values.price);
+    postCourse.append("duration", 12);
+    postCourse.append("category", values.category);
+    postCourse.append("teacher", AuthService.getCurrentUser().username);
+
+    // const postCourse = {
+    //   title: values.title,
+    //   shortDesc: values.shortdescription,
+    //   longDesc: values.description,
+    //   price: values.price,
+    //   duration: 12,
+    //   category: values.category,
+    //   teacher: AuthService.getCurrentUser().username,
+    //   coverPhoto: this.state.coverPhoto,
+    // };
     // console.log(values.upload[0].originFileObj);
+    console.log(postCourse);
     message.loading({ content: "Uploading Course...", key: messageKey });
     axios
-      .post("https://courses4me.herokuapp.com/courses", postCourse)
+      .post("https://courses4me.herokuapp.com/courses", postCourse, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(res => {
         this.setState({ currentCourse: res.data.courseContent });
         message.success({
@@ -84,40 +93,52 @@ class CreateCourse extends React.Component {
     // const parsedDocuments = await values.upload.map(value => {
     //   return toBase64(value.originFileObj);
     // });
-    const postLesson = {
-      title: values.lessonTitle,
-      course_id: this.state.currentCourse.id || 1,
-      description: values.lesson_description,
-      video: values.video_url,
-      // documents: parsedDocuments,
-    };
+    // const postLesson = {
+    //   title: values.lessonTitle,
+    //   course_id: this.state.currentCourse.id || 1,
+    //   description: values.lesson_description,
+    //   video: values.video_url,
+    //   // documents: parsedDocuments,
+    // };
+
+    const postLesson = new FormData();
+    postLesson.append("course_id", this.state.currentCourse.id);
+    postLesson.append("title", values.lessonTitle);
+    postLesson.append("description", values.lesson_description);
+    postLesson.append("video", this.state.lessonVideo);
+
     message.loading({ content: "Uploading Lesson...", key: messageKey });
     axios
       .post("https://courses4me.herokuapp.com/lessons", postLesson, {
         headers: {
           authorization: `token ${AuthService.getAuthHeader()}`,
+          "Content-Type": "multipart/form-data",
         },
       })
       .then(res => {
+        const postDocument = new FormData();
         // const newDocument = {
         //   lessonId: res.data.lessonId,
         //   courseId: this.state.currentCourse.id,
-        //   document: parsedDocuments,
+        //   document: values.upload[0],
         // };
-        // axios
-        //   .post("https://courses4me.herokuapp.com/documents", newDocument, {
-        //     headers: {
-        //       authorization: `token ${AuthService.getAuthHeader()}`,
-        //       "Access-Control-Allow-Origin": "*",
-        //     },
-        //   })
-        //   .then(res => {
-        //     console.log("success ", res.data);
-        //   })
-        //   .catch(err => {
-        //     console.log(err);
-        //   });
-        // console.log(res.data);
+        postDocument.append("lessonId", res.data.lessonId);
+        postDocument.append("courseId", this.state.currentCourse.id);
+        postDocument.append("document", this.state.documentArrayUpload);
+        axios
+          .post("https://courses4me.herokuapp.com/documents", postDocument, {
+            headers: {
+              authorization: `token ${AuthService.getAuthHeader()}`,
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then(res => {
+            console.log("success ", res.data);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        console.log(res.data);
         message.success({
           content: "Lesson Uploaded",
           key: messageKey,
@@ -151,6 +172,21 @@ class CreateCourse extends React.Component {
     }
 
     return e && e.fileList;
+  };
+  onFileChangeHandler = e => {
+    this.setState({
+      coverPhoto: e.target.files[0],
+    });
+  };
+  onVideoLessonChangeHandler = e => {
+    this.setState({
+      lessonVideo: e.target.files[0],
+    });
+  };
+  onDocumentFileChange = e => {
+    this.setState({
+      documentArrayUpload: e.target.files[0],
+    });
   };
 
   currentSection = () => {
@@ -220,7 +256,13 @@ class CreateCourse extends React.Component {
             >
               <Input.TextArea />
             </Form.Item>
-
+            <Form.Item label="Cover Photo">
+              <input
+                type="file"
+                name="file"
+                onChange={this.onFileChangeHandler}
+              />
+            </Form.Item>
             {/* <Form.Item
               name="upload"
               label="Upload"
@@ -315,17 +357,14 @@ class CreateCourse extends React.Component {
             >
               <Input />
             </Form.Item>
-            <Form.Item
-              name="video_url"
-              label="Video Url"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Input />
+            <Form.Item label="Video Upload">
+              <input
+                type="file"
+                name="file"
+                onChange={this.onVideoLessonChangeHandler}
+              />
             </Form.Item>
+
             <Form.Item
               name="lesson_description"
               label="Lesson Description"
@@ -336,6 +375,13 @@ class CreateCourse extends React.Component {
               ]}
             >
               <Input />
+            </Form.Item>
+            <Form.Item label="Document Upload">
+              <input
+                type="file"
+                name="file"
+                onChange={this.onDocumentFileChange}
+              />
             </Form.Item>
 
             {/* <Form.Item
