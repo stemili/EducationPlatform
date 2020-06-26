@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./CategoryCard.css";
 
-const CategoryCard = ({ setSelectedCategory, setFocusSearch }) => {
+const CategoryCard = ({
+  setSelectedCategory,
+  setFocusSearch,
+  setOpenNavbar,
+}) => {
   const [categories] = useState([
     { id: "1", name: "Development", icon: "code" },
     { id: "2", name: "Business", icon: "chart-bar" },
@@ -20,6 +24,9 @@ const CategoryCard = ({ setSelectedCategory, setFocusSearch }) => {
         onClick={async () => {
           window.scrollTo(0, 0);
           setSelectedCategory(item.name.toLowerCase());
+          setTimeout(() => {
+            setOpenNavbar(true);
+          }, 400);
           setTimeout(() => {
             setFocusSearch(true);
           }, 800);

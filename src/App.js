@@ -21,6 +21,18 @@ function App() {
 
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [focusSearch, setFocusSearch] = useState(false);
+  const [openNavbar, setOpenNavbar] = useState(
+    window.innerWidth > 990 ? true : false
+  );
+
+  // useEffect(() => {
+  //   if (window.innerWidth > 990) {
+  //     setOpenNavbar(true);
+  //   } else {
+  //     setOpenNavbar(false);
+  //   }
+  // }, []);
+
   const toggleModal = (modalOpen, type) => {
     setModalWin([modalOpen, type]);
   };
@@ -43,6 +55,8 @@ function App() {
           setSelectedCategory={setSelectedCategory}
           focusSearch={focusSearch}
           setFocusSearch={setFocusSearch}
+          menuOpen={openNavbar}
+          setMenuOpen={setOpenNavbar}
         />
 
         <Switch>
@@ -55,6 +69,7 @@ function App() {
                 toggleModal={toggleModal}
                 setSelectedCategory={setSelectedCategory}
                 setFocusSearch={setFocusSearch}
+                setOpenNavbar={setOpenNavbar}
               />
             )}
           ></Route>

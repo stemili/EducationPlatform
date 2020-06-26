@@ -5,7 +5,12 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import CategoryCard from "./components/CategoryCard/CategoryCard";
 import TestimonialCards from "./components/TestimonialCard/TestimonialCard";
 
-const Home = ({ toggleModal, setSelectedCategory, setFocusSearch }) => {
+const Home = ({
+  toggleModal,
+  setSelectedCategory,
+  setFocusSearch,
+  setOpenNavbar,
+}) => {
   return (
     <div style={{ overflow: "hidden" }}>
       <Intro toggleModal={toggleModal} />
@@ -14,6 +19,7 @@ const Home = ({ toggleModal, setSelectedCategory, setFocusSearch }) => {
       <CategoryCard
         setSelectedCategory={setSelectedCategory}
         setFocusSearch={setFocusSearch}
+        setOpenNavbar={setOpenNavbar}
       />
       <TestimonialCards toggleModal={toggleModal} />
     </div>

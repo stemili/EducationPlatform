@@ -17,24 +17,16 @@ const Navbar = ({
   setSelectedCategory,
   focusSearch,
   setFocusSearch,
+  menuOpen,
+  setMenuOpen,
 }) => {
-  const [menuOpen, setMenuOpen] = useState(null);
   const [desktop, setDesktop] = useState(true);
   useEffect(() => {
     if (window.innerWidth > 990) {
-      setMenuOpen(true);
       setDesktop(true);
     } else {
-      setMenuOpen(false);
       setDesktop(false);
     }
-    // window.addEventListener("resize", () => {
-    //   if (window.innerWidth > 990) {
-    //     setMenuOpen(true);
-    //   } else {
-    //     setMenuOpen(false);
-    //   }
-    // });
   }, []);
 
   const closeMenu = () => {
@@ -72,7 +64,9 @@ const Navbar = ({
         <div className="menu-burger-btn"></div>
       </div>
       <div
-        className={dashboard ? "main-nav main-nav-dash" : "main-nav"}
+        className={
+          dashboard ? "main-nav main-nav-dash stay-open" : "main-nav stay-open"
+        }
         style={
           menuOpen
             ? { transform: "translateX(0%)" }
