@@ -10,6 +10,8 @@ import EditProfileModal from "./components/EditProfileModal/EditProfileModal";
 import { EditOutlined } from "@ant-design/icons";
 import axios from "axios";
 
+const messageKey = "uploading-image";
+
 const UserPage = () => {
   const currentUser = AuthService.getCurrentUser();
   const formRef = React.createRef();
@@ -38,8 +40,10 @@ const UserPage = () => {
 
   const confirmImageModal = e => {
     setImageEditModal(false);
-
-    console.log(profileImgUpdate);
+    message.loading({
+      content: "Uploading Profile Picture...",
+      key: messageKey,
+    });
     const newProfilePic = new FormData();
     newProfilePic.append("picture", profileImgUpdate);
     axios
@@ -63,8 +67,20 @@ const UserPage = () => {
           .then(res => {
             console.log(res.data[0]);
             localStorage.setItem("user-info", JSON.stringify(res.data[0]));
+            message.success({
+              content: "Profile Picture Changed!",
+              key: messageKey,
+              duration: 2,
+            });
             window.location.reload();
           });
+      })
+      .catch(err => {
+        message.error({
+          content: err.response.data.error,
+          key: messageKey,
+          duration: 2,
+        });
       });
   };
 
