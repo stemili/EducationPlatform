@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5f3154762877bd5219d251bd1e7c2020",
+    "revision": "ef863358ca55b2c25432123679d8f36c",
     "url": "/EducationPlatform/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/EducationPlatform/static/css/2.32c4cd01.chunk.css"
   },
   {
-    "revision": "1178fb5fe16e5b160bac",
+    "revision": "8b37cf5890ebafb95ef5",
     "url": "/EducationPlatform/static/css/main.0dcad21e.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/EducationPlatform/static/js/2.905b428b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1178fb5fe16e5b160bac",
-    "url": "/EducationPlatform/static/js/main.b0fffca9.chunk.js"
+    "revision": "8b37cf5890ebafb95ef5",
+    "url": "/EducationPlatform/static/js/main.769f2f59.chunk.js"
   },
   {
     "revision": "f32ce0e50ebb12f0489c",
