@@ -29,7 +29,9 @@ html {
 a {
   text-decoration: none;
 }
-
+.App {
+  position: relative;
+}
 .btn {
   cursor: pointer;
   border: none;
