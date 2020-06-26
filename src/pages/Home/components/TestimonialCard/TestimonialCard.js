@@ -25,7 +25,7 @@ export default class TestimonialCards extends React.Component {
       .then(
         () =>
           (this.swiper = new Swiper(".swiper-container", {
-            slidesPerView: 5,
+            slidesPerView: 1,
             centeredSlides: true,
             direction: this.getDirection(),
             //loop: true,

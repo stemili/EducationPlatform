@@ -1,3 +1,7 @@
+.modal-main {
+  width: 70%;
+  margin: auto;
+}
 .modal-container {
   display: flex;
   height: 100%;
@@ -114,5 +118,13 @@
   .modal-right-content {
     width: 100%;
     border-radius: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal-main {
+    width: 95%;
+    position: static;
+    margin: 1rem auto auto auto;
   }
 }

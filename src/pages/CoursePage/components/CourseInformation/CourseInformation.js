@@ -33,12 +33,13 @@ export const CourseInformation = (props) => {
         <div className="left-field">
           <span>Category</span>
           <i className="fas fa-book"></i>
-          {currentCourse.category}
+          {currentCourse.category.charAt(0).toUpperCase() +
+            currentCourse.category.slice(1)}
         </div>
         <div className="left-field">
           <span>Review</span>
           <i className="fas fa-star"></i>
-          {currentCourse.rating}
+          {!currentCourse.rating ? "Coming soon!" : currentCourse.rating}
         </div>
       </div>
       <div className="right-content">

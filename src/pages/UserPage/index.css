@@ -23,7 +23,7 @@
   position: relative;
   width: 230px;
   height: 230px;
-  margin: 3rem 0 3rem;
+  margin: 3rem 0 3rem 2rem;
 }
 
 .profile-user-info img {
@@ -154,4 +154,45 @@
 .ant-input-affix-wrapper input#password,
 .ant-input-affix-wrapper input#oldPassword {
   border: none;
+}
+
+@media (max-width: 1000px) {
+  .profile-user-info {
+    padding-top: 2.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .profile-user-info {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    padding: 4rem 0.3rem 2rem 0.3rem;
+  }
+
+  .profile-user-image-section {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .profile-about-user p {
+    padding: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .profile-user-info {
+    grid-template-columns: 1fr;
+    padding: 4rem 0 1rem 0;
+  }
+
+  .profile-user-image-section {
+    justify-self: center;
+    margin: 0 0 1rem 0;
+  }
+
+  .profile-about-user {
+    padding-left: 0.5rem;
+  }
 }
