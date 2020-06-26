@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.container {
+  width: 100%;
+}
+
 .about-us h3 {
   font-size: 1.5rem;
   color: #fff;
@@ -41,4 +45,33 @@
 
 .about-us .about-content {
   padding: 1rem 5rem 1.5rem;
+}
+
+@media (max-width: 800px) {
+  .about-us {
+    margin: auto;
+    padding: 1rem;
+  }
+  .about-us-display {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    justify-items: center;
+  }
+
+  .about-us-display img {
+    margin-bottom: 0;
+    height: 100%;
+    width: auto;
+  }
+
+  .about-us .about-content {
+    margin-top: 3rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .about-us .about-content {
+    padding: 0;
+  }
 }

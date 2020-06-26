@@ -45,7 +45,17 @@
   margin-left: 1rem;
 }
 
+@media (max-width: 1000px) {
+  .heading-section {
+    height: 24rem;
+    padding-top: 2rem;
+  }
+}
+
 @media (max-width: 750px) {
+  .heading-section {
+    height: 20rem;
+  }
   .heading-section img {
     height: 10rem;
     width: 10rem;
@@ -58,6 +68,7 @@
     justify-items: center;
     text-align: center;
     grid-template-columns: 1fr;
+    padding-top: 5rem;
   }
   .heading-section span:first-of-type {
     float: left;

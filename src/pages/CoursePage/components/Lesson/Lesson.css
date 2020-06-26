@@ -109,6 +109,7 @@ ul.ant-menu.ant-menu-light.ant-menu-root.ant-menu-inline {
   }
 
   .mini-course-heading {
+    margin-top: 4rem;
     grid-column: 1/2;
     grid-template-columns: auto auto;
   }
@@ -119,8 +120,38 @@ ul.ant-menu.ant-menu-light.ant-menu-root.ant-menu-inline {
 }
 
 @media (max-width: 600px) {
+  .view-course-section {
+    padding: 5px;
+  }
+
   .mini-course-heading h1 {
     font-size: 1.2rem;
     padding: 0 0.2rem 0 0.2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .view-course-section {
+    padding: 0;
+  }
+  .mini-course-heading {
+    height: 4rem;
+  }
+
+  .mini-course-heading img {
+    height: 3rem;
+    width: 3rem;
+    object-fit: cover;
+  }
+
+  .mini-course-heading h1 {
+    font-size: 1rem;
+  }
+  .course-right {
+    height: 4rem;
+    width: 3rem;
+  }
+  .video-box {
+    padding: 0;
   }
 }
