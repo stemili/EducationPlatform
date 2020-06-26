@@ -1,6 +1,7 @@
 .modal-main {
   width: 70%;
-  margin: auto;
+  margin: 2rem auto auto auto;
+  height: 90%;
 }
 .modal-container {
   display: flex;
@@ -126,5 +127,6 @@
     width: 95%;
     position: static;
     margin: 1rem auto auto auto;
+    height: 95%;
   }
 }

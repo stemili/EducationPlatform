@@ -33,8 +33,10 @@ export const CourseInformation = (props) => {
         <div className="left-field">
           <span>Category</span>
           <i className="fas fa-book"></i>
-          {currentCourse.category.charAt(0).toUpperCase() +
-            currentCourse.category.slice(1)}
+          {currentCourse.category
+            ? currentCourse.category.charAt(0).toUpperCase() +
+              currentCourse.category.slice(1)
+            : ""}
         </div>
         <div className="left-field">
           <span>Review</span>
