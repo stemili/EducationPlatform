@@ -5,15 +5,15 @@ import "./Lesson.css";
 import { Menu, Spin } from "antd";
 import { Link } from "react-router-dom";
 
-const Lesson = props => {
+const Lesson = (props) => {
   const [lessons, setLessons] = useState([]);
   const [currentLesson, setCurrentLesson] = useState("");
   const [courseInfo, setCourse] = useState({});
   const { SubMenu } = Menu;
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     if (e.key.indexOf("doc") === -1) {
-      let current = lessons.filter(lesson => lesson.id === parseInt(e.key));
+      let current = lessons.filter((lesson) => lesson.id === parseInt(e.key));
       setCurrentLesson(current[0]);
     }
   };
@@ -23,10 +23,10 @@ const Lesson = props => {
       .get(
         `https://courses4me.herokuapp.com/lessons/course/${props.match.params.id}`
       )
-      .then(res => setLessons(res.data));
+      .then((res) => setLessons(res.data));
     axios
       .get(`https://courses4me.herokuapp.com/courses/${props.match.params.id}`)
-      .then(res => setCourse(res.data[0]));
+      .then((res) => setCourse(res.data[0]));
   }, [props.match.params.id]);
 
   useEffect(() => {
@@ -61,12 +61,7 @@ const Lesson = props => {
           </div>
           <div className="side-menu">
             <Menu
-<<<<<<< HEAD
               onClick={(e) => handleClick(e)}
-=======
-              onClick={e => handleClick(e)}
-              style={{ width: 300 }}
->>>>>>> master
               defaultSelectedKeys={[`${currentLesson.id}`]}
               defaultOpenKeys={["sub1"]}
               mode="inline"
