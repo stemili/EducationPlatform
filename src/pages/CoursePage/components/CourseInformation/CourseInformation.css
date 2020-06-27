@@ -72,6 +72,10 @@
   grid-column: 1/3;
 }
 
+.bottom-content :last-child {
+  margin-top: 1rem;
+}
+
 .bottom-button {
   height: 3rem;
   width: 11rem;
