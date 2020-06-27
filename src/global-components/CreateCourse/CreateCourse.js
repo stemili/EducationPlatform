@@ -30,7 +30,7 @@ class CreateCourse extends React.Component {
       : null,
     coverPhoto: null,
     lessonVideo: null,
-    documentArrayUpload: null,
+    documentArrayUpload: [],
   };
   formRef = React.createRef();
   formRefSecond = React.createRef();
@@ -124,7 +124,10 @@ class CreateCourse extends React.Component {
         // };
         postDocument.append("lessonId", res.data.lessonId);
         postDocument.append("courseId", this.state.currentCourse.id);
-        postDocument.append("document", this.state.documentArrayUpload);
+
+        for (let i = 0; i < this.state.documentArrayUpload.length; i++) {
+          postDocument.append("document", this.state.documentArrayUpload[i]);
+        }
         axios
           .post("https://courses4me.herokuapp.com/documents", postDocument, {
             headers: {
@@ -184,8 +187,9 @@ class CreateCourse extends React.Component {
     });
   };
   onDocumentFileChange = e => {
+    console.log(e.target.files);
     this.setState({
-      documentArrayUpload: e.target.files[0],
+      documentArrayUpload: e.target.files,
     });
   };
 
@@ -194,7 +198,13 @@ class CreateCourse extends React.Component {
       return (
         <div className={this.state.requestSwitch ? "close-bitch" : ""}>
           <h3 className="courses-title">
-            Create a New Course <i className="fas fa-book-open"></i>
+            Create a New Course <i className="fas fa-book-open"> </i>
+            <Link to="/userprofile">
+              <i
+                className="fas fa-arrow-left"
+                style={{ float: "right", color: "#293241" }}
+              ></i>
+            </Link>
           </h3>
           <Form
             //   {...layout}
@@ -256,7 +266,7 @@ class CreateCourse extends React.Component {
             >
               <Input.TextArea />
             </Form.Item>
-            <Form.Item label="Cover Photo">
+            <Form.Item label="Cover Image">
               <input
                 type="file"
                 name="file"
@@ -280,17 +290,6 @@ class CreateCourse extends React.Component {
               </Upload>
             </Form.Item> */}
 
-            <Form.Item
-              name="imgUrl"
-              label="Cover Image Url"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
             <Form.Item
               name="price"
               label="Price"
@@ -380,6 +379,7 @@ class CreateCourse extends React.Component {
               <input
                 type="file"
                 name="file"
+                multiple
                 onChange={this.onDocumentFileChange}
               />
             </Form.Item>
