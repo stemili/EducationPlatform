@@ -30,12 +30,12 @@ class CreateCourse extends React.Component {
       : null,
     coverPhoto: null,
     lessonVideo: null,
-    documentArrayUpload: null,
+    documentArrayUpload: [],
   };
   formRef = React.createRef();
   formRefSecond = React.createRef();
   componentDidMount() {}
-  onFinish = async (values) => {
+  onFinish = async values => {
     // const coverPhoto = await toBase64(values.upload[0].originFileObj);
 
     const postCourse = new FormData();
@@ -67,7 +67,7 @@ class CreateCourse extends React.Component {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then((res) => {
+      .then(res => {
         this.setState({ currentCourse: res.data.courseContent });
         message.success({
           content: "Course Uploaded",
@@ -80,7 +80,7 @@ class CreateCourse extends React.Component {
           this.setState({ requestSwitch: 0 });
         }, 500);
       })
-      .catch((err) => {
+      .catch(err => {
         message.error({
           content: "Unable to upload Course",
           key: messageKey,
@@ -89,7 +89,7 @@ class CreateCourse extends React.Component {
       });
   };
 
-  onFinishSecond = async (values) => {
+  onFinishSecond = async values => {
     // const parsedDocuments = await values.upload.map(value => {
     //   return toBase64(value.originFileObj);
     // });
@@ -115,7 +115,7 @@ class CreateCourse extends React.Component {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then((res) => {
+      .then(res => {
         const postDocument = new FormData();
         // const newDocument = {
         //   lessonId: res.data.lessonId,
@@ -124,7 +124,10 @@ class CreateCourse extends React.Component {
         // };
         postDocument.append("lessonId", res.data.lessonId);
         postDocument.append("courseId", this.state.currentCourse.id);
-        postDocument.append("document", this.state.documentArrayUpload);
+
+        for (let i = 0; i < this.state.documentArrayUpload.length; i++) {
+          postDocument.append("document", this.state.documentArrayUpload[i]);
+        }
         axios
           .post("https://courses4me.herokuapp.com/documents", postDocument, {
             headers: {
@@ -132,10 +135,10 @@ class CreateCourse extends React.Component {
               "Content-Type": "multipart/form-data",
             },
           })
-          .then((res) => {
+          .then(res => {
             console.log("success ", res.data);
           })
-          .catch((err) => {
+          .catch(err => {
             console.log(err);
           });
         console.log(res.data);
@@ -147,7 +150,7 @@ class CreateCourse extends React.Component {
         this.setState({ lessonCreated: 1 });
         this.onResetSecond();
       })
-      .catch((err) => {
+      .catch(err => {
         message.error("Unable to upload Lesson");
       });
   };
@@ -166,26 +169,26 @@ class CreateCourse extends React.Component {
     }, 0);
   }
 
-  normFile = (e) => {
+  normFile = e => {
     if (Array.isArray(e)) {
       return e;
     }
 
     return e && e.fileList;
   };
-  onFileChangeHandler = (e) => {
+  onFileChangeHandler = e => {
     this.setState({
       coverPhoto: e.target.files[0],
     });
   };
-  onVideoLessonChangeHandler = (e) => {
+  onVideoLessonChangeHandler = e => {
     this.setState({
       lessonVideo: e.target.files[0],
     });
   };
-  onDocumentFileChange = (e) => {
+  onDocumentFileChange = e => {
     this.setState({
-      documentArrayUpload: e.target.files[0],
+      documentArrayUpload: e.target.files,
     });
   };
 
@@ -194,7 +197,13 @@ class CreateCourse extends React.Component {
       return (
         <div className={this.state.requestSwitch ? "close-bitch" : ""}>
           <h3 className="courses-title">
-            Create a New Course <i className="fas fa-book-open"></i>
+            Create a New Course <i className="fas fa-book-open"> </i>
+            <Link to="/userprofile">
+              <i
+                className="fas fa-arrow-left"
+                style={{ float: "right", color: "#293241" }}
+              ></i>
+            </Link>
           </h3>
           <Form
             //   {...layout}
@@ -256,7 +265,7 @@ class CreateCourse extends React.Component {
             >
               <Input.TextArea />
             </Form.Item>
-            <Form.Item label="Cover Photo">
+            <Form.Item label="Cover Image">
               <input
                 type="file"
                 name="file"
@@ -280,17 +289,6 @@ class CreateCourse extends React.Component {
               </Upload>
             </Form.Item> */}
 
-            <Form.Item
-              name="imgUrl"
-              label="Cover Image Url"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
             <Form.Item
               name="price"
               label="Price"
@@ -381,6 +379,7 @@ class CreateCourse extends React.Component {
               <input
                 type="file"
                 name="file"
+                multiple
                 onChange={this.onDocumentFileChange}
               />
             </Form.Item>

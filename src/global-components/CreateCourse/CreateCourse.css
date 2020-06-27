@@ -96,3 +96,19 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 990px) {
+  .container-course-form {
+    width: 60%;
+  }
+  .create-course-card {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 650px) {
+  .container-course-form {
+    width: 90%;
+    margin-top: 0.5rem;
+  }
+}
