@@ -35,6 +35,7 @@ const Lesson = (props) => {
 
   function checkForLessons() {
     if (currentLesson) {
+      console.log(currentLesson.video);
       return (
         <div className="view-course-section">
           <div className="mini-course-heading">
@@ -51,7 +52,7 @@ const Lesson = (props) => {
           <div className="video-box">
             <div className="video-heading">
               <ReactPlayer
-                url={currentLesson.video}
+                url={`https://www.youtube.com/embed/${currentLesson.video}`}
                 controls={true}
                 width="100%"
               />

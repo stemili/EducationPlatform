@@ -35,7 +35,7 @@ class CreateCourse extends React.Component {
   formRef = React.createRef();
   formRefSecond = React.createRef();
   componentDidMount() {}
-  onFinish = async values => {
+  onFinish = async (values) => {
     // const coverPhoto = await toBase64(values.upload[0].originFileObj);
 
     const postCourse = new FormData();
@@ -67,7 +67,7 @@ class CreateCourse extends React.Component {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then(res => {
+      .then((res) => {
         this.setState({ currentCourse: res.data.courseContent });
         message.success({
           content: "Course Uploaded",
@@ -80,7 +80,7 @@ class CreateCourse extends React.Component {
           this.setState({ requestSwitch: 0 });
         }, 500);
       })
-      .catch(err => {
+      .catch((err) => {
         message.error({
           content: "Unable to upload Course",
           key: messageKey,
@@ -89,7 +89,7 @@ class CreateCourse extends React.Component {
       });
   };
 
-  onFinishSecond = async values => {
+  onFinishSecond = async (values) => {
     // const parsedDocuments = await values.upload.map(value => {
     //   return toBase64(value.originFileObj);
     // });
@@ -115,7 +115,7 @@ class CreateCourse extends React.Component {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then(res => {
+      .then((res) => {
         const postDocument = new FormData();
         // const newDocument = {
         //   lessonId: res.data.lessonId,
@@ -132,10 +132,10 @@ class CreateCourse extends React.Component {
               "Content-Type": "multipart/form-data",
             },
           })
-          .then(res => {
+          .then((res) => {
             console.log("success ", res.data);
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
         console.log(res.data);
@@ -147,7 +147,7 @@ class CreateCourse extends React.Component {
         this.setState({ lessonCreated: 1 });
         this.onResetSecond();
       })
-      .catch(err => {
+      .catch((err) => {
         message.error("Unable to upload Lesson");
       });
   };
@@ -166,24 +166,24 @@ class CreateCourse extends React.Component {
     }, 0);
   }
 
-  normFile = e => {
+  normFile = (e) => {
     if (Array.isArray(e)) {
       return e;
     }
 
     return e && e.fileList;
   };
-  onFileChangeHandler = e => {
+  onFileChangeHandler = (e) => {
     this.setState({
       coverPhoto: e.target.files[0],
     });
   };
-  onVideoLessonChangeHandler = e => {
+  onVideoLessonChangeHandler = (e) => {
     this.setState({
       lessonVideo: e.target.files[0],
     });
   };
-  onDocumentFileChange = e => {
+  onDocumentFileChange = (e) => {
     this.setState({
       documentArrayUpload: e.target.files[0],
     });
@@ -362,6 +362,7 @@ class CreateCourse extends React.Component {
                 type="file"
                 name="file"
                 onChange={this.onVideoLessonChangeHandler}
+                required
               />
             </Form.Item>
 
