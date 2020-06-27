@@ -38,15 +38,13 @@ export default class TestimonialCards extends React.Component {
               prevEl: ".swiper-button-prev",
             },
             breakpoints: {
-              // when window width is >= 320px
+              // window width
               320: {
                 slidesPerView: 1,
               },
-              // when window width is >= 480px
               480: {
                 slidesPerView: 3,
               },
-              // when window width is >= 680px
               680: {
                 slidesPerView: 5,
               },
@@ -191,7 +189,7 @@ export default class TestimonialCards extends React.Component {
               onClick={(e) => this.handleClick(e)}
             ></div>
           </div>
-          <div className="testimonial-text-box fadeIn">
+          <div className="testimonial-text-box">
             <h2>
               {this.state.testimonials.length !== 0
                 ? this.state.testimonials[this.state.current].name +
@@ -201,7 +199,7 @@ export default class TestimonialCards extends React.Component {
             </h2>
             <i className="fas fa-quote-left"></i>
             <i className="fas fa-caret-down"></i>
-            <span>
+            <span className="fadeIn">
               {this.state.testimonials.length !== 0
                 ? this.state.testimonials[this.state.current].text
                 : ""}

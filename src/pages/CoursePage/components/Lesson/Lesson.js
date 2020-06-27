@@ -35,7 +35,6 @@ const Lesson = (props) => {
 
   function checkForLessons() {
     if (currentLesson) {
-      console.log(currentLesson.video);
       return (
         <div className="view-course-section">
           <div className="mini-course-heading">
