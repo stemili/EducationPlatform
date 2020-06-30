@@ -2,9 +2,9 @@ import React from "react";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import "./TestimonialCard.css";
-import axios from "axios";
 import { Modal, Button, Input, Result } from "antd";
 import Auth from "../../../../auth/AuthService";
+import apiCall from "../../../../service/apiCall";
 
 export default class TestimonialCards extends React.Component {
   state = {
@@ -19,9 +19,9 @@ export default class TestimonialCards extends React.Component {
     showError: false,
   };
   componentDidMount() {
-    axios
-      .get(`https://courses4me.herokuapp.com/testimonials/randomfive`)
-      .then((res) => this.setState({ testimonials: res.data }))
+    apiCall
+      .get(`/testimonials/randomfive`)
+      .then(res => this.setState({ testimonials: res.data }))
       .then(
         () =>
           (this.swiper = new Swiper(".swiper-container", {
@@ -53,10 +53,10 @@ export default class TestimonialCards extends React.Component {
             },
           }))
       );
-    axios.get("https://courses4me.herokuapp.com/testimonials/").then((res) => {
+    apiCall.get("/testimonials/").then(res => {
       if (this.state.currentUser !== null) {
         let checkForTestimonial = res.data.filter(
-          (item) => item.username === this.state.currentUser.username
+          item => item.username === this.state.currentUser.username
         );
         if (checkForTestimonial.length > 0) {
           this.setState({
@@ -74,7 +74,7 @@ export default class TestimonialCards extends React.Component {
   }
 
   renderTestimonials() {
-    const items = this.state.testimonials.map((item) => {
+    const items = this.state.testimonials.map(item => {
       return (
         <div className="swiper-slide" key={item.username}>
           <div className="swiper-inner-circle">
@@ -92,7 +92,7 @@ export default class TestimonialCards extends React.Component {
     });
     return items;
   }
-  handleClick = (e) => {
+  handleClick = e => {
     let value = e.target.classList.value;
     return value.includes("swiper-button-next") && value !== 4
       ? this.setState({ current: this.state.current + 1 })
@@ -114,20 +114,19 @@ export default class TestimonialCards extends React.Component {
   handleOk = () => {
     this.setState({ loading: true });
     if (this.state.editTestimonial === false) {
-      axios
-        .post("https://courses4me.herokuapp.com/testimonials/", {
+      apiCall
+        .post("/testimonials/", {
           username: `${this.state.currentUser.username}`,
           text: `${this.state.textArea}`,
         })
-        .then((res) => this.setState({ loading: false, showSuccess: true }))
-        .catch((err) => this.setState({ showError: true, loading: false }));
+        .then(res => this.setState({ loading: false, showSuccess: true }))
+        .catch(err => this.setState({ showError: true, loading: false }));
     } else {
-      axios
-        .put(
-          `https://courses4me.herokuapp.com/testimonials/${this.state.currentUser.username}`,
-          { text: `${this.state.textArea}` }
-        )
-        .then((res) => {
+      apiCall
+        .put(`/testimonials/${this.state.currentUser.username}`, {
+          text: `${this.state.textArea}`,
+        })
+        .then(res => {
           this.setState({ loading: false, showSuccess: true });
         })
         .catch(() => {
@@ -140,7 +139,7 @@ export default class TestimonialCards extends React.Component {
     this.setState({ visible: false, showSuccess: false, showError: false });
   };
 
-  onTextChange = (e) => {
+  onTextChange = e => {
     this.setState({ textArea: e.target.value });
   };
 
@@ -166,7 +165,7 @@ export default class TestimonialCards extends React.Component {
           <TextArea
             rows={6}
             value={this.state.textArea}
-            onChange={(e) => this.onTextChange(e)}
+            onChange={e => this.onTextChange(e)}
             maxLength="180"
           />
         </React.Fragment>
@@ -184,11 +183,11 @@ export default class TestimonialCards extends React.Component {
             <div className="swiper-wrapper">{this.renderTestimonials()}</div>
             <div
               className="swiper-button-next"
-              onClick={(e) => this.handleClick(e)}
+              onClick={e => this.handleClick(e)}
             ></div>
             <div
               className="swiper-button-prev"
-              onClick={(e) => this.handleClick(e)}
+              onClick={e => this.handleClick(e)}
             ></div>
           </div>
           <div className="testimonial-text-box fadeIn">

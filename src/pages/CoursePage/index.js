@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import apiCall from "../../service/apiCall";
 import { Spin } from "antd";
 import Auth from "../../auth/AuthService";
 import CourseHeading from "./components/CourseHeading/CourseHeading";
@@ -19,44 +19,30 @@ class CoursePage extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get(
-        `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`
-      )
-      .then((res) => this.setState({ course: res.data[0] }));
+    apiCall
+      .get(`/courses/${this.props.match.params.id}`)
+      .then(res => this.setState({ course: res.data[0] }));
 
-    axios
-      .get(
-        `https://courses4me.herokuapp.com/lessons/course/${this.props.match.params.id}`
-      )
-      .then((res) => this.setState({ lessons: res.data, isLoading: false }));
-    axios
-      .get(
-        `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}/users`
-      )
-      .then((res) => this.setState({ courseUsers: res.data }));
+    apiCall
+      .get(`/lessons/course/${this.props.match.params.id}`)
+      .then(res => this.setState({ lessons: res.data, isLoading: false }));
+    apiCall
+      .get(`/courses/${this.props.match.params.id}/users`)
+      .then(res => this.setState({ courseUsers: res.data }));
     this.checkifEnrolled();
   }
 
   componentDidUpdate() {
     if (parseInt(this.props.match.params.id) !== this.state.course.id) {
-      axios
-        .get(
-          `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`
-        )
-        .then((res) =>
-          this.setState({ course: res.data[0], isLoading: false })
-        );
-      axios
-        .get(
-          `https://courses4me.herokuapp.com/lessons/course/${this.props.match.params.id}`
-        )
-        .then((res) => this.setState({ lessons: res.data }));
-      axios
-        .get(
-          `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}/users`
-        )
-        .then((res) =>
+      apiCall
+        .get(`/courses/${this.props.match.params.id}`)
+        .then(res => this.setState({ course: res.data[0], isLoading: false }));
+      apiCall
+        .get(`/lessons/course/${this.props.match.params.id}`)
+        .then(res => this.setState({ lessons: res.data }));
+      apiCall
+        .get(`/courses/${this.props.match.params.id}/users`)
+        .then(res =>
           this.setState({ courseUsers: res.data, isEnrolled: false })
         );
     }
@@ -69,16 +55,13 @@ class CoursePage extends React.Component {
 
   handleBuy = () => {
     if (this.state.currentUser) {
-      axios
-        .post(
-          `https://courses4me.herokuapp.com/courses/${this.props.match.params.id}`,
-          {
-            username: `${this.state.currentUser.username}`,
-          }
-        )
-        .then((res) => alert(res.data.success))
+      apiCall
+        .post(`/courses/${this.props.match.params.id}`, {
+          username: `${this.state.currentUser.username}`,
+        })
+        .then(res => alert(res.data.success))
         .then(() => this.setState({ isEnrolled: true }))
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     } else {
       this.props.toggleModal(true, "login");
       // alert("You have to log-in first");
@@ -121,7 +104,7 @@ class CoursePage extends React.Component {
         this.state.currentUser.role_id === "teacher"
       ) {
         const checkForUser = this.state.courseUsers.filter(
-          (user) => user.username === this.state.currentUser.username
+          user => user.username === this.state.currentUser.username
         );
         if (checkForUser.length === 1) {
           this.setState({ isEnrolled: true });

@@ -8,7 +8,7 @@ import StudentPanel from "./components/StudentPanel/StudentPanel";
 import TeacherPanel from "./components/TeacherPanel/TeacherPanel";
 import EditProfileModal from "./components/EditProfileModal/EditProfileModal";
 import { EditOutlined } from "@ant-design/icons";
-import axios from "axios";
+import apiCall from "../../service/apiCall";
 
 const messageKey = "uploading-image";
 
@@ -46,26 +46,17 @@ const UserPage = () => {
     });
     const newProfilePic = new FormData();
     newProfilePic.append("picture", profileImgUpdate);
-    axios
-      .put(
-        `https://courses4me.herokuapp.com/users/${currentUser.username}/pictureupload`,
-        newProfilePic,
-        {
-          headers: {
-            authorization: AuthService.getAuthHeader(),
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
+    apiCall
+      .put(`/users/${currentUser.username}/pictureupload`, newProfilePic, {
+        headers: {
+          authorization: AuthService.getAuthHeader(),
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(res => {
-        axios
-          .get(
-            `https://courses4me.herokuapp.com/users/${
-              AuthService.getCurrentUser().username
-            }`
-          )
+        apiCall
+          .get(`/users/${AuthService.getCurrentUser().username}`)
           .then(res => {
-            console.log(res.data[0]);
             localStorage.setItem("user-info", JSON.stringify(res.data[0]));
             message.success({
               content: "Profile Picture Changed!",
@@ -97,48 +88,32 @@ const UserPage = () => {
       phone: formValues.phone,
     };
     if (formValues.password === formValues.confirm) {
-      console.log(formValues);
       if (formValues.oldPassword && formValues.password) {
-        console.log("we are changing passwords");
         const changePassData = {
           oldPassword: formValues.oldPassword,
           newPassword: formValues.password,
         };
 
-        console.log(formValues.password);
-        const passwordChangeReq = axios
-          .put(
-            `https://courses4me.herokuapp.com/users/${currentUser.username}/password`,
-            changePassData,
-            {
-              headers: {
-                authorization: AuthService.getAuthHeader(),
-              },
-            }
-          )
+        const passwordChangeReq = apiCall
+          .put(`/users/${currentUser.username}/password`, changePassData, {
+            headers: {
+              authorization: AuthService.getAuthHeader(),
+            },
+          })
           .then(res => message.success("Password Successfully changed!"))
           .catch(err => {
             message.error(err.response.data.error);
           });
-        const userInfoChangeReq = axios
-          .put(
-            `https://courses4me.herokuapp.com/users/${currentUser.username}`,
-            changeUserInfoData,
-            {
-              headers: {
-                authorization: AuthService.getAuthHeader(),
-              },
-            }
-          )
+        const userInfoChangeReq = apiCall
+          .put(`/users/${currentUser.username}`, changeUserInfoData, {
+            headers: {
+              authorization: AuthService.getAuthHeader(),
+            },
+          })
           .then(res => {
-            axios
-              .get(
-                `https://courses4me.herokuapp.com/users/${
-                  AuthService.getCurrentUser().username
-                }`
-              )
+            apiCall
+              .get(`/users/${AuthService.getCurrentUser().username}`)
               .then(res => {
-                console.log(res.data[0]);
                 localStorage.setItem("user-info", JSON.stringify(res.data[0]));
                 message.success("User Profile Updated!");
                 // window.location.reload();
@@ -146,7 +121,7 @@ const UserPage = () => {
           })
           .catch(err => message.error(err.response.data.error));
 
-        axios.all([userInfoChangeReq, passwordChangeReq]).finally(res => {
+        apiCall.all([userInfoChangeReq, passwordChangeReq]).finally(res => {
           setEditProfileModal(false);
         });
         // .catch(errors => {
@@ -155,25 +130,16 @@ const UserPage = () => {
         //   message.error()
         // })
       } else {
-        axios
-          .put(
-            `https://courses4me.herokuapp.com/users/${currentUser.username}`,
-            changeUserInfoData,
-            {
-              headers: {
-                authorization: AuthService.getAuthHeader(),
-              },
-            }
-          )
+        apiCall
+          .put(`/users/${currentUser.username}`, changeUserInfoData, {
+            headers: {
+              authorization: AuthService.getAuthHeader(),
+            },
+          })
           .then(res => {
-            axios
-              .get(
-                `https://courses4me.herokuapp.com/users/${
-                  AuthService.getCurrentUser().username
-                }`
-              )
+            apiCall
+              .get(`/users/${AuthService.getCurrentUser().username}`)
               .then(res => {
-                console.log(res.data[0]);
                 localStorage.setItem("user-info", JSON.stringify(res.data[0]));
                 message.success("User Profile Updated!");
                 // window.location.reload();

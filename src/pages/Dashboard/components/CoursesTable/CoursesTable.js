@@ -1,9 +1,8 @@
 import React from "react";
 import "./CoursesTable.css";
-
 import { Table, Space, Button, message } from "antd";
-import axios from "axios";
 import AuthService from "../../../../auth/AuthService";
+import apiCall from "../../../../service/apiCall";
 
 const CoursesTable = ({ itemData }) => {
   const columns = [
@@ -52,8 +51,8 @@ const CoursesTable = ({ itemData }) => {
   ];
 
   const deleteCourse = deleteId => {
-    axios
-      .delete(`https://courses4me.herokuapp.com/courses/${deleteId}`, {
+    apiCall
+      .delete(`/courses/${deleteId}`, {
         headers: {
           authorization: AuthService.getAuthHeader(),
         },

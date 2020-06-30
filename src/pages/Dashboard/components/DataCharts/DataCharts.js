@@ -3,7 +3,7 @@ import "./DataCharts.css";
 import { Line, Pie } from "react-chartjs-2";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
+import apiCall from "../../../../service/apiCall";
 
 const DataChards = () => {
   const [studentCount, setStudentCount] = useState(0);
@@ -74,27 +74,16 @@ const DataChards = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("https://courses4me.herokuapp.com/users/teachers-count")
-      .then(res => setTeacherCount(res.data));
-    axios
-      .get("https://courses4me.herokuapp.com/users/students-count")
-      .then(res => setStudentCount(res.data));
-    /*future fix */
-    // if (false) {
-    axios
-      .get(
-        "https://courses4me.herokuapp.com/users/statistics/new-teachers-number"
-      )
+    apiCall.get("/users/teachers-count").then(res => setTeacherCount(res.data));
+    apiCall.get("/users/students-count").then(res => setStudentCount(res.data));
+
+    apiCall
+      .get("/users/statistics/new-teachers-number")
       .then(res => setNewUsers(res.data.data));
-    axios
-      .get(
-        "https://courses4me.herokuapp.com/courses/statistics/new-courses-number"
-      )
+    apiCall
+      .get("/courses/statistics/new-courses-number")
       .then(res => setCreatedCourses(res.data.data));
-    axios
-      .get("https://courses4me.herokuapp.com/users/enabled-disabled")
-      .then(res => setVerUnver(res.data));
+    apiCall.get("/users/enabled-disabled").then(res => setVerUnver(res.data));
   }, []);
   return (
     <div className="data-charts-main">

@@ -2,15 +2,15 @@ import React from "react";
 import "./UsersTable.css";
 
 import { Table, Space, Button, message } from "antd";
-import axios from "axios";
 import AuthService from "../../../../auth/AuthService";
+import apiCall from "../../../../service/apiCall";
 
 const UsersTable = ({ itemData }) => {
   let passedData = [];
 
   const deleteUser = deleteId => {
-    axios
-      .delete(`https://courses4me.herokuapp.com/users/${deleteId}`, {
+    apiCall
+      .delete(`/users/${deleteId}`, {
         headers: {
           authorization: AuthService.getAuthHeader(),
         },
@@ -25,8 +25,8 @@ const UsersTable = ({ itemData }) => {
   };
 
   const handlePruneButton = () => {
-    axios
-      .delete("https://courses4me.herokuapp.com/users/prune", {
+    apiCall
+      .delete("/users/prune", {
         headers: {
           authorization: AuthService.getAuthHeader(),
         },
