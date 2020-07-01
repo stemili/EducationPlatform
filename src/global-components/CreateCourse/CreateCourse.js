@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Input, Select, InputNumber, message } from "antd";
 import "./CreateCourse.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import apiCall from "../../service/apiCall";
 import AuthService from "../../auth/AuthService";
 
 const messageKey = "updatable";
@@ -61,9 +61,10 @@ class CreateCourse extends React.Component {
     // console.log(values.upload[0].originFileObj);
     console.log(postCourse);
     message.loading({ content: "Uploading Course...", key: messageKey });
-    axios
-      .post("https://courses4me.herokuapp.com/courses", postCourse, {
+    apiCall
+      .post("/courses", postCourse, {
         headers: {
+          authorization: AuthService.getAuthHeader(),
           "Content-Type": "multipart/form-data",
         },
       })
@@ -108,10 +109,10 @@ class CreateCourse extends React.Component {
     postLesson.append("video", this.state.lessonVideo);
 
     message.loading({ content: "Uploading Lesson...", key: messageKey });
-    axios
-      .post("https://courses4me.herokuapp.com/lessons", postLesson, {
+    apiCall
+      .post("/lessons", postLesson, {
         headers: {
-          authorization: `token ${AuthService.getAuthHeader()}`,
+          authorization: AuthService.getAuthHeader(),
           "Content-Type": "multipart/form-data",
         },
       })
@@ -128,10 +129,10 @@ class CreateCourse extends React.Component {
         for (let i = 0; i < this.state.documentArrayUpload.length; i++) {
           postDocument.append("document", this.state.documentArrayUpload[i]);
         }
-        axios
-          .post("https://courses4me.herokuapp.com/documents", postDocument, {
+        apiCall
+          .post("/documents", postDocument, {
             headers: {
-              authorization: `token ${AuthService.getAuthHeader()}`,
+              authorization: AuthService.getAuthHeader(),
               "Content-Type": "multipart/form-data",
             },
           })

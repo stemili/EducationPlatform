@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { AutoComplete } from "antd";
-import Axios from "axios";
 import { Link } from "react-router-dom";
+import apiCall from "../../service/apiCall";
 import "./SearchBar.css";
 
 const SearchBar = props => {
@@ -11,9 +11,9 @@ const SearchBar = props => {
 
   const textSearchInput = useRef(null);
   useEffect(() => {
-    Axios.get(
-      `https://courses4me.herokuapp.com/courses/search?title=${searchState}`
-    ).then(res => setCourses(res.data));
+    apiCall
+      .get(`/courses/search?title=${searchState}`)
+      .then(res => setCourses(res.data));
   }, [searchState]);
 
   useEffect(() => {

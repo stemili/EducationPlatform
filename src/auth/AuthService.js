@@ -1,7 +1,5 @@
 import apiCall from "../service/apiCall";
 
-const API_URL = "https://courses4me.herokuapp.com";
-
 class AuthService {
   login(username, password) {
     return apiCall
@@ -11,7 +9,6 @@ class AuthService {
       })
       .then(res => {
         if (res.data.accessToken) {
-          console.log(res.data);
           localStorage.setItem(
             "user-jwt",
             JSON.stringify(res.data.accessToken)
@@ -21,7 +18,7 @@ class AuthService {
             JSON.stringify(res.data.refreshToken)
           );
         }
-        return [username, API_URL];
+        return username;
       });
   }
 

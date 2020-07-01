@@ -3,7 +3,7 @@ import { Input, Form, message } from "antd";
 import { useState } from "react";
 import "./Signup.css";
 import AuthService from "../../auth/AuthService";
-import axios from "axios";
+import apiCall from "../../service/apiCall";
 
 const Signup = ({ setModalWin }) => {
   const formRef = React.createRef();
@@ -41,9 +41,7 @@ const Signup = ({ setModalWin }) => {
     const confirmProfile = {
       register_token: values.confirmationCode,
     };
-    axios
-      .post("https://courses4me.herokuapp.com/verify", confirmProfile)
-      .then(res => setCreateLvl(2));
+    apiCall.post("/verify", confirmProfile).then(res => setCreateLvl(2));
     console.log(confirmProfile);
   };
 

@@ -11,7 +11,7 @@ const ProtectedRoute = ({
   return (
     <Route
       {...rest}
-      render={(props) => {
+      render={props => {
         if (AuthService.getCurrentUser()) {
           if (
             (AuthService.getCurrentUser().role_id !== "administrator" &&

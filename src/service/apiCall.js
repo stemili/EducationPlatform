@@ -66,8 +66,12 @@ eduApi.interceptors.response.use(
         const response = await axios(failedRequest);
         result = Promise.resolve(response);
       } catch (error) {
-        AuthService.logout();
-        window.location.reload();
+        if (error.response.status === 401) {
+          AuthService.logout();
+          window.location.reload();
+        }
+        // AuthService.logout();
+        // window.location.reload();
         // const oldToken =
         //   error.response && error.response.config.data
         //     ? error.response.config.data.get("refreshToken")

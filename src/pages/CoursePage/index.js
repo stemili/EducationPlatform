@@ -6,6 +6,7 @@ import CourseHeading from "./components/CourseHeading/CourseHeading";
 import { CourseInformation } from "./components/CourseInformation/CourseInformation";
 import "antd/dist/antd.css";
 import "./course.css";
+import AuthService from "../../auth/AuthService";
 
 class CoursePage extends React.Component {
   state = {
@@ -56,9 +57,17 @@ class CoursePage extends React.Component {
   handleBuy = () => {
     if (this.state.currentUser) {
       apiCall
-        .post(`/courses/${this.props.match.params.id}`, {
-          username: `${this.state.currentUser.username}`,
-        })
+        .post(
+          `/courses/${this.props.match.params.id}`,
+          {
+            username: `${this.state.currentUser.username}`,
+          },
+          {
+            headers: {
+              authorization: AuthService.getAuthHeader(),
+            },
+          }
+        )
         .then(res => alert(res.data.success))
         .then(() => this.setState({ isEnrolled: true }))
         .catch(err => console.log(err));

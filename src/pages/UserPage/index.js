@@ -9,7 +9,7 @@ import TeacherPanel from "./components/TeacherPanel/TeacherPanel";
 import EditProfileModal from "./components/EditProfileModal/EditProfileModal";
 import { EditOutlined } from "@ant-design/icons";
 import apiCall from "../../service/apiCall";
-
+import axios from "axios";
 const messageKey = "uploading-image";
 
 const UserPage = () => {
@@ -121,7 +121,7 @@ const UserPage = () => {
           })
           .catch(err => message.error(err.response.data.error));
 
-        apiCall.all([userInfoChangeReq, passwordChangeReq]).finally(res => {
+        axios.all([userInfoChangeReq, passwordChangeReq]).finally(res => {
           setEditProfileModal(false);
         });
         // .catch(errors => {

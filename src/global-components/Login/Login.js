@@ -1,7 +1,7 @@
 import React from "react";
 import "./Login.css";
 import { useState } from "react";
-import axios from "axios";
+import apiCall from "../../service/apiCall";
 
 import AuthService from "../../auth/AuthService";
 import { useHistory } from "react-router-dom";
@@ -15,8 +15,8 @@ const Login = ({ setCurrentUser, setModalWin }) => {
   const handleLogIn = e => {
     e.preventDefault();
     AuthService.login(username, password)
-      .then(([username, API_URL]) => {
-        axios.get(`${API_URL}/users/${username}`).then(res => {
+      .then(username => {
+        apiCall.get(`/users/${username}`).then(res => {
           localStorage.setItem("user-info", JSON.stringify(res.data[0]));
           setCurrentUser(AuthService.getCurrentUser());
           setModalWin([false, "login"]);
