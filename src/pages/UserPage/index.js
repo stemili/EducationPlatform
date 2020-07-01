@@ -102,7 +102,9 @@ const UserPage = () => {
           })
           .then(res => message.success("Password Successfully changed!"))
           .catch(err => {
-            message.error(err.response.data.error);
+            if (err.response.status !== 420) {
+              console.log("unable to change passwords");
+            }
           });
         const userInfoChangeReq = apiCall
           .put(`/users/${currentUser.username}`, changeUserInfoData, {
@@ -124,11 +126,6 @@ const UserPage = () => {
         axios.all([userInfoChangeReq, passwordChangeReq]).finally(res => {
           setEditProfileModal(false);
         });
-        // .catch(errors => {
-        //   let firstResponse =  errors[0];
-        //   let secondResponse = errors[1];
-        //   message.error()
-        // })
       } else {
         apiCall
           .put(`/users/${currentUser.username}`, changeUserInfoData, {

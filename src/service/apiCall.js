@@ -1,5 +1,6 @@
 import axios from "axios";
 import AuthService from "../auth/AuthService";
+import { message } from "antd";
 
 const apiUrl = "https://courses4me.herokuapp.com";
 const eduApi = axios.create({
@@ -69,6 +70,12 @@ eduApi.interceptors.response.use(
         if (error.response.status === 401) {
           AuthService.logout();
           window.location.reload();
+        } else if (error.response.data.error === "Passwords do not match!") {
+          message.error("Incorect password!");
+        } else if (
+          error.response.data.error.includes("Password is too weak!")
+        ) {
+          message.error(error.response.data.error);
         }
         // AuthService.logout();
         // window.location.reload();
