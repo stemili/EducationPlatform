@@ -40,7 +40,9 @@ const CourseCard = ({ course }) => {
             spaceBetweenStar="2px"
             disableOnSelect={true}
           />
-          <p className="info-card-price">{course.price} EUR</p>
+          <p className="info-card-price">
+            {course.price > 0 ? course.price + " EUR" : "FREE"}
+          </p>
         </div>
       </div>
     </div>

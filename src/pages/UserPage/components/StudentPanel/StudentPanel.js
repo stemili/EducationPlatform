@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./StudentPanel.css";
 import ProfileCourseCard from "../ProfileCourseCard/ProfileCourseCard";
+import apiCall from "../../../../service/apiCall";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,15 +14,10 @@ const StudentPanel = () => {
 
   //calling useEffect with different params every time curent course selection changes
   useEffect(() => {
-    axios
-      .get(
-        `https://courses4me.herokuapp.com/users/${
-          AuthService.getCurrentUser().username
-        }/courses`,
-        {
-          headers: { authorization: AuthService.getAuthHeader() },
-        }
-      )
+    apiCall
+      .get(`/users/${AuthService.getCurrentUser().username}/courses`, {
+        headers: { authorization: AuthService.getAuthHeader() },
+      })
       .then(res => {
         setMyCourses(res.data);
       });

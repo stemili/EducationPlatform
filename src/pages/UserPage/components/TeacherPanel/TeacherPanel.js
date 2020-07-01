@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "./TeacherPanel.css";
+
+import apiCall from "../../../../service/apiCall";
 import TeacherCourseCard from "../TeacherCourseCard/TeacherCourseCard";
 import AuthService from "../../../../auth/AuthService";
 import ProfileCourseCard from "../ProfileCourseCard/ProfileCourseCard";
@@ -16,30 +16,20 @@ const TeacherPanel = () => {
   //calling useEffect with different params every time curent course selection changes
   useEffect(() => {
     if (selectedNavItem === "my_subscriptions") {
-      axios
-        .get(
-          `https://courses4me.herokuapp.com/users/${
-            AuthService.getCurrentUser().username
-          }/courses`,
-          {
-            headers: { authorization: AuthService.getAuthHeader() },
-          }
-        )
+      apiCall
+        .get(`/users/${AuthService.getCurrentUser().username}/courses`, {
+          headers: { authorization: AuthService.getAuthHeader() },
+        })
         .then(res => {
           console.log("subscribed courses please");
           console.log(res.data);
           setMyCourses(res.data);
         });
     } else {
-      axios
-        .get(
-          `https://courses4me.herokuapp.com/users/${
-            AuthService.getCurrentUser().username
-          }/my-courses`,
-          {
-            headers: { authorization: AuthService.getAuthHeader() },
-          }
-        )
+      apiCall
+        .get(`/users/${AuthService.getCurrentUser().username}/my-courses`, {
+          headers: { authorization: AuthService.getAuthHeader() },
+        })
         .then(res => {
           setMyCourses(res.data);
         });

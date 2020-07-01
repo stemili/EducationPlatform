@@ -3,7 +3,7 @@ import { Layout, Menu } from "antd";
 import "./index.css";
 
 import { HomeOutlined, UserOutlined, BookOutlined } from "@ant-design/icons";
-import axios from "axios";
+import apiCall from "../../service/apiCall";
 import AuthService from "../../auth/AuthService";
 import DataCharts from "./components/DataCharts/DataCharts";
 import UsersTable from "./components/UsersTable/UsersTable";
@@ -29,8 +29,8 @@ class Dashboard extends Component {
     if (prevState.currentNavItem !== this.state.currentNavItem) {
       if (this.state.currentNavItem === "1") {
       } else if (this.state.currentNavItem === "2") {
-        axios
-          .get("https://courses4me.herokuapp.com/users", {
+        apiCall
+          .get("/users", {
             headers: {
               authorization: AuthService.getAuthHeader(),
             },
@@ -39,7 +39,7 @@ class Dashboard extends Component {
             this.setState({ itemData: res.data });
           });
       } else if (this.state.currentNavItem === "3") {
-        axios.get("https://courses4me.herokuapp.com/courses").then(res => {
+        apiCall.get("/courses").then(res => {
           this.setState({ itemData: res.data });
         });
       }

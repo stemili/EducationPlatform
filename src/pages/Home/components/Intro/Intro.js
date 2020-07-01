@@ -3,19 +3,15 @@ import "./Intro.css";
 import AuthService from "../../../../auth/AuthService";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import apiCall from "../../../../service/apiCall";
 
 const Intro = ({ toggleModal }) => {
   const [teacherCount, setTeacherCount] = useState(0);
   const [courseCount, setCourseCount] = useState(0);
 
   useEffect(() => {
-    axios
-      .get("https://courses4me.herokuapp.com/users/teachers-count")
-      .then(res => setTeacherCount(res.data));
-    axios
-      .get("https://courses4me.herokuapp.com/courses/count")
-      .then(res => setCourseCount(res.data));
+    apiCall.get("/users/teachers-count").then(res => setTeacherCount(res.data));
+    apiCall.get("/courses/count").then(res => setCourseCount(res.data));
   }, []);
 
   return (

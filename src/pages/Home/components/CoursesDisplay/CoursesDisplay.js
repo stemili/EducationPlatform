@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import axios from "axios";
+import apiCall from "../../../../service/apiCall";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CourseCard from "../CourseCard/CourseCard";
@@ -24,9 +24,7 @@ const CoursesDisplay = props => {
   ];
   const currentDate = new Date();
   useEffect(() => {
-    axios
-      .get("https://courses4me.herokuapp.com/courses")
-      .then(res => setTopCourses(res.data));
+    apiCall.get("/courses").then(res => setTopCourses(res.data));
   }, []);
   //settings for react-slick slider
   var settings = {
