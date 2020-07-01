@@ -1,17 +1,25 @@
-import axios from "axios";
+import apiCall from "../service/apiCall";
 
 const API_URL = "https://courses4me.herokuapp.com";
 
 class AuthService {
   login(username, password) {
-    return axios
-      .post(`${API_URL}/login`, {
+    return apiCall
+      .post("/login", {
         username,
         password,
       })
       .then(res => {
-        if (res.data.token) {
-          localStorage.setItem("user-jwt", JSON.stringify(res.data.token));
+        if (res.data.accessToken) {
+          console.log(res.data);
+          localStorage.setItem(
+            "user-jwt",
+            JSON.stringify(res.data.accessToken)
+          );
+          localStorage.setItem(
+            "refresh-jwt",
+            JSON.stringify(res.data.refreshToken)
+          );
         }
         return [username, API_URL];
       });
@@ -19,6 +27,7 @@ class AuthService {
 
   logout() {
     localStorage.removeItem("user-jwt");
+    localStorage.removeItem("refresh-jwt");
     localStorage.removeItem("user-info");
   }
 
@@ -27,9 +36,12 @@ class AuthService {
   }
 
   register(data) {
-    return axios.post(`${API_URL}/register`, data);
+    return apiCall.post("/register", data);
   }
 
+  getRefreshToken() {
+    return JSON.parse(localStorage.getItem("refresh-jwt"));
+  }
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user-info"));
   }

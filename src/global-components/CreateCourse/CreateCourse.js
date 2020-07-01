@@ -43,8 +43,8 @@ class CreateCourse extends React.Component {
     postCourse.append("title", values.title);
     postCourse.append("shortDesc", values.shortdescription);
     postCourse.append("longDesc", values.description);
-    postCourse.append("price", values.price);
-    postCourse.append("duration", 12);
+    postCourse.append("price", 0);
+    postCourse.append("duration", 1);
     postCourse.append("category", values.category);
     postCourse.append("teacher", AuthService.getCurrentUser().username);
 
@@ -292,8 +292,8 @@ class CreateCourse extends React.Component {
 
             <Form.Item
               name="price"
-              label="Price"
-              rules={[{ type: "number", min: 0, max: 500, required: true }]}
+              label="Price (Coming Soon...)"
+              rules={[{ type: "number", min: 0, max: 0, required: false }]}
             >
               <InputNumber />
             </Form.Item>
