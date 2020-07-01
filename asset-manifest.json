@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/EducationPlatform/static/css/main.bbbc21f7.chunk.css",
-    "main.js": "/EducationPlatform/static/js/main.a44cd759.chunk.js",
-    "main.js.map": "/EducationPlatform/static/js/main.a44cd759.chunk.js.map",
+    "main.js": "/EducationPlatform/static/js/main.12796366.chunk.js",
+    "main.js.map": "/EducationPlatform/static/js/main.12796366.chunk.js.map",
     "runtime-main.js": "/EducationPlatform/static/js/runtime-main.5988cf17.js",
     "runtime-main.js.map": "/EducationPlatform/static/js/runtime-main.5988cf17.js.map",
     "static/css/2.eb1bef97.chunk.css": "/EducationPlatform/static/css/2.eb1bef97.chunk.css",
-    "static/js/2.a9cad66d.chunk.js": "/EducationPlatform/static/js/2.a9cad66d.chunk.js",
-    "static/js/2.a9cad66d.chunk.js.map": "/EducationPlatform/static/js/2.a9cad66d.chunk.js.map",
+    "static/js/2.f75653aa.chunk.js": "/EducationPlatform/static/js/2.f75653aa.chunk.js",
+    "static/js/2.f75653aa.chunk.js.map": "/EducationPlatform/static/js/2.f75653aa.chunk.js.map",
     "index.html": "/EducationPlatform/index.html",
-    "precache-manifest.8b91010ff1ccaa788980760be537603d.js": "/EducationPlatform/precache-manifest.8b91010ff1ccaa788980760be537603d.js",
+    "precache-manifest.63df8bc0594db4b5c661cfc317408c4e.js": "/EducationPlatform/precache-manifest.63df8bc0594db4b5c661cfc317408c4e.js",
     "service-worker.js": "/EducationPlatform/service-worker.js",
     "static/css/2.eb1bef97.chunk.css.map": "/EducationPlatform/static/css/2.eb1bef97.chunk.css.map",
     "static/css/main.bbbc21f7.chunk.css.map": "/EducationPlatform/static/css/main.bbbc21f7.chunk.css.map",
-    "static/js/2.a9cad66d.chunk.js.LICENSE.txt": "/EducationPlatform/static/js/2.a9cad66d.chunk.js.LICENSE.txt",
+    "static/js/2.f75653aa.chunk.js.LICENSE.txt": "/EducationPlatform/static/js/2.f75653aa.chunk.js.LICENSE.txt",
     "static/media/slick-theme.css": "/EducationPlatform/static/media/slick.f97e3bbf.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.5988cf17.js",
     "static/css/2.eb1bef97.chunk.css",
-    "static/js/2.a9cad66d.chunk.js",
+    "static/js/2.f75653aa.chunk.js",
     "static/css/main.bbbc21f7.chunk.css",
-    "static/js/main.a44cd759.chunk.js"
+    "static/js/main.12796366.chunk.js"
   ]
 }
